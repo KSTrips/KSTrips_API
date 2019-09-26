@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using KSTrips.Domain.Entities;
+
+namespace KSTrips.Infrastructure.Interfaces
+{
+    public interface ITripRepository
+    {
+        Task<List<Trip>> GetAllTrips();
+        Task<List<Trip>> GetTripsByUserId(int userId);
+        Task<List<Trip>> GetTripByRangeDates(DateTime dateFrom, DateTime dateTo);
+
+    }
+}

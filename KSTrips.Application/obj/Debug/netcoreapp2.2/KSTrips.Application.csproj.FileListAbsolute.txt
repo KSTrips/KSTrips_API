@@ -1,0 +1,16 @@
+D:\KSTrips\KSTrips_API\KSTrips.Application\bin\Debug\netcoreapp2.2\App.config
+D:\KSTrips\KSTrips_API\KSTrips.Application\bin\Debug\netcoreapp2.2\KSTrips.Application.deps.json
+D:\KSTrips\KSTrips_API\KSTrips.Application\bin\Debug\netcoreapp2.2\KSTrips.Application.dll
+D:\KSTrips\KSTrips_API\KSTrips.Application\bin\Debug\netcoreapp2.2\KSTrips.Application.pdb
+D:\KSTrips\KSTrips_API\KSTrips.Application\bin\Debug\netcoreapp2.2\KSTrips.Domain.dll
+D:\KSTrips\KSTrips_API\KSTrips.Application\bin\Debug\netcoreapp2.2\KSTrips.Infrastructure.dll
+D:\KSTrips\KSTrips_API\KSTrips.Application\bin\Debug\netcoreapp2.2\KSTrips.Domain.pdb
+D:\KSTrips\KSTrips_API\KSTrips.Application\bin\Debug\netcoreapp2.2\KSTrips.Infrastructure.pdb
+D:\KSTrips\KSTrips_API\KSTrips.Application\bin\Debug\netcoreapp2.2\KSTrips.Infrastructure.dll.config
+D:\KSTrips\KSTrips_API\KSTrips.Application\obj\Debug\netcoreapp2.2\KSTrips.Application.csprojAssemblyReference.cache
+D:\KSTrips\KSTrips_API\KSTrips.Application\obj\Debug\netcoreapp2.2\KSTrips.Application.csproj.CoreCompileInputs.cache
+D:\KSTrips\KSTrips_API\KSTrips.Application\obj\Debug\netcoreapp2.2\KSTrips.Application.AssemblyInfoInputs.cache
+D:\KSTrips\KSTrips_API\KSTrips.Application\obj\Debug\netcoreapp2.2\KSTrips.Application.AssemblyInfo.cs
+D:\KSTrips\KSTrips_API\KSTrips.Application\obj\Debug\netcoreapp2.2\KSTrips.Application.csproj.CopyComplete
+D:\KSTrips\KSTrips_API\KSTrips.Application\obj\Debug\netcoreapp2.2\KSTrips.Application.dll
+D:\KSTrips\KSTrips_API\KSTrips.Application\obj\Debug\netcoreapp2.2\KSTrips.Application.pdb
