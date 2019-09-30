@@ -50,6 +50,7 @@ namespace KSTrips_API.Core.Services
                 DiscountIca = transversal.CalculateIca(dataSimulator.TotalPay),
                 DiscountRetefuente = transversal.CalculateRetefuente(dataSimulator.TotalPay),
                 DiscountPeajes = transversal.CalculateTolls(dataSimulator.CarCategory, tollresponse),
+                DiscountExpenses = transversal.CalculateExpenses(dataSimulator.Expenses),
                 TotalProfit = transversal.CalculateProfit(dataSimulator, tollresponse, dataSimulator.Expenses)
             };
 

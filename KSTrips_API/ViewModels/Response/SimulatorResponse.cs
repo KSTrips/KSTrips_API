@@ -20,6 +20,7 @@ namespace KSTrips_API.ViewModels.Response
         public Decimal DiscountRetefuente { get; set; }
         public Decimal DiscountIca { get; set; }
         public Decimal DiscountPeajes { get; set; }
+        public Decimal DiscountExpenses { get; set; }
         public Decimal? DiscountOthers { get; set; }
         public Decimal TotalProfit { get; set; }
         public Decimal Debt { get; set; }
