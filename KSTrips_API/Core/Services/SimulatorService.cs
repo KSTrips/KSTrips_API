@@ -41,6 +41,7 @@ namespace KSTrips_API.Core.Services
                 Destination = dataSimulator.Destination,
                 DistanceKM = tollresponse?.DistanceKm ?? 0,
                 AproximateTime = tollresponse?.ApproximateTime ?? "00:00",
+                QtyTolls = tollresponse?.TotalQtyTolls??0,
                 TotalPay = dataSimulator.TotalPay,
                 Tolls = tollresponse,
                 Expenses = dataSimulator.Expenses,

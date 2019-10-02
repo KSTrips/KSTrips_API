@@ -11,6 +11,7 @@ namespace KSTrips_API.ViewModels.Response
         public string Origin { get; set; }
         public string Destination { get; set; }
         public int DistanceKM { get; set; }
+        public int QtyTolls { get; set; }
         public string AproximateTime { get; set; }
         public List<Expense> Expenses { get; set; }
         public Toll Tolls { get; set; }
