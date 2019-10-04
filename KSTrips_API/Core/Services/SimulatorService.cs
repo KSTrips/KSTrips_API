@@ -28,31 +28,31 @@ namespace KSTrips_API.Core.Services
         public async Task<SimulatorResponse> SimulateTripAsync(SimulatorEntity dataSimulator)
         {
             List<Toll> tolls = await _unitOfWork.TollRespository.GetTollByRoute(dataSimulator.Origin, dataSimulator.Destination);
-            Toll tollresponse = null;
+            Toll tollResponse = null;
 
             if (tolls.Count > 0)
-                tollresponse = tolls[0];
+                tollResponse = tolls[0];
 
-            var transversal = new Transversal();
+            var objTransversal = new Transversal();
 
             var simulationResult = new SimulatorResponse
             {
                 Origin = dataSimulator.Origin,
                 Destination = dataSimulator.Destination,
-                DistanceKM = tollresponse?.DistanceKm ?? 0,
-                AproximateTime = tollresponse?.ApproximateTime ?? "00:00",
-                QtyTolls = tollresponse?.TotalQtyTolls??0,
+                DistanceKM = tollResponse?.DistanceKm ?? 0,
+                AproximateTime = tollResponse?.ApproximateTime ?? "00:00",
+                QtyTolls = tollResponse?.TotalQtyTolls??0,
                 TotalPay = dataSimulator.TotalPay,
-                Tolls = tollresponse,
+                Tolls = tollResponse,
                 Expenses = dataSimulator.Expenses,
-                Payment = transversal.CalculatePayment(dataSimulator.TotalPay),
-                Debt = transversal.CalculateDebt(dataSimulator.TotalPay),
+                Payment = objTransversal.CalculatePayment(dataSimulator.TotalPay),
+                Debt = objTransversal.CalculateDebt(dataSimulator.TotalPay),
                 DiscountOthers = 0,
-                DiscountIca = transversal.CalculateIca(dataSimulator.TotalPay),
-                DiscountRetefuente = transversal.CalculateRetefuente(dataSimulator.TotalPay),
-                DiscountPeajes = transversal.CalculateTolls(dataSimulator.CarCategory, tollresponse),
-                DiscountExpenses = transversal.CalculateExpenses(dataSimulator.Expenses),
-                TotalProfit = transversal.CalculateProfit(dataSimulator, tollresponse, dataSimulator.Expenses)
+                DiscountIca = objTransversal.CalculateIca(dataSimulator.TotalPay),
+                DiscountRetefuente = objTransversal.CalculateRetefuente(dataSimulator.TotalPay),
+                DiscountPeajes = objTransversal.CalculateTolls(dataSimulator.CarCategory, tollResponse),
+                DiscountExpenses = objTransversal.CalculateExpenses(dataSimulator.Expenses),
+                TotalProfit = objTransversal.CalculateProfit(dataSimulator, tollResponse, dataSimulator.Expenses)
             };
 
             return simulationResult;
