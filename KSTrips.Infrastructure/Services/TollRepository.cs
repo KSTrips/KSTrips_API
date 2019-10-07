@@ -19,7 +19,7 @@ namespace KSTrips.Infrastructure.Services
         }
         public async Task<List<Toll>> GetTollByRoute(string origin, string destiny)
         {
-            return await Context.Tolls.Where(ls => ls.Name == origin + " - " + destiny)
+            return await Context.Tolls.Where(ls => ls.Name == origin.Trim() + " - " + destiny.Trim())
                 .Include(ls => ls.TollDetails).ToListAsync();
         }
     }
