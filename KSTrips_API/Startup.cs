@@ -2,6 +2,7 @@
 using KSTrips_API.Core;
 using KSTrips_API.Core.Interfaces;
 using KSTrips_API.Core.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -38,8 +39,12 @@ namespace KSTrips_API
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+
             services.AddScoped<IUnitfOfWork, UnitOfWork>();
             services.AddScoped<ISimulatorService, SimulatorService>();
+
 
 
         }
@@ -48,7 +53,7 @@ namespace KSTrips_API
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseCors("AllowOrigin");
-
+            //app.UseAuthentication();
 
 
             if (env.IsDevelopment())
