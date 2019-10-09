@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -31,5 +32,8 @@ namespace KSTrips.Domain.Entities
         public bool IsActive { get; set; }
 
         public virtual ICollection<TripDetail> TripDetails { get; set; }
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }

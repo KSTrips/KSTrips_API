@@ -5,9 +5,8 @@ using System.Text;
 
 namespace KSTrips.Domain.Entities
 {
-    public class Users
+    public class User
     {
-
         public int UserId { get; set; }
         public string AuthZero_Id { get; set; }
         public string Given_Name { get; set; }
@@ -18,6 +17,8 @@ namespace KSTrips.Domain.Entities
         public DateTime? DateModified { get; set; }
         public string CreatedBy { get; set; }
         public bool IsActive { get; set; }
+
+        public virtual Trip Trip { get; set; }
 
     }
 }

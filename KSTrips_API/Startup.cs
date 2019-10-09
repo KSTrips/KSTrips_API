@@ -1,8 +1,7 @@
-﻿using KSTrips.Infrastructure;
-using KSTrips_API.Core;
-using KSTrips_API.Core.Interfaces;
-using KSTrips_API.Core.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using KSTrips.Application.Interfaces;
+using KSTrips.Application.Services;
+using KSTrips.Infrastructure;
+using KSTrips.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -42,8 +41,8 @@ namespace KSTrips_API
 
             //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
-            services.AddScoped<IUnitfOfWork, UnitOfWork>();
-            services.AddScoped<ISimulatorService, SimulatorService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ISimulationService, SimulationService>();
 
 
 

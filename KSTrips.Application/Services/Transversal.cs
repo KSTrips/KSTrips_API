@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using KSTrips.Domain.Entities;
-using KSTrips_API.ViewModels;
+using KSTrips.Domain.Transversal;
 
-namespace KSTrips_API.Core.Services
+namespace KSTrips.Application.Services
 {
     public class Transversal
     {

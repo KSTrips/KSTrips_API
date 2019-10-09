@@ -1,9 +1,6 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using KSTrips_API.Core.Interfaces;
-using KSTrips_API.ViewModels;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
+using KSTrips.Application.Interfaces;
+using KSTrips.Domain.Transversal;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -14,9 +11,9 @@ namespace KSTrips_API.Controllers
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class SimulatorController : ControllerBase
     {
-        private readonly ISimulatorService _simulatorServices;
+        private readonly ISimulationService _simulatorServices;
 
-        public SimulatorController(ISimulatorService simulatorServices)
+        public SimulatorController(ISimulationService simulatorServices)
         {
             _simulatorServices = simulatorServices;
         }

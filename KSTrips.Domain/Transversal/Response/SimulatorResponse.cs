@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using KSTrips.Domain.Entities;
 
-namespace KSTrips_API.ViewModels.Response
+namespace KSTrips.Domain.Transversal.Response
 {
     public class SimulatorResponse
     {
