@@ -31,7 +31,8 @@ namespace KSTrips.Infrastructure.Services
 
         public async Task<List<Trip>> GetTripsByUserId(int userId)
         {
-            throw new NotImplementedException();
+            return await Context.Trips.Where(ls => ls.UserId == userId)
+                .Include(lc => lc.TripDetails).ToListAsync();
         }
     }
 }

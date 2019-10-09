@@ -4,14 +4,16 @@ using KSTrips.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KSTrips.Infrastructure.Migrations
 {
     [DbContext(typeof(TripContext))]
-    partial class TripContextModelSnapshot : ModelSnapshot
+    [Migration("20191009165442_addUser")]
+    partial class addUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,14 +247,9 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<decimal>("TotalTrip");
 
-                    b.Property<int>("UserId");
-
                     b.HasKey("TripId");
 
                     b.HasIndex("ProviderId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Trips");
                 });
@@ -350,11 +347,6 @@ namespace KSTrips.Infrastructure.Migrations
                     b.HasOne("KSTrips.Domain.Entities.Provider", "Provider")
                         .WithMany()
                         .HasForeignKey("ProviderId");
-
-                    b.HasOne("KSTrips.Domain.Entities.User", "User")
-                        .WithOne("Trip")
-                        .HasForeignKey("KSTrips.Domain.Entities.Trip", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("KSTrips.Domain.Entities.TripDetail", b =>

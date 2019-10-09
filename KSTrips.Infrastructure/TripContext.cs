@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using KSTrips.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 
 namespace KSTrips.Infrastructure
@@ -42,6 +43,8 @@ namespace KSTrips.Infrastructure
         public DbSet<CarCategory> CarCategories { get; set; }
 
         public DbSet<ExpenseCategory> ExpenseCategory { get; set; }
+
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
