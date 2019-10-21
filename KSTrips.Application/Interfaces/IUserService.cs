@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using KSTrips.Domain.Entities;
+using KSTrips.Domain.Transversal;
+using KSTrips.Domain.Transversal.Response;
 
-namespace KSTrips.Infrastructure.Interfaces
+namespace KSTrips.Application.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserService
     {
         Task<List<User>> GetUsers();
         Task<List<User>> GetUserByAuthZeroId(string authZeroId);
-        bool SaveUsers(User users);
-        bool UpdateUsers(IEnumerable<User> users);
+        bool SaveUsers(User dataUsers);
+        bool UpdateUsers(IEnumerable<User> dataUsers);
+
     }
 }

@@ -15,30 +15,66 @@ namespace KSTrips_API_Tests
     {
         private Mock<IUnitOfWork> _unitOfWork;
         private SimulationService _simulationService;
+        private List<CarCategory> _carCategory;
+        private List<ExpenseCategory> _expenseCategory;
 
         [SetUp]
         public void SetUp()
         {
             _unitOfWork = new Mock<IUnitOfWork>();
             _simulationService = new SimulationService(_unitOfWork.Object);
+            _carCategory = new List<CarCategory>
+            {
+                new CarCategory()
+                {
+                    CarCategoryId = 0,
+                    Description = string.Empty,
+                    CarTypes = string.Empty,
+                    IsActive = true
+                }
+            };
+
+            _expenseCategory = new List<ExpenseCategory>
+            {
+                new ExpenseCategory()
+                {
+                    ExpenseCategoryId = 0,
+                    Description = string.Empty,
+                    Expense = null,
+                    IsActive = true
+                }
+            };
         }
 
         [Test]
         public void GetCarCategories_WhenResultExist_ReturnCarCategories()
         {
+            // Arrange
+            _unitOfWork.Setup(uow => uow.CarCategoryRepository.GetCarCategories())
+                .ReturnsAsync(_carCategory);
+
             // Act
             var result = _simulationService.GetCarCategories();
 
             // Assert
+            Assert.That(result.Result, Is.Not.Null);
+            Assert.That(result.Result.Count, Is.GreaterThan(0));
             Assert.That(result, Is.TypeOf<Task<List<CarCategory>>>());
         }
 
-        public void GetTypeExpenseCategories_WhenResultExist_ReturnTypeExpenses()
+        [Test]
+        public void GetTypeExpenseCategories_WhenResultExist_ReturnExpenses()
         {
+            // Arrange
+            _unitOfWork.Setup(uow => uow.ExpenseRepository.GetExpenseCategories())
+                .ReturnsAsync(_expenseCategory);
+
             // Act
             var result = _simulationService.GetExpenseCategories();
 
             // Assert
+            Assert.That(result.Result, Is.Not.Null);
+            Assert.That(result.Result.Count, Is.GreaterThan(0));
             Assert.That(result, Is.TypeOf<Task<List<ExpenseCategory>>>());
         }
     }

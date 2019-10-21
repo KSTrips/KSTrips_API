@@ -4,14 +4,16 @@ using KSTrips.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KSTrips.Infrastructure.Migrations
 {
     [DbContext(typeof(TripContext))]
-    partial class TripContextModelSnapshot : ModelSnapshot
+    [Migration("20191021184751_ModifiedUsers")]
+    partial class ModifiedUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -294,7 +296,7 @@ namespace KSTrips.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AuthZeroId");
+                    b.Property<string>("AuthZero_Id");
 
                     b.Property<string>("CreatedBy");
 
@@ -308,15 +310,13 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<string>("Email");
 
-                    b.Property<string>("FamilyName");
+                    b.Property<string>("Family_Name");
 
-                    b.Property<string>("GivenName");
+                    b.Property<string>("Given_Name");
 
                     b.Property<bool>("IsActive");
 
                     b.Property<string>("Name");
-
-                    b.Property<string>("Provider");
 
                     b.HasKey("UserId");
 

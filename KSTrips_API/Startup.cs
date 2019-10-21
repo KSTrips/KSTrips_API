@@ -43,6 +43,7 @@ namespace KSTrips_API
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ISimulationService, SimulationService>();
+            services.AddScoped<IUserService, UserService>();
 
 
 
