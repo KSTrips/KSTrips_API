@@ -36,7 +36,7 @@ namespace KSTrips.Infrastructure.Services
                 if (existUser.Result.Count == 0)
                 {
                     user.DateCreated = DateTime.Now;
-
+                    user.CreatedBy = "Administrator";
                     Context.Users.Add(user);
                     Context.SaveChanges();
                 }
@@ -53,17 +53,21 @@ namespace KSTrips.Infrastructure.Services
         {
             try
             {
+                
+
                 foreach (User us in users)
                 {
+                    Context.Entry(us).State = EntityState.Modified;
                     us.DateModified = DateTime.Now;
 
                     Context.Entry(us).Property(p => p.DateModified).IsModified = true;
-                    Context.Entry(us).Property(p => p.IsActive).IsModified = us.IsActive;
+                    Context.Entry(us).Property(p => p.IsActive).IsModified = true;
                     Context.Entry(us).Property(p => p.DateInitial).IsModified = true;
                     Context.Entry(us).Property(p => p.DateUse).IsModified = true;
-
                 }
+
                 Context.SaveChanges();
+
                 return true;
             }
             catch (Exception ex)
