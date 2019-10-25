@@ -34,5 +34,15 @@ namespace KSTrips.Infrastructure.Services
             return await Context.Trips.Where(ls => ls.UserId == userId)
                 .Include(lc => lc.TripDetails).ToListAsync();
         }
+
+        public bool SaveTrip(Trip trip)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateTrip(Trip trip)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -40,7 +40,6 @@ namespace KSTrips_API_Tests
                 {
                     ExpenseCategoryId = 0,
                     Description = string.Empty,
-                    Expense = null,
                     IsActive = true
                 }
             };

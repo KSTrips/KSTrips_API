@@ -14,5 +14,8 @@ namespace KSTrips.Infrastructure.Interfaces
         Task<List<Trip>> GetTripsByUserId(int userId);
         Task<List<Trip>> GetTripByRangeDates(DateTime dateFrom, DateTime dateTo);
 
+        bool SaveTrip(Trip trip);
+        bool UpdateTrip(Trip trip);
+
     }
 }

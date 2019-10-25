@@ -10,8 +10,7 @@ namespace KSTrips.Infrastructure.Interfaces
     public interface IExpenseRepository
     {
         Task<List<ExpenseCategory>> GetExpenseCategories();
-        Task<List<Expense>> GetAllExpenses();
-        Task<List<Expense>> GetExpensesByTripDetailId(int tripDetailId);
+
 
     }
 }

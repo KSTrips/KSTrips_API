@@ -10,5 +10,7 @@ namespace KSTrips.Infrastructure.Interfaces
     public interface IProviderRepository
     {
         Task<List<Provider>> GetAllProviders();
+        bool SaveProvider(Provider provider);
+        bool UpdateProvider(Provider provider);
     }
 }

@@ -4,14 +4,16 @@ using KSTrips.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KSTrips.Infrastructure.Migrations
 {
     [DbContext(typeof(TripContext))]
-    partial class TripContextModelSnapshot : ModelSnapshot
+    [Migration("20191024205132_modifiedTripsandDetails")]
+    partial class modifiedTripsandDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,8 +241,6 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<DateTime?>("DateModified");
 
-                    b.Property<int>("ExpenseCategoryId");
-
                     b.Property<bool>("IsActive");
 
                     b.Property<bool>("IsToll");
@@ -250,6 +250,8 @@ namespace KSTrips.Infrastructure.Migrations
                     b.Property<decimal?>("TotalExpense");
 
                     b.Property<int>("TripId");
+
+                    b.Property<int>("expenseCategoryId");
 
                     b.HasKey("TripDetailId");
 

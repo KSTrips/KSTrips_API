@@ -13,9 +13,11 @@ namespace KSTrips.Domain.Entities
     public class TripDetail
     {
         public int TripDetailId { get; set; }
+        [ForeignKey("ExpenseCategory")]
+        public int ExpenseCategoryId { get; set; }
         public decimal? TotalExpense { get; set; }
-        public int? QtyTolls { get; set; }
-        public decimal? TotalToll { get; set; }
+        [ForeignKey("Toll")]
+        public int TollId { get; set; }
         public bool IsToll { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
@@ -24,8 +26,7 @@ namespace KSTrips.Domain.Entities
         [ForeignKey("Trip")]
         public int TripId { get; set; }
         public virtual Trip Trip { get; set; }
-
-        public virtual List<Expense> ExpensesDetail { get; set; }
-        public virtual List<Tax> Taxes { get; set; }
+        public virtual List<Tax> Taxes { get;  }
+       
     }
 }

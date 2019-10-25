@@ -18,18 +18,9 @@ namespace KSTrips.Infrastructure.Services
             Context = context;
         }
 
-        public async Task<List<Expense>> GetAllExpenses()
-        {
-            return await Context.Expenses.ToListAsync();
-        }
-
         public async Task<List<ExpenseCategory>> GetExpenseCategories()
         {
             return await Context.ExpenseCategory.ToListAsync();
-        }
-        public async Task<List<Expense>> GetExpensesByTripDetailId(int tripDetailId)
-        {
-            return await Context.Expenses.Where(ls => ls.TripDetailId == tripDetailId).ToListAsync();
         }
 
 

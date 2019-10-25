@@ -5,8 +5,7 @@ using KSTrips.Domain.Transversal;
 
 namespace KSTrips.Application.Services
 {
-    public class Transversal
-    {
+    public class Transversal {
 
         /// <summary>
         /// Metodo que calcula el abono del flete
@@ -15,7 +14,7 @@ namespace KSTrips.Application.Services
         /// <returns></returns>
         public decimal CalculatePayment(decimal totalPay)
         {
-            decimal payment = totalPay * 70 / 100;
+            var payment = totalPay * 70 / 100;
             return payment;
         }
 
@@ -26,10 +25,10 @@ namespace KSTrips.Application.Services
         /// <returns></returns>
         public decimal CalculateDebt(decimal totalPay)
         {
-            decimal ica = CalculateIca(totalPay);
-            decimal retefuente = CalculateRetefuente(totalPay);
-            decimal payment = CalculatePayment(totalPay);
-            decimal debt = totalPay - payment - ica - retefuente;
+            var ica = CalculateIca(totalPay);
+            var retefuente = CalculateRetefuente(totalPay);
+            var payment = CalculatePayment(totalPay);
+            var debt = totalPay - payment - ica - retefuente;
             return debt;
         }
 
@@ -40,7 +39,7 @@ namespace KSTrips.Application.Services
         /// <returns></returns>
         public decimal CalculateIca(decimal totalPay)
         {
-            decimal discountIca = totalPay * 8 / 1000;
+            var discountIca = totalPay * 8 / 1000;
             return discountIca;
         }
 
@@ -51,7 +50,7 @@ namespace KSTrips.Application.Services
         /// <returns></returns>
         public decimal CalculateRetefuente(decimal totalPay)
         {
-            decimal discountRetefuente = totalPay * 1 / 100;
+            var discountRetefuente = totalPay * 1 / 100;
             return discountRetefuente;
         }
 
@@ -93,6 +92,8 @@ namespace KSTrips.Application.Services
                 case 7:
                     if (tolls.TotalCategory7 != null) sumTolls = (decimal)tolls.TotalCategory7;
                     break;
+                default:
+                    break;
 
             }
 
@@ -101,12 +102,12 @@ namespace KSTrips.Application.Services
 
         public decimal CalculateProfit(SimulatorEntity dataSimulator, Toll _tolls, List<Expense> _expenses)
         {
-            decimal ica = CalculateIca(dataSimulator.TotalPay);
-            decimal retefuente = CalculateRetefuente(dataSimulator.TotalPay);
-            decimal tolls = CalculateTolls(dataSimulator.CarCategory, _tolls);
-            decimal expenses = CalculateExpenses(_expenses);
+            var ica = CalculateIca(dataSimulator.TotalPay);
+            var retefuente = CalculateRetefuente(dataSimulator.TotalPay);
+            var tolls = CalculateTolls(dataSimulator.CarCategory, _tolls);
+            var expenses = CalculateExpenses(_expenses);
 
-            decimal profit = dataSimulator.TotalPay - ica - retefuente - tolls - expenses;
+            var profit = dataSimulator.TotalPay - ica - retefuente - tolls - expenses;
             return profit;
         }
     }

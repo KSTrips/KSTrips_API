@@ -33,7 +33,6 @@ namespace KSTrips.Infrastructure
             }
         }
 
-        public DbSet<Expense> Expenses { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Tax> Taxes { get; set; }
         public DbSet<Toll> Tolls { get; set; }
@@ -48,9 +47,6 @@ namespace KSTrips.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<TripDetail>()
-                .HasMany(cbs => cbs.ExpensesDetail);
 
             modelBuilder.Entity<TripDetail>()
                 .HasMany(cbs => cbs.Taxes);

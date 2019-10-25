@@ -14,6 +14,5 @@ namespace KSTrips.Domain.Entities
         public string CreatedBy { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual Expense Expense { get; set; }
     }
 }

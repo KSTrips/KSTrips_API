@@ -21,7 +21,8 @@ namespace KSTrips.Domain.Entities
         public decimal Payment { get; set; }
         public decimal Debt { get; set; }
         public bool ApplyTolls { get; set; }
-        public bool ApplyTaxes { get; set; }
+        public bool ApplyIca { get; set; }
+        public bool ApplyReteFuente { get; set; }
 
         public decimal? TotalProfit { get; set; }
 

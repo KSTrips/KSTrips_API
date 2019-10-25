@@ -14,5 +14,7 @@ namespace KSTrips.Domain.Transversal
         public bool ApplyTolls { get; set; }
         public List<Expense> Expenses { get; set; }
         public int CarCategory { get; set; }
+
+        public string UserAuthZeroId { get; set; }
     }
 }

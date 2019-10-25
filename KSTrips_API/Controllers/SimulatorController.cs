@@ -35,7 +35,7 @@ namespace KSTrips_API.Controllers
 
         // POST api/values
         [HttpPost("SimulateTrip")]
-        public async Task<IActionResult> Post([FromBody] SimulatorEntity dataSimulator)
+        public async Task<IActionResult> SimulateTrip([FromBody] SimulatorEntity dataSimulator)
         {
             var result = (await _simulatorServices.SimulateTripAsync(dataSimulator));
 
