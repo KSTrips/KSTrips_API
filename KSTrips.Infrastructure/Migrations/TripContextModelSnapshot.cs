@@ -199,6 +199,8 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<DateTime?>("DateModified");
 
+                    b.Property<DateTime?>("DateforPay");
+
                     b.Property<decimal>("Debt");
 
                     b.Property<string>("Destiny");
@@ -209,7 +211,7 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<decimal>("Payment");
 
-                    b.Property<int?>("ProviderId");
+                    b.Property<int>("ProviderId");
 
                     b.Property<decimal?>("TotalProfit");
 
@@ -286,6 +288,8 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("NotificationDays");
+
                     b.Property<string>("Provider");
 
                     b.HasKey("UserId");
@@ -312,7 +316,8 @@ namespace KSTrips.Infrastructure.Migrations
                 {
                     b.HasOne("KSTrips.Domain.Entities.Provider", "Provider")
                         .WithMany()
-                        .HasForeignKey("ProviderId");
+                        .HasForeignKey("ProviderId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("KSTrips.Domain.Entities.User", "User")
                         .WithOne("Trip")

@@ -20,7 +20,7 @@ namespace KSTrips.Domain.Entities
         public DateTime? DateModified { get; set; }
         public string CreatedBy { get; set; }
         public bool IsActive { get; set; }
-
+        public int NotificationDays { get; set; }
         public virtual Trip Trip { get; set; }
 
     }

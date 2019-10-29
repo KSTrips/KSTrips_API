@@ -64,6 +64,7 @@ namespace KSTrips.Infrastructure.Services
                     Context.Entry(us).Property(p => p.IsActive).IsModified = true;
                     Context.Entry(us).Property(p => p.DateInitial).IsModified = true;
                     Context.Entry(us).Property(p => p.DateUse).IsModified = true;
+                    Context.Entry(us).Property(p => p.NotificationDays).IsModified = true;
                 }
 
                 Context.SaveChanges();

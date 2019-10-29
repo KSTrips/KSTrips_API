@@ -18,7 +18,7 @@ namespace KSTrips.Application.Services
         {
             _unitOfWork = unitOfWork;
         }
-
+        
         public async Task<SimulatorResponse> SaveTrip(SimulatorEntity dataTrip)
         {
             var objTransversal = new Transversal();
@@ -27,9 +27,15 @@ namespace KSTrips.Application.Services
             simulatorResponse = await GenerateResult(dataTrip);
 
             // Guardamos el proveedor
-            var provider = new Provider{ Description = dataTrip.Provider};
-            var blnProvider = _unitOfWork.ProviderRepository.SaveProvider(provider);
+            var prov = new Provider{ Description = dataTrip.Provider.ToUpper().Trim()};
+            var blnProvider = _unitOfWork.ProviderRepository.SaveProvider(prov);
             var user = await _unitOfWork.UserRepository.GetUserByAuthZeroId(dataTrip.UserAuthZeroId);
+            var provider = _unitOfWork.ProviderRepository.GetProviderByName(dataTrip.Provider.ToUpper().Trim());
+
+
+            // Calculamos la fecha de notificacion
+            Dates objDates = new Dates();
+            var dateNotification = objDates.WorkingDays(user[0].NotificationDays, DateTime.Now);
 
             if (!blnProvider) return null;
 
@@ -46,30 +52,42 @@ namespace KSTrips.Application.Services
                 ,TotalProfit = simulatorResponse.TotalProfit
                 ,TripDetails = new List<TripDetail>()
                 ,UserId = user[0].UserId
+                ,ProviderId = provider.Result[0].ProviderId
+                ,CreatedBy = user[0].Name
+                ,DateCreated =  DateTime.Now
+                ,DateforPay = dateNotification
+
             };
 
             // Añadimos los gastos que no son peajes
             foreach (var exp in simulatorResponse.Expenses)
             {
-                var tripdetailexpenses = new TripDetail();
-                tripdetailexpenses.TotalExpense = exp.CostExpense;
-                tripdetailexpenses.ExpenseCategoryId = exp.ExpenseCategoryId;
-                tripdetailexpenses.IsToll = false;
-                tripdetailexpenses.DateCreated = DateTime.Now;
+                var tripdetailexpenses = new TripDetail
+                {
+                    TotalExpense = exp.CostExpense,
+                    ExpenseCategoryId = exp.ExpenseCategoryId,
+                    IsToll = false,
+                    DateCreated = DateTime.Now
+                    ,CreatedBy = user[0].Name
+                };
 
                 trip.TripDetails.Add(tripdetailexpenses);
             }
 
             // añadimos el gasto peajes
-            var tripdetailTolls = new TripDetail();
-            tripdetailTolls.TollId = simulatorResponse.Tolls.TollId;
-            tripdetailTolls.TotalExpense = objTransversal.CalculateTolls(dataTrip.CarCategory, simulatorResponse.Tolls);
-            tripdetailTolls.IsToll = true;
-            tripdetailTolls.DateCreated = DateTime.Now;
+            var tripdetailTolls = new TripDetail
+            {
+                TollId = simulatorResponse.Tolls.TollId,
+                TotalExpense = objTransversal.CalculateTolls(dataTrip.CarCategory, simulatorResponse.Tolls),
+                IsToll = true,
+                DateCreated = DateTime.Now
+            };
 
             trip.TripDetails.Add(tripdetailTolls);
 
-            return simulatorResponse;
+            var isSaved = _unitOfWork.TripRepository.SaveTrip(trip);
+
+            return isSaved ? simulatorResponse : null;
 
         }
 

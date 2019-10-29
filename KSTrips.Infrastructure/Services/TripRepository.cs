@@ -37,7 +37,18 @@ namespace KSTrips.Infrastructure.Services
 
         public bool SaveTrip(Trip trip)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Context.Trips.Add(trip);
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            
         }
 
         public bool UpdateTrip(Trip trip)

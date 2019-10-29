@@ -1,0 +1,9 @@
+D:\KSTrips\KSTrips_API\KSTrips.Domain\bin\Release\netcoreapp2.2\KSTrips.Domain.deps.json
+D:\KSTrips\KSTrips_API\KSTrips.Domain\bin\Release\netcoreapp2.2\KSTrips.Domain.dll
+D:\KSTrips\KSTrips_API\KSTrips.Domain\bin\Release\netcoreapp2.2\KSTrips.Domain.pdb
+D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Release\netcoreapp2.2\KSTrips.Domain.csprojAssemblyReference.cache
+D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Release\netcoreapp2.2\KSTrips.Domain.csproj.CoreCompileInputs.cache
+D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Release\netcoreapp2.2\KSTrips.Domain.AssemblyInfoInputs.cache
+D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Release\netcoreapp2.2\KSTrips.Domain.AssemblyInfo.cs
+D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Release\netcoreapp2.2\KSTrips.Domain.dll
+D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Release\netcoreapp2.2\KSTrips.Domain.pdb

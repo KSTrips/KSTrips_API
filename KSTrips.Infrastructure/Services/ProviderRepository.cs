@@ -23,6 +23,15 @@ namespace KSTrips.Infrastructure.Services
             return await Context.Providers.ToListAsync( );
         }
 
+        public async Task<List<Provider>> GetProviderById(int providerId)
+        {
+            return await Context.Providers.Where(ls => ls.ProviderId == providerId).ToListAsync();
+        }
+
+        public async Task<List<Provider>> GetProviderByName(string providerName)
+        {
+            return await Context.Providers.Where(ls => ls.Description == providerName).ToListAsync();
+        }
 
         public bool SaveProvider(Provider provider)
         {
@@ -43,7 +52,7 @@ namespace KSTrips.Infrastructure.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message.ToString());
+                return false;
             }
         }
 
@@ -65,7 +74,7 @@ namespace KSTrips.Infrastructure.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message.ToString());
+                return false;
             }
 
         }

@@ -26,9 +26,12 @@ namespace KSTrips.Domain.Entities
 
         public decimal? TotalProfit { get; set; }
 
+        [ForeignKey("Provider")]
+        public int ProviderId { get; set; }
         public virtual Provider Provider { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
+        public DateTime? DateforPay { get; set; }
         public string CreatedBy { get; set; }
         public bool IsActive { get; set; }
 
