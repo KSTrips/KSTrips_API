@@ -26,12 +26,14 @@ namespace KSTrips.Infrastructure.Services
         public async Task<List<Trip>> GetTripByRangeDates(DateTime dateFrom, DateTime dateTo)
         {
             return await Context.Trips.Where(ls => ls.DateCreated >= dateFrom && ls.DateCreated <= dateTo)
+                .Include(ls => ls.Provider)
                 .Include(ls => ls.TripDetails).ToListAsync();
         }
 
         public async Task<List<Trip>> GetTripsByUserId(int userId)
         {
             return await Context.Trips.Where(ls => ls.UserId == userId)
+                .Include(ls => ls.Provider)
                 .Include(lc => lc.TripDetails).ToListAsync();
         }
 
@@ -39,6 +41,7 @@ namespace KSTrips.Infrastructure.Services
         {
             try
             {
+                trip.IsActive = true;
                 Context.Trips.Add(trip);
                 Context.SaveChanges();
 

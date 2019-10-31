@@ -18,7 +18,15 @@ namespace KSTrips.Application.Services
         {
             _unitOfWork = unitOfWork;
         }
-        
+
+        public async Task<List<Trip>> GetTripsByUserId(string authZeroId)
+        {
+            var user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
+            var userId = user.Result[0].UserId;
+            var result = await _unitOfWork.TripRepository.GetTripsByUserId(userId);
+            return result;
+        }
+
         public async Task<SimulatorResponse> SaveTrip(SimulatorEntity dataTrip)
         {
             var objTransversal = new Transversal();
@@ -81,6 +89,7 @@ namespace KSTrips.Application.Services
                 TotalExpense = objTransversal.CalculateTolls(dataTrip.CarCategory, simulatorResponse.Tolls),
                 IsToll = true,
                 DateCreated = DateTime.Now
+                ,CreatedBy = user[0].Name
             };
 
             trip.TripDetails.Add(tripdetailTolls);

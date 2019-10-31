@@ -34,6 +34,13 @@ namespace KSTrips_API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{authZeroId}")]
+        public async Task<IActionResult> GetTripByUserId(string authZeroId)
+        {
+            var result = await _tripServices.GetTripsByUserId(authZeroId);
+            return Ok(result);
+        }
+
         // POST api/values
         [HttpPost("SaveTrip")]
         public async Task<IActionResult> SaveTrip([FromBody] SimulatorEntity dataTrip)

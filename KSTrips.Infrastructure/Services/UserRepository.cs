@@ -57,7 +57,7 @@ namespace KSTrips.Infrastructure.Services
 
                 foreach (User us in users)
                 {
-                    Context.Entry(us).State = EntityState.Modified;
+                    //Context.Entry(us).State = EntityState.Modified;
                     us.DateModified = DateTime.Now;
 
                     Context.Entry(us).Property(p => p.DateModified).IsModified = true;

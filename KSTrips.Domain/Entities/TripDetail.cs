@@ -27,6 +27,7 @@ namespace KSTrips.Domain.Entities
         public int TripId { get; set; }
         public virtual Trip Trip { get; set; }
         public virtual List<Tax> Taxes { get;  }
+        public virtual List<ExpenseCategory> ExpenseCategories { get; }
        
     }
 }
