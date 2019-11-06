@@ -39,5 +39,9 @@ namespace KSTrips.Domain.Entities
         [ForeignKey("User")]
         public int UserId { get; set; }
         public virtual User User { get; set; }
+
+        [ForeignKey("CarCategory")]
+        public int CarCategoryId { get; set; }
+        public virtual CarCategory CarCategory { get; set; }
     }
 }

@@ -30,7 +30,9 @@ namespace KSTrips.Infrastructure
         public ICarCategoryRepository CarCategoryRepository => new CarCategoryRespository(_context);
 
         public IUserRepository UserRepository => new UserRepository(_context);
-        
+
+        public IReportRepository ReportRepository => new ReportRepository(_context);
+
 
     }
 }

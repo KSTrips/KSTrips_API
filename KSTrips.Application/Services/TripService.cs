@@ -64,6 +64,7 @@ namespace KSTrips.Application.Services
                 ,CreatedBy = user[0].Name
                 ,DateCreated =  DateTime.Now
                 ,DateforPay = dateNotification
+                ,CarCategoryId = dataTrip.CarCategory
 
             };
 

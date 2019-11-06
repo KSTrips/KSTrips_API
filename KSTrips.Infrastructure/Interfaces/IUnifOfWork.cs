@@ -18,5 +18,7 @@ namespace KSTrips.Infrastructure.Interfaces
         ICarCategoryRepository CarCategoryRepository { get; }
 
         IUserRepository UserRepository { get; }
-    }
+        IReportRepository ReportRepository { get; }
+    
+}
 }

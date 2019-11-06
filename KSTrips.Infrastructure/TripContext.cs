@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using KSTrips.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using KSTrips.Domain.Transversal.Response;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 
