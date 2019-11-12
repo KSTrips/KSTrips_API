@@ -26,5 +26,17 @@ namespace KSTrips_API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("expenseReport/{dateFrom}/{dateTo}/{authZeroId}")]
+        public IActionResult GetReportExpenseByDates(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        {
+            var result = _reportService.GetReportExpenseByDates(dateFrom, dateTo, authZeroId);
+            return Ok(result);
+        }
+        [HttpGet("detailReport/{dateFrom}/{dateTo}/{authZeroId}")]
+        public IActionResult GetReportDetailByDates(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        {
+            var result = _reportService.GetReportDetailByDates(dateFrom, dateTo, authZeroId);
+            return Ok(result);
+        }
     }
 }
