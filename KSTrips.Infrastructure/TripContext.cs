@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KSTrips.Domain.Entities;
+﻿using KSTrips.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
-using KSTrips.Domain.Transversal.Response;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 
 namespace KSTrips.Infrastructure

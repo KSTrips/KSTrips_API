@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using KSTrips.Application.Interfaces;
+﻿using KSTrips.Application.Interfaces;
 using KSTrips.Domain.Entities;
 using KSTrips.Domain.Transversal;
 using KSTrips.Domain.Transversal.Response;
 using KSTrips.Infrastructure.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KSTrips.Application.Services
 {
@@ -29,6 +27,13 @@ namespace KSTrips.Application.Services
             return await _unitOfWork.ExpenseRepository.GetExpenseCategories();
         }
 
+        public async Task<List<Toll>> GetTollsByRoute(string origin, string destination)
+        {
+
+            return await _unitOfWork.TollRespository.GetTollByRoute(origin, destination);
+
+        }
+
         public async Task<SimulatorResponse> SimulateTripAsync(SimulatorEntity dataSimulator)
         {
             List<Toll> tolls = await _unitOfWork.TollRespository.GetTollByRoute(dataSimulator.Origin, dataSimulator.Destination);
@@ -37,9 +42,9 @@ namespace KSTrips.Application.Services
             if (tolls.Count > 0)
                 tollResponse = tolls[0];
 
-            var objTransversal = new Transversal();
+            Transversal objTransversal = new Transversal();
 
-            var simulationResult = new SimulatorResponse
+            SimulatorResponse simulationResult = new SimulatorResponse
             {
                 Origin = dataSimulator.Origin,
                 Destination = dataSimulator.Destination,

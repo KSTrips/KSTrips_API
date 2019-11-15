@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KSTrips.Domain.Transversal
+﻿namespace KSTrips.Domain.Transversal
 {
     public class Email
     {

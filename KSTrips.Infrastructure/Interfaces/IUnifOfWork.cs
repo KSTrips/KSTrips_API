@@ -1,7 +1,4 @@
-﻿using KSTrips.Infrastructure.Interfaces;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
-
-namespace KSTrips.Infrastructure.Interfaces
+﻿namespace KSTrips.Infrastructure.Interfaces
 {
     public interface IUnitOfWork
     {

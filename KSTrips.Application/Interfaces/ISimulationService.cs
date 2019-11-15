@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using KSTrips.Domain.Entities;
 using KSTrips.Domain.Transversal;
@@ -14,6 +12,7 @@ namespace KSTrips.Application.Interfaces
         Task<List<ExpenseCategory>> GetExpenseCategories();
         Task<List<CarCategory>> GetCarCategories();
         Task<SimulatorResponse> SimulateTripAsync(SimulatorEntity dataSimulator);
+        Task<List<Toll>> GetTollsByRoute(string origin, string destination);
 
     }
 }

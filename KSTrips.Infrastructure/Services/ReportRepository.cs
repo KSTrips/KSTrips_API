@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KSTrips.Domain.Transversal.Response;
 using KSTrips.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Dapper;
@@ -37,6 +33,13 @@ namespace KSTrips.Infrastructure.Services
         {
             var connection = Context.Database.GetDbConnection();
             var reportDetail = connection.Query<T>("EXEC GetDetailReport @dateFrom, @dateTo, @userId", new { dateFrom, dateTo, userId });
+
+            return reportDetail.ToList();
+        }
+        public List<T> GetReportFinancialByDates<T>(DateTime dateFrom, DateTime dateTo, int userId)
+        {
+            var connection = Context.Database.GetDbConnection();
+            var reportDetail = connection.Query<T>("EXEC GetFinancialReport @dateFrom, @dateTo, @userId", new { dateFrom, dateTo, userId });
 
             return reportDetail.ToList();
         }

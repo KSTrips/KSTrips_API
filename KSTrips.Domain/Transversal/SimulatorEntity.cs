@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using KSTrips.Domain.Entities;
 
 namespace KSTrips.Domain.Transversal
 {

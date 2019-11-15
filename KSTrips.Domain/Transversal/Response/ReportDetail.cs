@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using KSTrips.Domain.Entities;
 
 namespace KSTrips.Domain.Transversal.Response
 {
@@ -19,5 +16,8 @@ namespace KSTrips.Domain.Transversal.Response
         public string ProviderName { get; }
         public DateTime DateCreated { get; }
         public DateTime DateForPay { get; }
+        public int TotalProfit { get; }
+        public int Debt { get; }
+        public bool IsActive { get; }
     }
 }

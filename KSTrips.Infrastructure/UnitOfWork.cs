@@ -1,6 +1,4 @@
-﻿
-using KSTrips.Infrastructure;
-using KSTrips.Infrastructure.Interfaces;
+﻿using KSTrips.Infrastructure.Interfaces;
 using KSTrips.Infrastructure.Services;
 
 
