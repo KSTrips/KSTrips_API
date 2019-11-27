@@ -46,6 +46,7 @@ namespace KSTrips_API
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITripService, TripService>();
             services.AddScoped<IReportService, ReportService>();
+            services.AddScoped<IVehicleService, VehicleService>();
 
 
 

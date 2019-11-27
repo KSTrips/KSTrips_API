@@ -221,6 +221,8 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<int>("UserId");
 
+                    b.Property<int?>("VehicleId");
+
                     b.HasKey("TripId");
 
                     b.HasIndex("CarCategoryId");
@@ -229,6 +231,8 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.HasIndex("UserId")
                         .IsUnique();
+
+                    b.HasIndex("VehicleId");
 
                     b.ToTable("Trips");
                 });
@@ -276,6 +280,10 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<DateTime>("DateCreated");
 
+                    b.Property<DateTime?>("DateEndSubscription");
+
+                    b.Property<DateTime?>("DateInitSubscription");
+
                     b.Property<DateTime?>("DateInitial");
 
                     b.Property<DateTime?>("DateModified");
@@ -299,6 +307,37 @@ namespace KSTrips.Infrastructure.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("KSTrips.Domain.Entities.Vehicle", b =>
+                {
+                    b.Property<int>("VehicleId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarCategoryId");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Driver");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("LicensePlate");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("VehicleId");
+
+                    b.HasIndex("CarCategoryId");
+
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("KSTrips.Domain.Entities.Tax", b =>
@@ -332,6 +371,10 @@ namespace KSTrips.Infrastructure.Migrations
                         .WithOne("Trip")
                         .HasForeignKey("KSTrips.Domain.Entities.Trip", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("KSTrips.Domain.Entities.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleId");
                 });
 
             modelBuilder.Entity("KSTrips.Domain.Entities.TripDetail", b =>
@@ -339,6 +382,14 @@ namespace KSTrips.Infrastructure.Migrations
                     b.HasOne("KSTrips.Domain.Entities.Trip", "Trip")
                         .WithMany("TripDetails")
                         .HasForeignKey("TripId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("KSTrips.Domain.Entities.Vehicle", b =>
+                {
+                    b.HasOne("KSTrips.Domain.Entities.CarCategory", "CarCategory")
+                        .WithMany()
+                        .HasForeignKey("CarCategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using KSTrips.Domain.Entities;
+using KSTrips.Infrastructure.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using KSTrips.Domain.Entities;
-using KSTrips.Infrastructure.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace KSTrips.Infrastructure.Services
 {
@@ -25,14 +25,19 @@ namespace KSTrips.Infrastructure.Services
         {
             return await Context.Trips.Where(ls => ls.DateCreated >= dateFrom && ls.DateCreated <= dateTo)
                 .Include(ls => ls.Provider)
-                .Include(ls => ls.TripDetails).ToListAsync();
+                .Include(ls => ls.TripDetails)
+                .Include(ls => ls.Vehicle)
+                .ToListAsync();
         }
 
         public async Task<List<Trip>> GetTripsByUserId(int userId)
         {
             return await Context.Trips.Where(ls => ls.UserId == userId)
                 .Include(ls => ls.Provider)
-                .Include(lc => lc.TripDetails).ToListAsync();
+                .Include(lc => lc.TripDetails)
+                .Include(ls => ls.Vehicle)
+                .ToListAsync();
+
         }
 
         public bool SaveTrip(Trip trip)
@@ -45,16 +50,28 @@ namespace KSTrips.Infrastructure.Services
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
-            
+
         }
 
         public bool UpdateTrip(Trip trip)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                Context.Entry(trip).State = EntityState.Modified;
+
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
         }
     }
 }

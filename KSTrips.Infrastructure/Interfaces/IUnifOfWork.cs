@@ -16,6 +16,8 @@
 
         IUserRepository UserRepository { get; }
         IReportRepository ReportRepository { get; }
-    
-}
+
+        IVehicleRepository VehicleRepository { get; }
+
+    }
 }

@@ -53,9 +53,9 @@ namespace KSTrips.Infrastructure.Services
         {
             try
             {
-                
 
-                foreach (User us in users)
+
+                foreach (var us in users)
                 {
                     //Context.Entry(us).State = EntityState.Modified;
                     us.DateModified = DateTime.Now;
@@ -65,6 +65,10 @@ namespace KSTrips.Infrastructure.Services
                     Context.Entry(us).Property(p => p.DateInitial).IsModified = true;
                     Context.Entry(us).Property(p => p.DateUse).IsModified = true;
                     Context.Entry(us).Property(p => p.NotificationDays).IsModified = true;
+
+                    Context.Entry(us).Property(p => p.DateInitSubscription).IsModified = true;
+                    Context.Entry(us).Property(p => p.DateEndSubscription).IsModified = true;
+
                 }
 
                 Context.SaveChanges();

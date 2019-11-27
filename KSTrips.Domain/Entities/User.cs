@@ -18,6 +18,9 @@ namespace KSTrips.Domain.Entities
         public string CreatedBy { get; set; }
         public bool IsActive { get; set; }
         public int NotificationDays { get; set; }
+
+        public DateTime? DateInitSubscription { get; set; }
+        public DateTime? DateEndSubscription { get; set; }
         public virtual Trip Trip { get; set; }
 
     }

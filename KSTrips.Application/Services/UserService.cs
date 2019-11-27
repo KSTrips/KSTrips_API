@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using KSTrips.Application.Interfaces;
 using KSTrips.Domain.Entities;
@@ -32,6 +33,21 @@ namespace KSTrips.Application.Services
 
         public bool UpdateUsers(IEnumerable<User> dataUsers)
         {
+            var objDates = new Dates();
+            var endDateSubscription = objDates.WorkingDays(30, DateTime.Now);
+            foreach (var us in dataUsers)
+            {
+                if (us.IsActive)
+                {
+                    us.DateInitSubscription = DateTime.Now;
+                    us.DateEndSubscription = endDateSubscription;
+                }
+                else
+                {
+                    us.DateInitSubscription = null;
+                    us.DateEndSubscription = null;
+                }
+            }
             return _unitOfWork.UserRepository.UpdateUsers(dataUsers);
         }
     }

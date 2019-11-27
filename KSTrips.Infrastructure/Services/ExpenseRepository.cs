@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using KSTrips.Domain.Entities;
 using KSTrips.Infrastructure.Interfaces;
@@ -17,7 +18,8 @@ namespace KSTrips.Infrastructure.Services
 
         public async Task<List<ExpenseCategory>> GetExpenseCategories()
         {
-            return await Context.ExpenseCategory.ToListAsync();
+            var expenseCategories = await Context.ExpenseCategory.ToListAsync();
+            return expenseCategories.OrderBy(ls => ls.Description).ToList();
         }
 
 

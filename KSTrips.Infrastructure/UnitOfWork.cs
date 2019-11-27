@@ -31,6 +31,8 @@ namespace KSTrips.Infrastructure
 
         public IReportRepository ReportRepository => new ReportRepository(_context);
 
+        public IVehicleRepository VehicleRepository => new VehiceRepository(_context);
+
 
     }
 }
