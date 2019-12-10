@@ -36,7 +36,8 @@ namespace KSTrips.Application.Services
 
         public async Task<SimulatorResponse> SimulateTripAsync(SimulatorEntity dataSimulator)
         {
-            List<Toll> tolls = await _unitOfWork.TollRespository.GetTollByRoute(dataSimulator.Origin, dataSimulator.Destination);
+            List<Toll> tolls =
+                await _unitOfWork.TollRespository.GetTollByRoute(dataSimulator.Origin, dataSimulator.Destination);
             Toll tollResponse = null;
 
             if (tolls.Count > 0)
@@ -57,12 +58,19 @@ namespace KSTrips.Application.Services
                 Payment = objTransversal.CalculatePayment(dataSimulator.TotalPay),
                 Debt = objTransversal.CalculateDebt(dataSimulator.TotalPay),
                 DiscountOthers = 0,
-                DiscountIca = objTransversal.CalculateIca(dataSimulator.TotalPay),
-                DiscountRetefuente = objTransversal.CalculateRetefuente(dataSimulator.TotalPay),
-                DiscountPeajes = objTransversal.CalculateTolls(dataSimulator.CarCategory, tollResponse),
+                DiscountIca = (dataSimulator.ApplyIca) ? objTransversal.CalculateIca(dataSimulator.TotalPay) : 0,
+                DiscountRetefuente = (dataSimulator.ApplyRetefuente)
+                    ? objTransversal.CalculateRetefuente(dataSimulator.TotalPay)
+                    : 0,
+                DiscountPeajes = (dataSimulator.ApplyTolls)
+                    ? objTransversal.CalculateTolls(dataSimulator.CarCategory, tollResponse)
+                    : 0,
                 DiscountExpenses = objTransversal.CalculateExpenses(dataSimulator.Expenses),
                 TotalProfit = objTransversal.CalculateProfit(dataSimulator, tollResponse, dataSimulator.Expenses)
             };
+
+            simulationResult.GrandTotalExpense = simulationResult.DiscountExpenses + simulationResult.DiscountPeajes
+                                                 + simulationResult.DiscountIca + simulationResult.DiscountRetefuente;
 
             return simulationResult;
 

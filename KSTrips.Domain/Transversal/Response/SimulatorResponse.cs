@@ -24,5 +24,7 @@ namespace KSTrips.Domain.Transversal.Response
         public Decimal TotalProfit { get; set; }
         public Decimal Debt { get; set; }
         public decimal Payment { get; set; }
+
+        public decimal GrandTotalExpense { get; set; }
     }
 }

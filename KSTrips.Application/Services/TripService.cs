@@ -132,12 +132,15 @@ namespace KSTrips.Application.Services
                 Payment = objTransversal.CalculatePayment(dataTrip.TotalPay),
                 Debt = objTransversal.CalculateDebt(dataTrip.TotalPay),
                 DiscountOthers = 0,
-                DiscountIca = objTransversal.CalculateIca(dataTrip.TotalPay),
-                DiscountRetefuente = objTransversal.CalculateRetefuente(dataTrip.TotalPay),
-                DiscountPeajes = objTransversal.CalculateTolls(dataTrip.CarCategory, tollResponse),
+                DiscountIca = (dataTrip.ApplyIca) ? objTransversal.CalculateIca(dataTrip.TotalPay) : 0,
+                DiscountRetefuente = (dataTrip.ApplyRetefuente)? objTransversal.CalculateRetefuente(dataTrip.TotalPay): 0,
+                DiscountPeajes = (dataTrip.ApplyTolls)? objTransversal.CalculateTolls(dataTrip.CarCategory, tollResponse): 0,
                 DiscountExpenses = objTransversal.CalculateExpenses(dataTrip.Expenses),
                 TotalProfit = objTransversal.CalculateProfit(dataTrip, tollResponse, dataTrip.Expenses)
             };
+
+            simulationResult.GrandTotalExpense = simulationResult.DiscountExpenses + simulationResult.DiscountPeajes
+                                                                                   + simulationResult.DiscountIca + simulationResult.DiscountRetefuente;
 
             return simulationResult;
         }
