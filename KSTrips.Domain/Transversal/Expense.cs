@@ -14,6 +14,7 @@ namespace KSTrips.Domain.Transversal
         public string CreatedBy { get; set; }
         public bool IsActive { get; set; }
         public int ExpenseCategoryId { get; set; }
+        public int TripDetailId { get; set; }
 
 
     }

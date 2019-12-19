@@ -41,6 +41,15 @@ namespace KSTrips_API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getTripById/{tripId}")]
+        public async Task<IActionResult> GetTripById(int tripId)
+        {
+            var result = await _tripServices.GetTripById(tripId);
+            return Ok(result);
+        }
+
+
+
         // POST api/values
         [HttpPost("SaveTrip")]
         public async Task<IActionResult> SaveTrip([FromBody] SimulatorEntity dataTrip)

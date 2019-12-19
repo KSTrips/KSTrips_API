@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using KSTrips.Domain.Entities;
+﻿using KSTrips.Domain.Entities;
 using KSTrips.Domain.Transversal;
 using KSTrips.Domain.Transversal.Response;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KSTrips.Application.Interfaces
 {
@@ -10,8 +10,8 @@ namespace KSTrips.Application.Interfaces
     {
         Task<List<Trip>> GetTripsByUserId(string authZeroId);
         Task<SimulatorResponse> SaveTrip(SimulatorEntity dataTrip);
-         Task<SimulatorResponse> UpdateTrip(SimulatorEntity dataTrip);
-        
+        Task<SimulatorResponse> UpdateTrip(SimulatorEntity dataTrip);
+        Task<List<Trip>> GetTripById(int tripId);
 
     }
 }

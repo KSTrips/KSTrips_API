@@ -57,7 +57,7 @@ namespace KSTrips.Application.Services
 
         public decimal CalculateExpenses(List<Expense> expenses)
         {
-            decimal sumexpenses = expenses.Sum(ls => ls.CostExpense);
+            decimal sumexpenses = expenses.Where(ls=> ls.ExpenseCategoryId != 0 ).Sum(ls => ls.CostExpense);
             return sumexpenses;
         }
 
