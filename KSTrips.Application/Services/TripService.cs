@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace KSTrips.Application.Services
 {
@@ -74,37 +75,48 @@ namespace KSTrips.Application.Services
 
         private async Task<SimulatorResponse> GenerateResult(SimulatorEntity dataTrip)
         {
-            Transversal objTransversal = new Transversal();
-            List<Toll> tolls = await _unitOfWork.TollRespository.GetTollByRoute(dataTrip.Origin, dataTrip.Destination);
-            Toll tollResponse = null;
-
-            if (tolls.Count > 0)
-                tollResponse = tolls[0];
-
-            SimulatorResponse simulationResult = new SimulatorResponse
+            try
             {
-                Origin = dataTrip.Origin,
-                Destination = dataTrip.Destination,
-                DistanceKM = tollResponse?.DistanceKm ?? 0,
-                AproximateTime = tollResponse?.ApproximateTime ?? "00:00",
-                QtyTolls = tollResponse?.TotalQtyTolls ?? 0,
-                TotalPay = dataTrip.TotalPay,
-                Tolls = tollResponse,
-                Expenses = dataTrip.Expenses,
-                Payment = objTransversal.CalculatePayment(dataTrip.TotalPay),
-                Debt = objTransversal.CalculateDebt(dataTrip.TotalPay),
-                DiscountOthers = 0,
-                DiscountIca = (dataTrip.ApplyIca) ? objTransversal.CalculateIca(dataTrip.TotalPay) : 0,
-                DiscountRetefuente = (dataTrip.ApplyRetefuente) ? objTransversal.CalculateRetefuente(dataTrip.TotalPay) : 0,
-                DiscountPeajes = (dataTrip.ApplyTolls) ? objTransversal.CalculateTolls(dataTrip.CarCategory, tollResponse) : 0,
-                DiscountExpenses = objTransversal.CalculateExpenses(dataTrip.Expenses),
-                TotalProfit = objTransversal.CalculateProfit(dataTrip, tollResponse, dataTrip.Expenses)
-            };
+                Transversal objTransversal = new Transversal();
+                List<Toll> tolls = await _unitOfWork.TollRespository.GetTollByRoute(dataTrip.Origin, dataTrip.Destination);
+                Toll tollResponse = null;
 
-            simulationResult.GrandTotalExpense = simulationResult.DiscountExpenses + simulationResult.DiscountPeajes
-                                                                                   + simulationResult.DiscountIca + simulationResult.DiscountRetefuente;
+                if (tolls.Count > 0)
+                    tollResponse = tolls[0];
 
-            return simulationResult;
+                SimulatorResponse simulationResult = new SimulatorResponse
+                {
+                    Origin = dataTrip.Origin,
+                    Destination = dataTrip.Destination,
+                    DistanceKM = tollResponse?.DistanceKm ?? 0,
+                    AproximateTime = tollResponse?.ApproximateTime ?? "00:00",
+                    QtyTolls = tollResponse?.TotalQtyTolls ?? 0,
+                    TotalPay = dataTrip.TotalPay,
+                    Tolls = tollResponse,
+
+                    Expenses = dataTrip.Expenses ?? new List<Expense>(),
+
+                    Payment = objTransversal.CalculatePayment(dataTrip.TotalPay),
+                    Debt = objTransversal.CalculateDebt(dataTrip.TotalPay),
+                    DiscountOthers = 0,
+                    DiscountIca = (dataTrip.ApplyIca) ? objTransversal.CalculateIca(dataTrip.TotalPay) : 0,
+                    DiscountRetefuente = (dataTrip.ApplyRetefuente) ? objTransversal.CalculateRetefuente(dataTrip.TotalPay) : 0,
+                    DiscountPeajes = (dataTrip.ApplyTolls) ? objTransversal.CalculateTolls(dataTrip.CarCategory, tollResponse) : 0,
+                    DiscountExpenses = objTransversal.CalculateExpenses(dataTrip.Expenses),
+                    TotalProfit = objTransversal.CalculateProfit(dataTrip, tollResponse, dataTrip.Expenses)
+                };
+
+                simulationResult.GrandTotalExpense = simulationResult.DiscountExpenses + simulationResult.DiscountPeajes
+                                                                                       + simulationResult.DiscountIca + simulationResult.DiscountRetefuente;
+
+                return simulationResult;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
         }
 
         private Trip TransformTrip(SimulatorEntity dataTrip, SimulatorResponse simulatorResponse, User user)
@@ -115,7 +127,15 @@ namespace KSTrips.Application.Services
             Dates objDates = new Dates();
             DateTime dateNotification = objDates.WorkingDays(user.NotificationDays, DateTime.Now);
             Task<List<Provider>> provider = _unitOfWork.ProviderRepository.GetProviderByName(dataTrip.Provider.ToUpper().Trim());
-            int tripDetailIdToll = simulatorResponse.Expenses.Count == 0? 0: simulatorResponse.Expenses.Where(ls => ls.ExpenseCategoryId == 0).Select(ls => ls.TripDetailId).First();
+            int tripDetailIdToll = 0;
+            if (simulatorResponse.Expenses.Count == 0)
+            {
+                tripDetailIdToll = 0;
+            }
+            else if (simulatorResponse.Expenses.Select(ls => ls.TripDetailId).First() != 0)
+            {
+               tripDetailIdToll = simulatorResponse.Expenses.Where(ls => ls.ExpenseCategoryId == 0).Select(ls => ls.TripDetailId).First();
+            }
 
 
             Trip trip = new Trip
@@ -165,7 +185,7 @@ namespace KSTrips.Application.Services
             // añadimos el gasto peajes
             TripDetail tripdetailTolls = new TripDetail
             {
-                TripDetailId = tripDetailIdToll ,
+                TripDetailId = tripDetailIdToll  ,
                 TollId = simulatorResponse.Tolls.TollId,
                 TotalExpense = objTransversal.CalculateTolls(dataTrip.CarCategory, simulatorResponse.Tolls),
                 IsToll = true,
