@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore;
+﻿using KSTrips.Infrastructure;
+using KSTrips.Infrastructure.Database;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace KSTrips_API
 {
@@ -10,19 +13,23 @@ namespace KSTrips_API
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
+
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((context, config) =>
                 {
-                    var builtConfig = config.Build();
+                    IConfigurationRoot builtConfig = config.Build();
                     config.AddAzureKeyVault(builtConfig["KeyVault:Url"]
-                        ,builtConfig["KeyVault:ClientId"]
+                        , builtConfig["KeyVault:ClientId"]
                         , builtConfig["KeyVault:ClientSecret"]
-                        ,new DefaultKeyVaultSecretManager());
+                        , new DefaultKeyVaultSecretManager());
 
                 })
                 .UseStartup<Startup>();
+
     }
+
+
 }

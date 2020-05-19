@@ -19,5 +19,10 @@
 
         IVehicleRepository VehicleRepository { get; }
 
+        IRoleRepository RoleRepository { get; }
+        IUserRoleRepository UserRoleRepository { get; }
+        ISMTPRepository SMTPRepository { get; }
+        ISubscriptionRepository SubscriptionRepository { get; }
+
     }
 }

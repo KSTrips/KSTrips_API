@@ -27,7 +27,7 @@ namespace KSTrips_API_Tests
             {
                 new CarCategory()
                 {
-                    CarCategoryId = 0,
+                    Id = 0,
                     Description = string.Empty,
                     CarTypes = string.Empty,
                     IsActive = true
@@ -38,7 +38,7 @@ namespace KSTrips_API_Tests
             {
                 new ExpenseCategory()
                 {
-                    ExpenseCategoryId = 0,
+                    Id = 0,
                     Description = string.Empty,
                     IsActive = true
                 }

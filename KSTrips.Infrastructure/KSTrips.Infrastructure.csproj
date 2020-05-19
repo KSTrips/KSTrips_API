@@ -6,17 +6,65 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\20191125122026_CreateFieldUserInVehicles.cs" />
+    <Compile Remove="Migrations\20200519174408_IdentityId.cs" />
+    <Compile Remove="Migrations\20200519201315_UpdateEntities.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.30" />
+    <None Remove="Database\Functions\Split.sql" />
+    <None Remove="Database\Scripts\Deployment.sql" />
+    <None Remove="Database\StoredProcedures\GetDashBoardReport.sql" />
+    <None Remove="Database\StoredProcedures\GetDetailReport.sql" />
+    <None Remove="Database\StoredProcedures\GetExpenseReport.sql" />
+    <None Remove="Database\StoredProcedures\GetFinancialReport.sql" />
+    <None Remove="Database\StoredProcedures\GetMaintenanceVehicles.sql" />
+    <None Remove="Database\StoredProcedures\GetMonthlyDashboard.sql" />
+    <None Remove="Database\StoredProcedures\GetQtyReport.sql" />
+    <None Remove="Database\StoredProcedures\SaveTolls.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Database\Functions\Split.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\Scripts\Deployment.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\StoredProcedures\GetDashBoardReport.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\StoredProcedures\GetDetailReport.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\StoredProcedures\GetExpenseReport.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\StoredProcedures\GetFinancialReport.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\StoredProcedures\GetMaintenanceVehicles.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\StoredProcedures\GetMonthlyDashboard.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\StoredProcedures\GetQtyReport.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database\StoredProcedures\SaveTolls.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +75,11 @@
     <None Update="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Database\Views\" />
+    <Folder Include="Database\Seeding\" />
   </ItemGroup>
 
 </Project>

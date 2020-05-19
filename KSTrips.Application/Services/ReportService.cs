@@ -14,31 +14,47 @@ namespace KSTrips.Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public List<ReportQty> GetReportQtyByDates(DateTime dateFrom, DateTime dateTo,string authZeroId)
+        public List<ReportQty> GetReportQtyByDates(DateTime dateFrom, DateTime dateTo,string authZeroId,int vehicleId)
         {
             var user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
-            var userId = user.Result[0].UserId;
-            return _unitOfWork.ReportRepository.GetReportQtyByDates<ReportQty>(dateFrom,dateTo, userId);
+            var userId = user.Result[0].Id;
+            return _unitOfWork.ReportRepository.GetReportQtyByDates<ReportQty>(dateFrom,dateTo, userId,vehicleId);
         }
 
-        public List<ReportCost> GetReportExpenseByDates(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        public List<ReportCost> GetReportExpenseByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
         {
             var user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
-            var userId = user.Result[0].UserId;
-            return _unitOfWork.ReportRepository.GetReportExpenseByDates<ReportCost>(dateFrom, dateTo, userId);
+            var userId = user.Result[0].Id;
+            return _unitOfWork.ReportRepository.GetReportExpenseByDates<ReportCost>(dateFrom, dateTo, userId,vehicleId);
         }
-        public List<ReportDetail> GetReportDetailByDates(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        public List<ReportDetail> GetReportDetailByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
         {
             var user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
-            var userId = user.Result[0].UserId;
-            return _unitOfWork.ReportRepository.GetReportDetailByDates<ReportDetail>(dateFrom, dateTo, userId);
+            var userId = user.Result[0].Id;
+            return _unitOfWork.ReportRepository.GetReportDetailByDates<ReportDetail>(dateFrom, dateTo, userId,vehicleId);
         }
 
-        public List<ReportFinancial> GetReportFinancialByDates(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        public List<ReportFinancial> GetReportFinancialByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
         {
             var user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
-            var userId = user.Result[0].UserId;
-            return _unitOfWork.ReportRepository.GetReportFinancialByDates<ReportFinancial>(dateFrom, dateTo, userId);
+            var userId = user.Result[0].Id;
+            return _unitOfWork.ReportRepository.GetReportFinancialByDates<ReportFinancial>(dateFrom, dateTo, userId,vehicleId);
+        }
+
+        public ReportDashboard GetDashboardReport(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        {
+            var user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
+            var userId = user.Result[0].Id;
+            return _unitOfWork.ReportRepository.GetDashboardReport(dateFrom, dateTo, userId);
+             
+        }
+
+        public List<VehiclesMaintenance> GetMaintenanceVehicles(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        {
+            var user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
+            var userId = user.Result[0].Id;
+            return _unitOfWork.ReportRepository.GetMaintenanceVehicles<VehiclesMaintenance>(dateFrom, dateTo, userId);
+
         }
     }
 }

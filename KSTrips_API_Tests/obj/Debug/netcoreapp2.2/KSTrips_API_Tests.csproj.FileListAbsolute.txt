@@ -5,6 +5,15 @@ D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\nunit.engine.ap
 D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\xunit.runner.reporters.netcoreapp10.dll
 D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\xunit.runner.utility.netcoreapp10.dll
+D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\Database\Functions\Split.sql
+D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\Database\Scripts\Deployment.sql
+D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetDashBoardReport.sql
+D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetDetailReport.sql
+D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetExpenseReport.sql
+D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetFinancialReport.sql
+D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetMonthlyDashboard.sql
+D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetQtyReport.sql
+D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\Database\StoredProcedures\SaveTolls.sql
 D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\App.config
 D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\KSTrips_API_Tests.deps.json
 D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\KSTrips_API_Tests.runtimeconfig.json
@@ -25,3 +34,4 @@ D:\KSTrips\KSTrips_API\KSTrips_API_Tests\obj\Debug\netcoreapp2.2\KSTrips_API_Tes
 D:\KSTrips\KSTrips_API\KSTrips_API_Tests\obj\Debug\netcoreapp2.2\KSTrips_API_Tests.csproj.CopyComplete
 D:\KSTrips\KSTrips_API\KSTrips_API_Tests\obj\Debug\netcoreapp2.2\KSTrips_API_Tests.dll
 D:\KSTrips\KSTrips_API\KSTrips_API_Tests\obj\Debug\netcoreapp2.2\KSTrips_API_Tests.pdb
+D:\KSTrips\KSTrips_API\KSTrips_API_Tests\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetMaintenanceVehicles.sql

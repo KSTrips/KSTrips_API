@@ -1,4 +1,5 @@
-﻿using KSTrips.Infrastructure.Interfaces;
+﻿using KSTrips.Infrastructure.Database;
+using KSTrips.Infrastructure.Interfaces;
 using KSTrips.Infrastructure.Services;
 
 
@@ -13,6 +14,7 @@ namespace KSTrips.Infrastructure
         public UnitOfWork(TripContext context)
         {
             _context = context;
+            
         }
 
         public IExpenseRepository ExpenseRepository => new ExpenseRepository(_context);
@@ -33,6 +35,10 @@ namespace KSTrips.Infrastructure
 
         public IVehicleRepository VehicleRepository => new VehiceRepository(_context);
 
+        public IRoleRepository RoleRepository => new RoleRepository(_context);
+        public IUserRoleRepository UserRoleRepository => new UserRoleRepository(_context);
+        public ISMTPRepository SMTPRepository => new SMTPRepository(_context);
+        public ISubscriptionRepository SubscriptionRepository => new SubscriptionRepository(_context);
 
     }
 }

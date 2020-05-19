@@ -21,7 +21,7 @@ namespace KSTrips.Infrastructure.Migrations
 
             modelBuilder.Entity("KSTrips.Domain.Entities.CarCategory", b =>
                 {
-                    b.Property<int>("CarCategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -41,14 +41,14 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<bool>("IsActive");
 
-                    b.HasKey("CarCategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("CarCategories");
                 });
 
             modelBuilder.Entity("KSTrips.Domain.Entities.ExpenseCategory", b =>
                 {
-                    b.Property<int>("ExpenseCategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -62,14 +62,14 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<bool>("IsActive");
 
-                    b.HasKey("ExpenseCategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("ExpenseCategory");
                 });
 
             modelBuilder.Entity("KSTrips.Domain.Entities.Provider", b =>
                 {
-                    b.Property<int>("ProviderId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -83,14 +83,87 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<bool>("IsActive");
 
-                    b.HasKey("ProviderId");
+                    b.HasKey("Id");
 
                     b.ToTable("Providers");
                 });
 
+            modelBuilder.Entity("KSTrips.Domain.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("KSTrips.Domain.Entities.SMTP", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Host");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Password");
+
+                    b.Property<int>("Port");
+
+                    b.Property<string>("SMTPServer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SMTPServer");
+                });
+
+            modelBuilder.Entity("KSTrips.Domain.Entities.SubscriptionType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<int>("QtyAllowedUsers");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubscriptionTypes");
+                });
+
             modelBuilder.Entity("KSTrips.Domain.Entities.Tax", b =>
                 {
-                    b.Property<int>("TaxId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -108,7 +181,7 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<int?>("TripDetailId");
 
-                    b.HasKey("TaxId");
+                    b.HasKey("Id");
 
                     b.HasIndex("TripDetailId");
 
@@ -117,13 +190,21 @@ namespace KSTrips.Infrastructure.Migrations
 
             modelBuilder.Entity("KSTrips.Domain.Entities.Toll", b =>
                 {
-                    b.Property<int>("TollId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ApproximateTime");
 
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
                     b.Property<int>("DistanceKm");
+
+                    b.Property<bool>("IsActive");
 
                     b.Property<string>("Name");
 
@@ -145,14 +226,14 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<int>("TotalQtyTolls");
 
-                    b.HasKey("TollId");
+                    b.HasKey("Id");
 
                     b.ToTable("Tolls");
                 });
 
             modelBuilder.Entity("KSTrips.Domain.Entities.TollDetail", b =>
                 {
-                    b.Property<int>("TollDetailId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -170,11 +251,19 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<decimal?>("CostCategory7");
 
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
+                    b.Property<bool>("IsActive");
+
                     b.Property<string>("NameToll");
 
                     b.Property<int>("TollId");
 
-                    b.HasKey("TollDetailId");
+                    b.HasKey("Id");
 
                     b.HasIndex("TollId");
 
@@ -183,7 +272,7 @@ namespace KSTrips.Infrastructure.Migrations
 
             modelBuilder.Entity("KSTrips.Domain.Entities.Trip", b =>
                 {
-                    b.Property<int>("TripId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -192,8 +281,6 @@ namespace KSTrips.Infrastructure.Migrations
                     b.Property<bool>("ApplyReteFuente");
 
                     b.Property<bool>("ApplyTolls");
-
-                    b.Property<int>("CarCategoryId");
 
                     b.Property<string>("CreatedBy");
 
@@ -209,6 +296,8 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<bool>("IsActive");
 
+                    b.Property<bool>("IsUrban");
+
                     b.Property<string>("Origin");
 
                     b.Property<decimal>("Payment");
@@ -223,9 +312,7 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<int?>("VehicleId");
 
-                    b.HasKey("TripId");
-
-                    b.HasIndex("CarCategoryId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProviderId");
 
@@ -239,9 +326,11 @@ namespace KSTrips.Infrastructure.Migrations
 
             modelBuilder.Entity("KSTrips.Domain.Entities.TripDetail", b =>
                 {
-                    b.Property<int>("TripDetailId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Comments");
 
                     b.Property<string>("CreatedBy");
 
@@ -261,7 +350,7 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<int>("TripId");
 
-                    b.HasKey("TripDetailId");
+                    b.HasKey("Id");
 
                     b.HasIndex("TripId");
 
@@ -270,7 +359,7 @@ namespace KSTrips.Infrastructure.Migrations
 
             modelBuilder.Entity("KSTrips.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -304,14 +393,41 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<string>("Provider");
 
-                    b.HasKey("UserId");
+                    b.Property<int?>("SubscriptionTypeId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubscriptionTypeId");
 
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("KSTrips.Domain.Entities.UserRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime?>("DateModified");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<int>("RoleId");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("KSTrips.Domain.Entities.Vehicle", b =>
                 {
-                    b.Property<int>("VehicleId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -331,9 +447,11 @@ namespace KSTrips.Infrastructure.Migrations
 
                     b.Property<string>("LicensePlate");
 
+                    b.Property<int>("NotificationKilometers");
+
                     b.Property<int>("UserId");
 
-                    b.HasKey("VehicleId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CarCategoryId");
 
@@ -357,11 +475,6 @@ namespace KSTrips.Infrastructure.Migrations
 
             modelBuilder.Entity("KSTrips.Domain.Entities.Trip", b =>
                 {
-                    b.HasOne("KSTrips.Domain.Entities.CarCategory", "CarCategory")
-                        .WithMany()
-                        .HasForeignKey("CarCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("KSTrips.Domain.Entities.Provider", "Provider")
                         .WithMany()
                         .HasForeignKey("ProviderId")
@@ -383,6 +496,13 @@ namespace KSTrips.Infrastructure.Migrations
                         .WithMany("TripDetails")
                         .HasForeignKey("TripId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("KSTrips.Domain.Entities.User", b =>
+                {
+                    b.HasOne("KSTrips.Domain.Entities.SubscriptionType", "SubscriptionType")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionTypeId");
                 });
 
             modelBuilder.Entity("KSTrips.Domain.Entities.Vehicle", b =>

@@ -31,7 +31,7 @@ namespace KSTrips.Infrastructure.Services
         {
             try
             {
-                var existUser = Context.Users.Where(ls => ls.Name == user.Name).ToListAsync();
+                Task<List<User>> existUser = Context.Users.Where(ls => ls.Name == user.Name).ToListAsync();
 
                 if (existUser.Result.Count == 0)
                 {
@@ -53,21 +53,14 @@ namespace KSTrips.Infrastructure.Services
         {
             try
             {
-
-
-                foreach (var us in users)
+                foreach (User us in users)
                 {
                     //Context.Entry(us).State = EntityState.Modified;
                     us.DateModified = DateTime.Now;
 
                     Context.Entry(us).Property(p => p.DateModified).IsModified = true;
                     Context.Entry(us).Property(p => p.IsActive).IsModified = true;
-                    Context.Entry(us).Property(p => p.DateInitial).IsModified = true;
-                    Context.Entry(us).Property(p => p.DateUse).IsModified = true;
                     Context.Entry(us).Property(p => p.NotificationDays).IsModified = true;
-
-                    Context.Entry(us).Property(p => p.DateInitSubscription).IsModified = true;
-                    Context.Entry(us).Property(p => p.DateEndSubscription).IsModified = true;
 
                 }
 
@@ -80,6 +73,34 @@ namespace KSTrips.Infrastructure.Services
                 throw new Exception(ex.Message.ToString());
             }
 
+        }
+
+        public bool UpdateSpecificUser(User user)
+        {
+            try
+            {
+                //Context.Entry(us).State = EntityState.Modified;
+                user.DateModified = DateTime.Now;
+
+                Context.Entry(user).Property(p => p.DateModified).IsModified = true;
+                Context.Entry(user).Property(p => p.IsActive).IsModified = true;
+                Context.Entry(user).Property(p => p.DateInitial).IsModified = true;
+                Context.Entry(user).Property(p => p.DateUse).IsModified = true;
+                Context.Entry(user).Property(p => p.NotificationDays).IsModified = true;
+
+                Context.Entry(user).Property(p => p.DateInitSubscription).IsModified = true;
+                Context.Entry(user).Property(p => p.DateEndSubscription).IsModified = true;
+
+
+
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
         }
     }
 }

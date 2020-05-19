@@ -19,5 +19,6 @@ namespace KSTrips.Domain.Transversal.Response
         public int TotalProfit { get; }
         public int Debt { get; }
         public bool IsActive { get; }
+        public string LicensePlate { get; }
     }
 }

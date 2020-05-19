@@ -1,4 +1,5 @@
-﻿using KSTrips.Application.Interfaces;
+﻿using System;
+using KSTrips.Application.Interfaces;
 using KSTrips.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -21,41 +22,94 @@ namespace KSTrips_API.Controllers
         [HttpGet()]
         public async Task<IActionResult> GetUsers()
         {
-            List<User> result = await _userServices.GetUsers();
-            return Ok(result);
+            try
+            {
+                List<User> result = await _userServices.GetUsers();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+           
         }
 
         [HttpGet("{authZeroId}")]
         public async Task<IActionResult> GetUserByAuthZeroId(string authZeroId)
         {
-
-            List<User> result = await _userServices.GetUserByAuthZeroId(authZeroId);
-            return Ok(result);
+            try
+            {
+                List<User> result = await _userServices.GetUserByAuthZeroId(authZeroId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
         }
 
         // POST api/saveUsers
         [HttpPost("SaveUsers")]
         public IActionResult SaveUsers([FromBody] User dataUsers)
         {
-            var result = _userServices.SaveUsers(dataUsers);
+            try
+            {
+                var result = _userServices.SaveUsers(dataUsers);
 
-            if (result)
-                return Ok();
+                if (result)
+                    return Ok();
 
-            return BadRequest("Error: al guardar los usuarios");
+                return BadRequest("Error: al guardar los usuarios");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
 
         }
 
         // POST api/updateUsers
-        [HttpPost("UpdateUsers")]
+        [HttpPut("UpdateUsers")]
         public IActionResult UpdateUsers([FromBody] IEnumerable<User> dataUsers)
         {
-            var result = _userServices.UpdateUsers(dataUsers);
+            try
+            {
+                var result = _userServices.UpdateUsers(dataUsers);
 
-            if (result)
-                return Ok();
+                if (result)
+                    return Ok();
 
-            return BadRequest("Error: al actualizar los usuarios");
+                return BadRequest("Error: al actualizar los usuarios");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
+
+        }
+
+        // POST api/updateUsers
+        [HttpPut("UpdateSpecificUser")]
+        public IActionResult UpdateSpecificUser([FromBody] User dataUser)
+        {
+            try
+            {
+                var result = _userServices.UpdateSpecificUser(dataUser);
+
+                if (result)
+                    return Ok();
+
+                return BadRequest("Error: al actualizar el usuario " + dataUser.Name);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
 
         }
 

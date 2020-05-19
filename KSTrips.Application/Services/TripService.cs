@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace KSTrips.Application.Services
 {
@@ -23,7 +22,7 @@ namespace KSTrips.Application.Services
         public async Task<List<Trip>> GetTripsByUserId(string authZeroId)
         {
             Task<List<User>> user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
-            int userId = user.Result[0].UserId;
+            int userId = user.Result[0].Id;
             List<Trip> result = await _unitOfWork.TripRepository.GetTripsByUserId(userId);
             return result;
         }
@@ -49,7 +48,7 @@ namespace KSTrips.Application.Services
             if (!blnProvider) return null;
 
             // Transformamos la data que llega de la GUI
-            Trip trip = TransformTrip(dataTrip, simulatorResponse, user[0]);
+            Trip trip = await TransformTrip(dataTrip, simulatorResponse, user[0]);
 
             bool isSaved = _unitOfWork.TripRepository.SaveTrip(trip);
 
@@ -65,11 +64,26 @@ namespace KSTrips.Application.Services
             simulatorResponse = await GenerateResult(dataTrip);
 
             // Transformamos la data que llega de la GUI
-            Trip trip = TransformTrip(dataTrip, simulatorResponse, user[0]);
+            Trip trip =await TransformTrip(dataTrip, simulatorResponse, user[0]);
 
             bool isUpdated = _unitOfWork.TripRepository.UpdateTrip(trip);
 
             return isUpdated ? simulatorResponse : null;
+
+        }
+
+        public async Task<bool> UpdateCloseTrip(int tripId)
+        {
+            bool isUpdated = false;
+            List<Trip> trip = await _unitOfWork.TripRepository.GetTripByTripId(tripId);
+
+            if (trip.Count > 0)
+            {
+                trip[0].Debt = 0;
+                trip[0].IsActive = false;
+                isUpdated = _unitOfWork.TripRepository.UpdateCloseTrip(trip[0]);
+            }
+            return isUpdated ;
 
         }
 
@@ -83,6 +97,9 @@ namespace KSTrips.Application.Services
 
                 if (tolls.Count > 0)
                     tollResponse = tolls[0];
+
+                Vehicle vehicle = new Vehicle();
+                vehicle = await _unitOfWork.VehicleRepository.GetVehicleById(dataTrip.VehicleId);
 
                 SimulatorResponse simulationResult = new SimulatorResponse
                 {
@@ -101,9 +118,9 @@ namespace KSTrips.Application.Services
                     DiscountOthers = 0,
                     DiscountIca = (dataTrip.ApplyIca) ? objTransversal.CalculateIca(dataTrip.TotalPay) : 0,
                     DiscountRetefuente = (dataTrip.ApplyRetefuente) ? objTransversal.CalculateRetefuente(dataTrip.TotalPay) : 0,
-                    DiscountPeajes = (dataTrip.ApplyTolls) ? objTransversal.CalculateTolls(dataTrip.CarCategory, tollResponse) : 0,
+                    DiscountPeajes = (dataTrip.ApplyTolls) ? objTransversal.CalculateTolls(vehicle.CarCategoryId, tollResponse) : 0,
                     DiscountExpenses = objTransversal.CalculateExpenses(dataTrip.Expenses),
-                    TotalProfit = objTransversal.CalculateProfit(dataTrip, tollResponse, dataTrip.Expenses)
+                    TotalProfit = objTransversal.CalculateProfit(dataTrip, tollResponse, dataTrip.Expenses, vehicle.CarCategoryId)
                 };
 
                 simulationResult.GrandTotalExpense = simulationResult.DiscountExpenses + simulationResult.DiscountPeajes
@@ -116,10 +133,10 @@ namespace KSTrips.Application.Services
                 Console.WriteLine(e);
                 throw;
             }
-           
+
         }
 
-        private Trip TransformTrip(SimulatorEntity dataTrip, SimulatorResponse simulatorResponse, User user)
+        private async Task<Trip> TransformTrip(SimulatorEntity dataTrip, SimulatorResponse simulatorResponse, User user)
         {
             Transversal objTransversal = new Transversal();
             List<Trip> tripDB = new List<Trip>();
@@ -127,6 +144,9 @@ namespace KSTrips.Application.Services
             Dates objDates = new Dates();
             DateTime dateNotification = objDates.WorkingDays(user.NotificationDays, DateTime.Now);
             Task<List<Provider>> provider = _unitOfWork.ProviderRepository.GetProviderByName(dataTrip.Provider.ToUpper().Trim());
+            Vehicle vehicle = new Vehicle();
+            vehicle = await _unitOfWork.VehicleRepository.GetVehicleById(dataTrip.VehicleId);
+
             int tripDetailIdToll = 0;
             if (simulatorResponse.Expenses.Count == 0)
             {
@@ -134,13 +154,13 @@ namespace KSTrips.Application.Services
             }
             else if (simulatorResponse.Expenses.Select(ls => ls.TripDetailId).First() != 0)
             {
-               tripDetailIdToll = simulatorResponse.Expenses.Where(ls => ls.ExpenseCategoryId == 0).Select(ls => ls.TripDetailId).First();
+                tripDetailIdToll = simulatorResponse.Expenses.Where(ls => ls.ExpenseCategoryId == 0).Select(ls => ls.TripDetailId).First();
             }
 
 
             Trip trip = new Trip
             {
-                TripId = dataTrip.TripId != -1 ? dataTrip.TripId : 0,
+                Id = dataTrip.Id != -1 ? dataTrip.Id : 0,
                 Origin = dataTrip.Origin,
                 Destiny = dataTrip.Destination,
                 TotalTrip = dataTrip.TotalPay,
@@ -151,12 +171,11 @@ namespace KSTrips.Application.Services
                 ApplyTolls = dataTrip.ApplyTolls,
                 TotalProfit = simulatorResponse.TotalProfit,
                 TripDetails = new List<TripDetail>(),
-                UserId = user.UserId,
-                ProviderId = provider.Result[0].ProviderId,
+                UserId = user.Id,
+                ProviderId = provider.Result[0].Id,
                 CreatedBy = user.Name,
                 DateCreated = DateTime.Now,
                 DateforPay = dateNotification,
-                CarCategoryId = dataTrip.CarCategory,
                 VehicleId = dataTrip.VehicleId
             };
 
@@ -167,34 +186,40 @@ namespace KSTrips.Application.Services
                 {
                     TripDetail tripdetailexpenses = new TripDetail
                     {
-                        TripDetailId = exp.TripDetailId,
+                        Id = exp.TripDetailId,
                         TotalExpense = exp.CostExpense,
                         ExpenseCategoryId = exp.ExpenseCategoryId,
                         IsToll = false,
                         DateCreated = DateTime.Now,
-                        CreatedBy = user.Name
+                        CreatedBy = user.Name,
+                        Comments = exp.Comments, 
+                        TripId = trip.Id
                     };
                     trip.TripDetails.Add(tripdetailexpenses);
                 }
 
-             
+
 
             }
 
-            
-            // añadimos el gasto peajes
-            TripDetail tripdetailTolls = new TripDetail
+            if (simulatorResponse.Tolls != null)
             {
-                TripDetailId = tripDetailIdToll  ,
-                TollId = simulatorResponse.Tolls.TollId,
-                TotalExpense = objTransversal.CalculateTolls(dataTrip.CarCategory, simulatorResponse.Tolls),
-                IsToll = true,
-                DateCreated = DateTime.Now
-            ,
-                CreatedBy = user.Name
-            };
+                // añadimos el gasto peajes
+                TripDetail tripdetailTolls = new TripDetail
+                {
+                    Id = tripDetailIdToll,
+                    TollId = simulatorResponse.Tolls.Id,
+                    TotalExpense = objTransversal.CalculateTolls(vehicle.CarCategoryId, simulatorResponse.Tolls),
+                    IsToll = true,
+                    DateCreated = DateTime.Now,
+                    CreatedBy = user.Name,
+                    TripId = trip.Id
+                };
 
-            trip.TripDetails.Add(tripdetailTolls);
+                trip.TripDetails.Add(tripdetailTolls);
+            }
+
+            
 
             return trip;
         }

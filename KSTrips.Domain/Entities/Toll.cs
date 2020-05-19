@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace KSTrips.Domain.Entities
 {
     /// <summary>
     /// Entidad que representa Los Peajes
     /// </summary>
-    public class Toll
+    public class Toll : BaseEntity
     {
-        public int TollId { get; set; }
+
         public int PageId { get; set; }
         public string Name { get; set; }
         public int TotalQtyTolls { get; set; }

@@ -11,5 +11,8 @@ namespace KSTrips.Infrastructure.Interfaces
         bool SaveVehicles(IEnumerable<Vehicle> vehicle);
         bool UpdateVehicles(IEnumerable<Vehicle> vehicle);
         Task<List<Vehicle>> GetVehiclesByUser(int userId);
+        bool UpdateVehicle(Vehicle vehicle);
+        bool DeleteVehicle(Vehicle vehicle);
+        Task<Vehicle> GetVehicleById(int vehicleId);
     }
 }

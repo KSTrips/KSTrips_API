@@ -63,7 +63,7 @@ namespace KSTrips.Application.Services
 
         private void CalculateEmiliani(int _month, int _day)
         {
-            DateTime date = DateTime.Now;
+            var date = DateTime.Now;
             var dayOfWeek = (int)date.DayOfWeek;
             switch (dayOfWeek)
             {

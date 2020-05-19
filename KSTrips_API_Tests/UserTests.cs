@@ -25,7 +25,7 @@ namespace KSTrips_API_Tests
             {
                 new User()
                 {
-                    UserId = 0,
+                    Id = 0,
                     AuthZeroId = string.Empty,
                     Name = string.Empty,
                     GivenName =  string.Empty,
@@ -61,7 +61,7 @@ namespace KSTrips_API_Tests
 
             User user = new User()
             {
-                UserId = 0,
+                Id = 0,
                 Name = "Test User",
                 AuthZeroId = new Guid().ToString(),
                 FamilyName = "",
@@ -91,7 +91,7 @@ namespace KSTrips_API_Tests
             {
                 new User
                 {
-                    UserId = 0,
+                    Id = 0,
                     Name = "Test User",
                     AuthZeroId = new Guid().ToString(),
                     FamilyName = "",

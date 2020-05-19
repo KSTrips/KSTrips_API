@@ -24,7 +24,7 @@ namespace KSTrips.Infrastructure.Services
 
         public async Task<List<Provider>> GetProviderById(int providerId)
         {
-            return await Context.Providers.Where(ls => ls.ProviderId == providerId).ToListAsync();
+            return await Context.Providers.Where(ls => ls.Id == providerId).ToListAsync();
         }
 
         public async Task<List<Provider>> GetProviderByName(string providerName)

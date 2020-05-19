@@ -2,12 +2,12 @@
 {
     public class ReportFinancial
     {
-        public int Ingresos { get; }
-        public int Egresos { get; }
-        public int SaldoPendiente { get; }
-        public int Ganancia { get; }
-        public int ImpuestoIca { get; }
-        public int ImpuestoRetefuente { get; }
-        public int SaldoEnCuenta { get; }
+        public int Revenue { get; }
+        public int Expenses { get; }
+        public int OutstandingBalance { get; }
+        public int Profit { get; }
+        public int IcaTax { get; }
+        public int RetefuenteTax { get; }
+        public int AccountBalance { get; }
     }
 }

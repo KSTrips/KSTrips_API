@@ -6,6 +6,8 @@
         public string Driver { get; set; }
         public string LicensePlate { get; set; }
 
+        public int NotificationKilometers { get; set; }
+
         public int CarCategoryId { get; set; }
 
         public string userAuthZeroId { get; set; }

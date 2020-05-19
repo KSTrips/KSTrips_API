@@ -12,6 +12,7 @@ namespace KSTrips.Application.Interfaces
         Task<SimulatorResponse> SaveTrip(SimulatorEntity dataTrip);
         Task<SimulatorResponse> UpdateTrip(SimulatorEntity dataTrip);
         Task<List<Trip>> GetTripById(int tripId);
+        Task<bool> UpdateCloseTrip(int tripId);
 
     }
 }

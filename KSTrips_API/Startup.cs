@@ -1,6 +1,7 @@
 ﻿using KSTrips.Application.Interfaces;
 using KSTrips.Application.Services;
 using KSTrips.Infrastructure;
+using KSTrips.Infrastructure.Database;
 using KSTrips.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +34,8 @@ namespace KSTrips_API
                     .AllowAnyMethod());
             });
 
-            services.AddDbContext<TripContext>(options => options.UseSqlServer(Configuration["TripContext"]));
+            //services.AddDbContext<TripContext>(options => options.UseSqlServer(Configuration["TripContext"]));
+            services.AddDbContext<TripContext>(options => options.UseSqlServer(Configuration["TripContextDev"]));
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -47,13 +49,15 @@ namespace KSTrips_API
             services.AddScoped<ITripService, TripService>();
             services.AddScoped<IReportService, ReportService>();
             services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IEmailService, EmailService>();
 
 
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, TripContext context)
         {
             app.UseCors("AllowOrigin");
             //app.UseAuthentication();
@@ -71,6 +75,7 @@ namespace KSTrips_API
 
             //app.UseHttpsRedirection();
             app.UseMvc();
+            DatabaseInitializer.Seed(context);
         }
 
     }

@@ -21,7 +21,7 @@ namespace KSTrips.Application.Services
         public async Task<List<Vehicle>> GetVehiclesByUser(string authZeroId)
         {
             var user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
-            var userId = user.Result[0].UserId;
+            var userId = user.Result[0].Id;
             return await _unitOfWork.VehicleRepository.GetVehiclesByUser(userId);
         }
 
@@ -37,16 +37,27 @@ namespace KSTrips.Application.Services
             return _unitOfWork.VehicleRepository.UpdateVehicles(NewVehicles);
         }
 
-        private IEnumerable<Vehicle> TransformVehicle(IEnumerable<InComingVehicles> inComingVehicles)
+        public bool UpdateVehicle(Vehicle vehicle)
+        {
+            return _unitOfWork.VehicleRepository.UpdateVehicle(vehicle);
+        }
+
+        public bool DeleteVehicle(Vehicle vehicle)
+        {
+            return _unitOfWork.VehicleRepository.DeleteVehicle(vehicle);
+        }
+
+        private IEnumerable<Vehicle> TransformVehicle(IEnumerable<InComingVehicles> inComingVehicles )
         {
             return (from us in inComingVehicles
                 let user = _unitOfWork.UserRepository.GetUserByAuthZeroId(us.userAuthZeroId)
-                let userId = user.Result[0].UserId
+                let userId = user.Result[0].Id
                 select new Vehicle
                 {
                     LicensePlate = us.LicensePlate,
                     Driver = us.Driver,
                     Description = us.Description,
+                    NotificationKilometers = us.NotificationKilometers,
                     UserId = userId,
                     CreatedBy = user.Result[0].Name,
                     DateCreated = DateTime.Now,

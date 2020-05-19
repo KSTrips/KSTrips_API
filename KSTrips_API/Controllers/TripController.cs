@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using KSTrips.Application.Interfaces;
 using KSTrips.Domain.Transversal;
 using Microsoft.AspNetCore.Mvc;
@@ -23,29 +24,62 @@ namespace KSTrips_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCarCategories()
         {
-            var result = await _simulatorServices.GetCarCategories();
-            return Ok(result);
+            try
+            {
+                var result = await _simulatorServices.GetCarCategories();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
         }
 
         [HttpGet("expenseCategories")]
         public async Task<IActionResult> GetExpenseCategories()
         {
-            var result = await _simulatorServices.GetExpenseCategories();
-            return Ok(result);
+            try
+            {
+                var result = await _simulatorServices.GetExpenseCategories();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
         }
 
         [HttpGet("{authZeroId}")]
         public async Task<IActionResult> GetTripByUserId(string authZeroId)
         {
-            var result = await _tripServices.GetTripsByUserId(authZeroId);
-            return Ok(result);
+            try
+            {
+                var result = await _tripServices.GetTripsByUserId(authZeroId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+            
         }
 
         [HttpGet("getTripById/{tripId}")]
         public async Task<IActionResult> GetTripById(int tripId)
         {
-            var result = await _tripServices.GetTripById(tripId);
-            return Ok(result);
+            try
+            {
+                var result = await _tripServices.GetTripById(tripId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
         }
 
 
@@ -54,34 +88,76 @@ namespace KSTrips_API.Controllers
         [HttpPost("SaveTrip")]
         public async Task<IActionResult> SaveTrip([FromBody] SimulatorEntity dataTrip)
         {
-            var result = await _tripServices.SaveTrip(dataTrip);
+            try
+            {
 
-            if (result != null)
-            {
-                return Ok(JsonConvert.SerializeObject(result, Formatting.Indented,
-                    new JsonSerializerSettings {ReferenceLoopHandling = ReferenceLoopHandling.Ignore}));
+                var result = await _tripServices.SaveTrip(dataTrip);
+
+                if (result != null)
+                {
+                    return Ok(JsonConvert.SerializeObject(result, Formatting.Indented,
+                        new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
+                }
+                else
+                {
+                    return BadRequest("Error guardando el viaje, por favor intente de nuevo");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Error guardando el viaje, por favor intente de nuevo");
+                return BadRequest(ex);
             }
+
         }
 
         // POST api/values
-        [HttpPost("UpdateTrip")]
+        [HttpPut("UpdateTrip")]
         public async Task<IActionResult> UpdateTrip([FromBody] SimulatorEntity dataTrip)
         {
-            var result = await _tripServices.UpdateTrip(dataTrip);
+            try
+            {
+                var result = await _tripServices.UpdateTrip(dataTrip);
 
-            if (result != null)
-            {
-                return Ok(JsonConvert.SerializeObject(result, Formatting.Indented,
-                    new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
+                if (result != null)
+                {
+                    return Ok(JsonConvert.SerializeObject(result, Formatting.Indented,
+                        new JsonSerializerSettings {ReferenceLoopHandling = ReferenceLoopHandling.Ignore}));
+                }
+                else
+                {
+                    return BadRequest("Error actualizando el viaje, por favor intente de nuevo");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Error actualizando el viaje, por favor intente de nuevo");
+                return BadRequest(ex);
             }
+
+        }
+
+        // POST api/values
+        [HttpPut("UpdateCloseTrip")]
+        public async Task<IActionResult> UpdateCloseTrip([FromBody] int tripId)
+        {
+            try
+            {
+                var result = await _tripServices.UpdateCloseTrip(tripId);
+
+                if (result != null)
+                {
+                    return Ok(JsonConvert.SerializeObject(result, Formatting.Indented,
+                        new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
+                }
+                else
+                {
+                    return BadRequest("Error actualizando el viaje, por favor intente de nuevo");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
         }
 
     }

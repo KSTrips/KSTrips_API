@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSTrips.Infrastructure", "K
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.6-AzureFunction", "1.6-AzureFunction", "{57A4D936-05CB-4F9C-AA4D-103700710EE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeajesFunction", "PeajesFunction\PeajesFunction.csproj", "{C0C208AD-C87B-45DA-BBC0-5F3E1A2972A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeajesFunction", "PeajesFunction\PeajesFunction.csproj", "{C0C208AD-C87B-45DA-BBC0-5F3E1A2972A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

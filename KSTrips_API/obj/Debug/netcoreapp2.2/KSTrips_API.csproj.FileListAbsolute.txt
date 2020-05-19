@@ -12,6 +12,15 @@ D:\KSTrips_API\KSTrips_API\KSTrips_API\obj\Debug\netcoreapp2.2\KSTrips_API.Assem
 D:\KSTrips_API\KSTrips_API\KSTrips_API\obj\Debug\netcoreapp2.2\KSTrips_API.RazorTargetAssemblyInfo.cache
 D:\KSTrips_API\KSTrips_API\KSTrips_API\obj\Debug\netcoreapp2.2\KSTrips_API.dll
 D:\KSTrips_API\KSTrips_API\KSTrips_API\obj\Debug\netcoreapp2.2\KSTrips_API.pdb
+D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\Database\Functions\Split.sql
+D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\Database\Scripts\Deployment.sql
+D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetDashBoardReport.sql
+D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetDetailReport.sql
+D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetExpenseReport.sql
+D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetFinancialReport.sql
+D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetMonthlyDashboard.sql
+D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetQtyReport.sql
+D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\Database\StoredProcedures\SaveTolls.sql
 D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\App.config
 D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\KSTrips_API.deps.json
 D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\KSTrips_API.runtimeconfig.json
@@ -35,3 +44,4 @@ D:\KSTrips\KSTrips_API\KSTrips_API\obj\Debug\netcoreapp2.2\KSTrips_API.RazorTarg
 D:\KSTrips\KSTrips_API\KSTrips_API\obj\Debug\netcoreapp2.2\KSTrips_API.csproj.CopyComplete
 D:\KSTrips\KSTrips_API\KSTrips_API\obj\Debug\netcoreapp2.2\KSTrips_API.dll
 D:\KSTrips\KSTrips_API\KSTrips_API\obj\Debug\netcoreapp2.2\KSTrips_API.pdb
+D:\KSTrips\KSTrips_API\KSTrips_API\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetMaintenanceVehicles.sql

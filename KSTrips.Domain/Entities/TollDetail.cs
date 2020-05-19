@@ -1,13 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KSTrips.Domain.Entities
 {
     /// <summary>
     /// Entidad que representa el Detalle del Peaje
     /// </summary>
-   public class TollDetail
+   public class TollDetail :BaseEntity
     {
-        public int TollDetailId { get; set; }
+
         public string NameToll { get; set; }
         public decimal? CostCategory1 { get; set; }
         public decimal? CostCategory2 { get; set; }

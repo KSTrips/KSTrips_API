@@ -15,31 +15,94 @@ namespace KSTrips_API.Controllers
             _reportService = reportService;
         }
 
-        [HttpGet("{dateFrom}/{dateTo}/{authZeroId}")]
-        public IActionResult GetReportByDates(DateTime dateFrom, DateTime dateTo,string authZeroId)
+        [HttpGet("{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        public IActionResult GetReportByDates(DateTime dateFrom, DateTime dateTo,string authZeroId, int vehicleId)
         {
-            var result =  _reportService.GetReportQtyByDates(dateFrom,dateTo,authZeroId);
-            return Ok(result);
+            try
+            {
+                var result =  _reportService.GetReportQtyByDates(dateFrom,dateTo,authZeroId,vehicleId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
         }
 
-        [HttpGet("expenseReport/{dateFrom}/{dateTo}/{authZeroId}")]
-        public IActionResult GetReportExpenseByDates(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        [HttpGet("expenseReport/{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        public IActionResult GetReportExpenseByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
         {
-            var result = _reportService.GetReportExpenseByDates(dateFrom, dateTo, authZeroId);
-            return Ok(result);
+            try
+            {
+                var result = _reportService.GetReportExpenseByDates(dateFrom, dateTo, authZeroId,vehicleId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
         }
-        [HttpGet("detailReport/{dateFrom}/{dateTo}/{authZeroId}")]
-        public IActionResult GetReportDetailByDates(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        [HttpGet("detailReport/{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        public IActionResult GetReportDetailByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
         {
-            var result = _reportService.GetReportDetailByDates(dateFrom, dateTo, authZeroId);
-            return Ok(result);
+            try
+            {
+                var result = _reportService.GetReportDetailByDates(dateFrom, dateTo, authZeroId,vehicleId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
         }
 
-        [HttpGet("financialReport/{dateFrom}/{dateTo}/{authZeroId}")]
-        public IActionResult GetReportFinancialByDates(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        [HttpGet("financialReport/{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        public IActionResult GetReportFinancialByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
         {
-            var result = _reportService.GetReportFinancialByDates(dateFrom, dateTo, authZeroId);
-            return Ok(result);
+            try
+            {
+                var result = _reportService.GetReportFinancialByDates(dateFrom, dateTo, authZeroId,vehicleId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
         }
+
+        [HttpGet("dashboardReport/{dateFrom}/{dateTo}/{authZeroId}")]
+        public IActionResult GetDashboardReport(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        {
+            try
+            {
+                var result = _reportService.GetDashboardReport(dateFrom, dateTo, authZeroId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+        }
+
+        [HttpGet("getMaintenanceVehicles/{dateFrom}/{dateTo}/{authZeroId}")]
+        public IActionResult GetMaintenanceVehicles(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        {
+            try
+            {
+                var result = _reportService.GetMaintenanceVehicles(dateFrom, dateTo, authZeroId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+        }
+
     }
 }

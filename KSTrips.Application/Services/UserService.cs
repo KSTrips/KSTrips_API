@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using KSTrips.Application.Interfaces;
+﻿using KSTrips.Application.Interfaces;
 using KSTrips.Domain.Entities;
 using KSTrips.Infrastructure.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KSTrips.Application.Services
 {
@@ -28,14 +28,14 @@ namespace KSTrips.Application.Services
 
         public bool SaveUsers(User dataUsers)
         {
-            return  _unitOfWork.UserRepository.SaveUsers(dataUsers);
+            return _unitOfWork.UserRepository.SaveUsers(dataUsers);
         }
 
         public bool UpdateUsers(IEnumerable<User> dataUsers)
         {
-            var objDates = new Dates();
-            var endDateSubscription = objDates.WorkingDays(30, DateTime.Now);
-            foreach (var us in dataUsers)
+            Dates objDates = new Dates();
+            DateTime endDateSubscription = objDates.WorkingDays(30, DateTime.Now);
+            foreach (User us in dataUsers)
             {
                 if (us.IsActive)
                 {
@@ -50,5 +50,25 @@ namespace KSTrips.Application.Services
             }
             return _unitOfWork.UserRepository.UpdateUsers(dataUsers);
         }
+
+        public bool UpdateSpecificUser(User dataUser)
+        {
+            Dates objDates = new Dates();
+            DateTime endDateSubscription = objDates.WorkingDays(30, DateTime.Now);
+
+            if (dataUser.IsActive)
+            {
+                dataUser.DateInitSubscription = DateTime.Now;
+                dataUser.DateEndSubscription = endDateSubscription;
+            }
+            else
+            {
+                dataUser.DateInitSubscription = null;
+                dataUser.DateEndSubscription = null;
+            }
+
+            return _unitOfWork.UserRepository.UpdateSpecificUser(dataUser);
+        }
+
     }
 }

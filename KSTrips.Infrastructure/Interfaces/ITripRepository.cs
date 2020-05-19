@@ -15,5 +15,7 @@ namespace KSTrips.Infrastructure.Interfaces
         bool SaveTrip(Trip trip);
         bool UpdateTrip(Trip trip);
 
+        bool UpdateCloseTrip(Trip trip);
+
     }
 }

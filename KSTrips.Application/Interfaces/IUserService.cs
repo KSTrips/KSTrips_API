@@ -11,5 +11,7 @@ namespace KSTrips.Application.Interfaces
         bool SaveUsers(User dataUsers);
         bool UpdateUsers(IEnumerable<User> dataUsers);
 
+        bool UpdateSpecificUser(User dataUser);
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using KSTrips.Domain.Entities;
+using KSTrips.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -11,9 +12,11 @@ namespace KSTrips.Infrastructure
         private string ConnectionString => this.Configuration.GetConnectionString("TripContext");
 
         //Constructor con parametros para la configuracion
-        public TripContext(DbContextOptions options, IConfiguration configuration): base(options)
+        public TripContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {
             Configuration = configuration;
+            Database.SetCommandTimeout(3600);
+
         }
 
 
@@ -32,12 +35,14 @@ namespace KSTrips.Infrastructure
         public DbSet<Trip> Trips { get; set; }
         public DbSet<TripDetail> TripDetails { get; set; }
         public DbSet<CarCategory> CarCategories { get; set; }
-
         public DbSet<ExpenseCategory> ExpenseCategory { get; set; }
-
         public DbSet<User> Users { get; set; }
-
         public DbSet<Vehicle> Vehicles { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<SMTP> SMTPServer { get; set; }
+        public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -53,6 +58,7 @@ namespace KSTrips.Infrastructure
                 .HasOne(cbs => cbs.Provider);
 
         }
+
 
     }
 }

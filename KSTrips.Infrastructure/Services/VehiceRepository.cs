@@ -22,10 +22,10 @@ namespace KSTrips.Infrastructure.Services
 
             try
             {
-                foreach (var vh in vehicle)
+                foreach (Vehicle vh in vehicle)
                 {
 
-                    var existVehicle = Context.Vehicles.Where(ls => ls.LicensePlate == vh.LicensePlate).ToListAsync();
+                    Task<List<Vehicle>> existVehicle = Context.Vehicles.Where(ls => ls.LicensePlate == vh.LicensePlate).ToListAsync();
 
                     if (existVehicle.Result.Count == 0)
                     {
@@ -49,13 +49,15 @@ namespace KSTrips.Infrastructure.Services
         {
             try
             {
-                foreach (var us in vehicle)
+                foreach (Vehicle us in vehicle)
                 {
-                    //Context.Entry(us).State = EntityState.Modified;
+                    Context.Attach(us).State = EntityState.Modified;
                     us.DateModified = DateTime.Now;
 
-                    Context.Entry(us).Property(p => p.DateModified).IsModified = true;
-                    Context.Entry(us).Property(p => p.IsActive).IsModified = true;
+                    Context.Attach(us).Property(p => p.DateModified).IsModified = true;
+                    Context.Attach(us).Property(p => p.IsActive).IsModified = true;
+                    Context.Attach(us).Property(p => p.Driver).IsModified = true;
+                    Context.Attach(us).Property(p => p.NotificationKilometers).IsModified = true;
 
                 }
 
@@ -68,10 +70,47 @@ namespace KSTrips.Infrastructure.Services
                 throw new Exception(ex.Message.ToString());
             }
         }
+        public bool UpdateVehicle(Vehicle vehicle)
+        {
+            try
+            {
+                vehicle.DateModified = DateTime.Now;
+                Context.Entry(vehicle).State = EntityState.Modified;
+
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        public bool DeleteVehicle(Vehicle vehicle)
+        {
+            try
+            {
+                Context.Attach(vehicle).State = EntityState.Deleted;
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
 
         public Task<List<Vehicle>> GetVehiclesByUser(int userId)
         {
-            return Context.Vehicles.Where(ls => ls.UserId == userId).ToListAsync();
+            return Context.Vehicles.Where(ls => ls.UserId == userId)
+                .ToListAsync();
+        }
+
+        public Task<Vehicle> GetVehicleById(int vehicleId)
+        {
+            return Context.Vehicles.Where(ls => ls.Id == vehicleId).FirstOrDefaultAsync();
         }
     }
 }

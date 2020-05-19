@@ -66,6 +66,9 @@ namespace KSTrips.Infrastructure.Services
                 Context.Attach(trip).State = EntityState.Modified;
                 Context.Attach(trip).Property(p => p.DateModified).IsModified = true;
                 Context.Attach(trip).Property(p => p.TotalProfit).IsModified = true;
+                Context.Attach(trip).Property(p => p.ApplyIca).IsModified = true;
+                Context.Attach(trip).Property(p => p.ApplyReteFuente).IsModified = true;
+                Context.Attach(trip).Property(p => p.ApplyTolls).IsModified = true;
 
                 Context.Attach(trip).Property(p => p.IsActive).IsModified = true;
 
@@ -74,6 +77,7 @@ namespace KSTrips.Infrastructure.Services
                     tripDet.DateModified = DateTime.Now;
                     Context.Entry(tripDet).Property(p => p.DateModified).IsModified = true;
                     Context.Entry(tripDet).Property(p => p.TotalExpense).IsModified = true;
+                    Context.Entry(tripDet).Property(p => p.Comments).IsModified = true;
                 }
 
                 Context.SaveChanges();
@@ -86,9 +90,29 @@ namespace KSTrips.Infrastructure.Services
             }
         }
 
+        public bool UpdateCloseTrip(Trip trip)
+        {
+            try
+            {
+                trip.DateModified = DateTime.Now;
+
+                Context.Entry(trip).State = EntityState.Modified;
+
+
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+
         public async Task<List<Trip>> GetTripByTripId(int tripId)
         {
-            return await Context.Trips.Where(ls => ls.TripId == tripId)
+            return await Context.Trips.Where(ls => ls.Id == tripId)
                 .Include(ls => ls.Provider)
                 .Include(lc => lc.TripDetails)
                 .Include(ls => ls.Vehicle)

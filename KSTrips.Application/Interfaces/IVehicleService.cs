@@ -14,5 +14,7 @@ namespace KSTrips.Application.Interfaces
        Task<List<Vehicle>> GetVehiclesByUser(string authZeroId);
         bool SaveVehicles(IEnumerable<InComingVehicles> vehicles);
         bool UpdateVehicles(IEnumerable<InComingVehicles> vehicles);
+        bool UpdateVehicle(Vehicle vehicle);
+        bool DeleteVehicle(Vehicle vehicle);
     }
 }

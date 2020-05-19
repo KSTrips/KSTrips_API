@@ -10,5 +10,6 @@ namespace KSTrips.Infrastructure.Interfaces
         Task<List<User>> GetUserByAuthZeroId(string authZeroId);
         bool SaveUsers(User users);
         bool UpdateUsers(IEnumerable<User> users);
+        bool UpdateSpecificUser(User user);
     }
 }

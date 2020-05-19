@@ -36,16 +36,18 @@ namespace KSTrips.Application.Services
 
         public async Task<SimulatorResponse> SimulateTripAsync(SimulatorEntity dataSimulator)
         {
-            List<Toll> tolls =
-                await _unitOfWork.TollRespository.GetTollByRoute(dataSimulator.Origin, dataSimulator.Destination);
+            var tolls = await _unitOfWork.TollRespository.GetTollByRoute(dataSimulator.Origin, dataSimulator.Destination);
             Toll tollResponse = null;
 
             if (tolls.Count > 0)
                 tollResponse = tolls[0];
 
-            Transversal objTransversal = new Transversal();
+            var objTransversal = new Transversal();
+            var vehicle = new Vehicle();
 
-            SimulatorResponse simulationResult = new SimulatorResponse
+            vehicle = await _unitOfWork.VehicleRepository.GetVehicleById(dataSimulator.VehicleId);
+
+            var simulationResult = new SimulatorResponse
             {
                 Origin = dataSimulator.Origin,
                 Destination = dataSimulator.Destination,
@@ -66,7 +68,7 @@ namespace KSTrips.Application.Services
                     ? objTransversal.CalculateTolls(dataSimulator.CarCategory, tollResponse)
                     : 0,
                 DiscountExpenses = objTransversal.CalculateExpenses(dataSimulator.Expenses),
-                TotalProfit = objTransversal.CalculateProfit(dataSimulator, tollResponse, dataSimulator.Expenses)
+                TotalProfit = objTransversal.CalculateProfit(dataSimulator, tollResponse, dataSimulator.Expenses, dataSimulator.CarCategory)
             };
 
             simulationResult.GrandTotalExpense = simulationResult.DiscountExpenses + simulationResult.DiscountPeajes

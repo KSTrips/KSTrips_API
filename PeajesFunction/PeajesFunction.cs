@@ -7,38 +7,68 @@ using Microsoft.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
-
+using System.Configuration;
+using System.IO;
+using System.Text;
 
 namespace PeajesFunction
 {
     public static class PeajesFunction
     {
+
         [FunctionName("PeajesFunction")]
-        public static void Run([TimerTrigger("0 0 0 1 1 *")]TimerInfo myTimer, ILogger log)
+        //// 0 */5 * * * * /// every 5 minutes
+        //// 0 0 0 1 1 * /// every 1/1 of the year
+        public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log, ExecutionContext context)
         {
+            var config = new ConfigurationBuilder()
+                        .SetBasePath(context.FunctionAppDirectory)
+                        .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
+                        .AddEnvironmentVariables()
+                        .Build();
+
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
-            DownloadFileFromBlob();
+
+            DownloadFileFromBlob(config);
         }
 
-        private static void DownloadFileFromBlob()
+        private async static void DownloadFileFromBlob(IConfigurationRoot config)
         {
-            //// Create Reference to Azure Storage Account
-            //string strorageconn = Microsoft.Extensions.Configuration..AppSettings.Get("StorageConnectionString");
-            //CloudStorageAccount storageacc = CloudStorageAccount.Parse(strorageconn);
+            try
+            {
+                var _config = config.GetType();
+                string containername = config["blobContainer"].ToString();
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(config["StorageConnectionString"].ToString());
+                string nameFile = config["FileName"].ToString();
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+                CloudBlobContainer container = blobClient.GetContainerReference(containername);
 
-            ////Create Reference to Azure Blob
-            //CloudBlobClient blobClient = storageacc.CreateCloudBlobClient();
+                CloudBlockBlob blob = container.GetBlockBlobReference(nameFile);
 
-            //CloudBlobContainer container = blobClient.GetContainerReference("democontainer");
+                Stream blobStream = await blob.OpenReadAsync();
+                using (StreamReader reader = new StreamReader(blobStream, Encoding.UTF8))
+                {
+                    string JsonData = reader.ReadToEnd();
+                    UpdateTolls(JsonData);
+                }
 
 
-            ////The next 6 lines download the file test.txt with the name test.txt from the container "democontainer"
-            //CloudBlockBlob blockBlob = container.GetBlockBlobReference("DemoBlob");
-            //using (var filestream = System.IO.File.OpenWrite(@"D:\Azure Storage Demo\Download\test.txt"))
-            //{
-            //    blockBlob.DownloadToStream(filestream);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private static void UpdateTolls(string dataJson)
+        {
 
-            //}
+            try
+            {
+
+            }
+            catch(Exception ex){
+
+            }
         }
     }
 }

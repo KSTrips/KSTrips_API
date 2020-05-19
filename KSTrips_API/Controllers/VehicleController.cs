@@ -53,7 +53,7 @@ namespace KSTrips_API.Controllers
         }
 
         // POST api/updateUsers
-        [HttpPost("UpdateVehicles")]
+        [HttpPut("UpdateVehicles")]
         public IActionResult UpdateVehicles([FromBody] List<InComingVehicles> dataVehicle)
         {
             var result = _vehicleServices.UpdateVehicles(dataVehicle);
@@ -62,6 +62,30 @@ namespace KSTrips_API.Controllers
                 return Ok();
 
             return BadRequest("Error: al actualizar los vehiculos");
+
+        }
+        // POST api/updateUsers
+        [HttpPut("UpdateVehicle")]
+        public IActionResult UpdateVehicle([FromBody] Vehicle dataVehicle)
+        {
+            var result = _vehicleServices.UpdateVehicle(dataVehicle);
+
+            if (result)
+                return Ok();
+
+            return BadRequest("Error: al actualizar el vehiculo");
+
+        }
+        // POST api/updateUsers
+        [HttpPost("DeleteVehicle")]
+        public IActionResult DeleteVehicle([FromBody] Vehicle dataVehicle)
+        {
+            var result = _vehicleServices.DeleteVehicle(dataVehicle);
+
+            if (result)
+                return Ok();
+
+            return BadRequest("Error: al eliminar el vehiculo");
 
         }
     }
