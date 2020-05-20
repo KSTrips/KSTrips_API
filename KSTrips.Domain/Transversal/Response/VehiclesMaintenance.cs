@@ -7,5 +7,6 @@
         public string Driver { get; }
         public int KilometersTraveled { get; }
         public int NotificationKilometers { get; }
+        public bool IsNotification { get; }
     }
 }

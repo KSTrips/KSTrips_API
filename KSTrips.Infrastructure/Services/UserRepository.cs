@@ -79,15 +79,15 @@ namespace KSTrips.Infrastructure.Services
         {
             try
             {
-                //Context.Entry(us).State = EntityState.Modified;
+                
                 user.DateModified = DateTime.Now;
 
+               // Context.Attach(user).State = EntityState.Modified;
                 Context.Entry(user).Property(p => p.DateModified).IsModified = true;
                 Context.Entry(user).Property(p => p.IsActive).IsModified = true;
                 Context.Entry(user).Property(p => p.DateInitial).IsModified = true;
                 Context.Entry(user).Property(p => p.DateUse).IsModified = true;
                 Context.Entry(user).Property(p => p.NotificationDays).IsModified = true;
-
                 Context.Entry(user).Property(p => p.DateInitSubscription).IsModified = true;
                 Context.Entry(user).Property(p => p.DateEndSubscription).IsModified = true;
 

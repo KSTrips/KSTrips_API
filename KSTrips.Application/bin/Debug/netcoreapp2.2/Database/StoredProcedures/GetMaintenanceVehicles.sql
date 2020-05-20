@@ -2,11 +2,11 @@
 AS 
 BEGIN
 		SELECT DISTINCT
-		Trips.Id AS TripId
-		,Vehicles.LicensePlate
+		Vehicles.LicensePlate
 		,Vehicles.Driver
 		,SUM(Tolls.DistanceKm) AS KilometersTraveled
 		,Vehicles.NotificationKilometers
+		, CASE WHEN SUM(Tolls.DistanceKm) >= Vehicles.NotificationKilometers THEN 1 ELSE 0 END IsNotification
 		FROM trips
 		INNER JOIN TripDetails on trips.Id = TripDetails.TripId
 		INNER JOIN Vehicles on trips.VehicleId = Vehicles.Id
@@ -15,8 +15,7 @@ BEGIN
 		WHERE trips.UserId = @UserId
 		AND CAST(Trips.DateCreated AS DATE) BETWEEN @dateFrom AND @dateTo 
 		GROUP BY 
-		Trips.Id
-		,Vehicles.LicensePlate
+		Vehicles.LicensePlate
 		,Vehicles.Driver
 		,Vehicles.NotificationKilometers
 
