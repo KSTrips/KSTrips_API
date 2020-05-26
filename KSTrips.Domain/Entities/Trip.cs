@@ -21,14 +21,11 @@ namespace KSTrips.Domain.Entities
         public bool ApplyIca { get; set; }
         public bool ApplyReteFuente { get; set; }
         public bool IsUrban { get; set; }
-
         public decimal? TotalProfit { get; set; }
 
         [ForeignKey("Provider")]
         public int ProviderId { get; set; }
         public virtual Provider Provider { get; set; }
-
-        public DateTime? DateforPay { get; set; }
 
         public virtual ICollection<TripDetail> TripDetails { get; set; }
         [ForeignKey("User")]
@@ -36,8 +33,7 @@ namespace KSTrips.Domain.Entities
         public virtual User User { get; set; }
 
         [ForeignKey(("Vehicle"))]
-        public int? VehicleId { get; set; }
-
+        public int VehicleId { get; set; }
         public virtual Vehicle Vehicle { get; set; }
     }
 }

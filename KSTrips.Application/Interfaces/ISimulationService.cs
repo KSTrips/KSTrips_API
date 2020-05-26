@@ -11,6 +11,7 @@ namespace KSTrips.Application.Interfaces
 
         Task<List<ExpenseCategory>> GetExpenseCategories();
         Task<List<CarCategory>> GetCarCategories();
+        Task<List<CarType>> GetCarTypes();
         Task<SimulatorResponse> SimulateTripAsync(SimulatorEntity dataSimulator);
         Task<List<Toll>> GetTollsByRoute(string origin, string destination);
 

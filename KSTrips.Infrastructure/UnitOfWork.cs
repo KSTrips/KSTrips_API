@@ -27,7 +27,7 @@ namespace KSTrips.Infrastructure
 
         public ITripRepository TripRepository => new TripRepository(_context);
 
-        public ICarCategoryRepository CarCategoryRepository => new CarCategoryRespository(_context);
+        public ICarRepository CarRepository => new CarRepository(_context);
 
         public IUserRepository UserRepository => new UserRepository(_context);
 

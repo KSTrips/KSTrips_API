@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KSTrips.Infrastructure.Services
 {
-    public class CarCategoryRespository : ICarCategoryRepository
+    public class CarRepository : ICarRepository
     {
         private TripContext Context { get; }
 
-        public CarCategoryRespository(TripContext context)
+        public CarRepository(TripContext context)
         {
             Context = context;
         }
@@ -18,6 +18,13 @@ namespace KSTrips.Infrastructure.Services
         public async Task<List<CarCategory>> GetCarCategories()
         {
             return await Context.CarCategories.ToListAsync();
+        }
+
+        public async Task<List<CarType>> GetCarTypes()
+        {
+            return await Context.carTypes.ToListAsync();
+
+            
         }
     }
 }

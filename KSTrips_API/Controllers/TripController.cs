@@ -22,11 +22,11 @@ namespace KSTrips_API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCarCategories()
+        public async Task<IActionResult> GetCarTypes()
         {
             try
             {
-                var result = await _simulatorServices.GetCarCategories();
+                var result = await _simulatorServices.GetCarTypes();
                 return Ok(result);
             }
             catch (Exception ex)

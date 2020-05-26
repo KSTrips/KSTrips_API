@@ -8,6 +8,10 @@
     <Compile Remove="Migrations\20191125122026_CreateFieldUserInVehicles.cs" />
     <Compile Remove="Migrations\20200519174408_IdentityId.cs" />
     <Compile Remove="Migrations\20200519201315_UpdateEntities.cs" />
+    <Compile Remove="Migrations\20200526161122_AddCarTypes.cs" />
+    <Compile Remove="Migrations\20200526161321_AddCarTypes.cs" />
+    <Compile Remove="Migrations\20200526162055_AddCarTypes.cs" />
+    <Compile Remove="Migrations\20200526164526_AddCarTypesEntity.cs" />
   </ItemGroup>
 
   <ItemGroup>

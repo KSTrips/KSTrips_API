@@ -6,7 +6,6 @@ namespace KSTrips.Domain.Entities
 {
     public class User : BaseEntity
     {
-
         public string Provider { get; set; }
         public string AuthZeroId { get; set; }
         public string GivenName { get; set; }
@@ -18,6 +17,8 @@ namespace KSTrips.Domain.Entities
         public int NotificationDays { get; set; }
         public DateTime? DateInitSubscription { get; set; }
         public DateTime? DateEndSubscription { get; set; }
+
+        public DateTime? DateforPay { get; set; }
         public virtual Trip Trip { get; set; }
 
         [ForeignKey("SubscriptionType")]

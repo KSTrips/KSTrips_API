@@ -43,6 +43,7 @@ namespace KSTrips.Infrastructure
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<SMTP> SMTPServer { get; set; }
         public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
+        public DbSet<CarType> carTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

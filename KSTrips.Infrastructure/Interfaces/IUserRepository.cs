@@ -11,5 +11,7 @@ namespace KSTrips.Infrastructure.Interfaces
         bool SaveUsers(User users);
         bool UpdateUsers(IEnumerable<User> users);
         bool UpdateSpecificUser(User user);
+
+        bool UserExist(string authZeroId);
     }
 }

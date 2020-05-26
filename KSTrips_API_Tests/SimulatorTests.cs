@@ -49,7 +49,7 @@ namespace KSTrips_API_Tests
         public void GetCarCategories_WhenResultExist_ReturnCarCategories()
         {
             // Arrange
-            _unitOfWork.Setup(uow => uow.CarCategoryRepository.GetCarCategories())
+            _unitOfWork.Setup(uow => uow.CarRepository.GetCarCategories())
                 .ReturnsAsync(_carCategory);
 
             // Act

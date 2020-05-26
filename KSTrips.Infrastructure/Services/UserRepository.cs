@@ -27,6 +27,13 @@ namespace KSTrips.Infrastructure.Services
             return await Context.Users.Where(ls => ls.AuthZeroId == authZeroId).ToListAsync();
         }
 
+        public bool UserExist(string authZeroId)
+        {
+            var user = Context.Users.Where(ls => ls.AuthZeroId == authZeroId).FirstOrDefault();
+
+            return user != null ? true : false;
+        }
+
         public bool SaveUsers(User user)
         {
             try

@@ -140,9 +140,6 @@ namespace KSTrips.Application.Services
         {
             Transversal objTransversal = new Transversal();
             List<Trip> tripDB = new List<Trip>();
-            // Calculamos la fecha de notificacion
-            Dates objDates = new Dates();
-            DateTime dateNotification = objDates.WorkingDays(user.NotificationDays, DateTime.Now);
             Task<List<Provider>> provider = _unitOfWork.ProviderRepository.GetProviderByName(dataTrip.Provider.ToUpper().Trim());
             Vehicle vehicle = new Vehicle();
             vehicle = await _unitOfWork.VehicleRepository.GetVehicleById(dataTrip.VehicleId);
@@ -175,7 +172,6 @@ namespace KSTrips.Application.Services
                 ProviderId = provider.Result[0].Id,
                 CreatedBy = user.Name,
                 DateCreated = DateTime.Now,
-                DateforPay = dateNotification,
                 VehicleId = dataTrip.VehicleId
             };
 

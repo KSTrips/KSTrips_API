@@ -28,6 +28,7 @@ namespace KSTrips.Application.Services
 
         public bool SaveUsers(User dataUsers)
         {
+            var user = CalculateNotificationDates(dataUsers);
             return _unitOfWork.UserRepository.SaveUsers(dataUsers);
         }
 
@@ -53,22 +54,35 @@ namespace KSTrips.Application.Services
 
         public bool UpdateSpecificUser(User dataUser)
         {
+            var user = CalculateNotificationDates(dataUser);
+
             Dates objDates = new Dates();
             DateTime endDateSubscription = objDates.WorkingDays(30, DateTime.Now);
 
-            if (dataUser.IsActive)
+            if (user.IsActive)
             {
-                dataUser.DateInitSubscription = DateTime.Now;
-                dataUser.DateEndSubscription = endDateSubscription;
+                user.DateInitSubscription = DateTime.Now;
+                user.DateEndSubscription = endDateSubscription;
             }
             else
             {
-                dataUser.DateInitSubscription = null;
-                dataUser.DateEndSubscription = null;
+                user.DateInitSubscription = null;
+                user.DateEndSubscription = null;
             }
 
-            return _unitOfWork.UserRepository.UpdateSpecificUser(dataUser);
+            return _unitOfWork.UserRepository.UpdateSpecificUser(user);
         }
 
+
+        private User CalculateNotificationDates(User dataUsers)
+        {
+            // Calculamos la fecha de notificacion
+            Dates objDates = new Dates();
+            DateTime dateNotification = objDates.WorkingDays(dataUsers.NotificationDays, DateTime.Now);
+
+            dataUsers.DateforPay = dateNotification;
+
+            return dataUsers;
+        }
     }
 }

@@ -12,7 +12,7 @@
 
         ITripRepository TripRepository { get; }
 
-        ICarCategoryRepository CarCategoryRepository { get; }
+        ICarRepository CarRepository { get; }
 
         IUserRepository UserRepository { get; }
         IReportRepository ReportRepository { get; }

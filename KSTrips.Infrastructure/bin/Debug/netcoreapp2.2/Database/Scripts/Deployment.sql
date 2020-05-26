@@ -179,3 +179,53 @@ DROP TABLE #Taxes
 
 -------------------------------------------**************
 -------------------------------------------**************
+
+
+
+----//CAR TYPES-------------------------------------------**************
+-----------------------------------------------------------------**************
+
+CREATE TABLE #CarTypes ([Description] nvarchar(max), carCategoryId int , DateCreated DATETIME, [CreatedBy] nvarchar(max), IsActive bit, );
+
+
+-- INSERT THE GIVEN PERMISSIONS ACCORDING TO THE ROLE
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Automóviles',1,GETDATE(),'Administrator',1)
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Camperos',1,GETDATE(),'Administrator',1)
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Camionetas',1,GETDATE(),'Administrator',1)
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Microbuses con ejes de llanta sencilla',1,GETDATE(),'Administrator',1)
+
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Buses',2,GETDATE(),'Administrator',1)
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Busetas',2,GETDATE(),'Administrator',1)
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Microbuses con eje trasero de doble llanta',2,GETDATE(),'Administrator',1)
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Camiones de dos ejes',2,GETDATE(),'Administrator',1)
+
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Vehículos de pasajeros',3,GETDATE(),'Administrator',1)
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Vehículos de carga de tres',3,GETDATE(),'Administrator',1)
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Vehículos de carga de cuatro ejes',3,GETDATE(),'Administrator',1)
+
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Vehículos de carga de cinco ejes',4,GETDATE(),'Administrator',1)
+insert into #CarTypes ([Description] ,carCategoryId, DateCreated , [CreatedBy] , IsActive )values('Vehículos de carga de seis ejes',5,GETDATE(),'Administrator',1)
+
+
+--MERGE INTO FOR ROLE PERMISSIONS
+MERGE INTO CarTypes AS TARGET
+USING #CarTypes AS SOURCE ON ( SOURCE.[Description] = TARGET.[Description])
+
+WHEN MATCHED THEN
+--  "update" 
+	UPDATE SET 
+	TARGET.[Description] = SOURCE.[Description]
+	,TARGET.carCategoryId = SOURCE.carCategoryId
+	,TARGET.DateModified = GETDATE()
+
+
+WHEN NOT MATCHED BY TARGET THEN
+--  "insert" 
+INSERT ([Description] ,carCategoryId , DateCreated , [CreatedBy] , IsActive  )
+VALUES ( SOURCE.[Description] , SOURCE.carCategoryId , SOURCE.DateCreated , SOURCE.[CreatedBy] , SOURCE.IsActive )
+OUTPUT $ACTION;
+DROP TABLE #CarTypes
+
+
+-------------------------------------------**************
+-------------------------------------------**************

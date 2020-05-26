@@ -4,14 +4,16 @@ using KSTrips.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KSTrips.Infrastructure.Migrations
 {
     [DbContext(typeof(TripContext))]
-    partial class TripContextModelSnapshot : ModelSnapshot
+    [Migration("20200526164308_AddCarTypes")]
+    partial class AddCarTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,31 +46,6 @@ namespace KSTrips.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CarCategories");
-                });
-
-            modelBuilder.Entity("KSTrips.Domain.Entities.CarType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CarCategoryId");
-
-                    b.Property<string>("CreatedBy");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime?>("DateModified");
-
-                    b.Property<string>("Description");
-
-                    b.Property<bool>("IsActive");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarCategoryId");
-
-                    b.ToTable("carTypes");
                 });
 
             modelBuilder.Entity("KSTrips.Domain.Entities.ExpenseCategory", b =>
@@ -481,14 +458,6 @@ namespace KSTrips.Infrastructure.Migrations
                     b.HasIndex("CarCategoryId");
 
                     b.ToTable("Vehicles");
-                });
-
-            modelBuilder.Entity("KSTrips.Domain.Entities.CarType", b =>
-                {
-                    b.HasOne("KSTrips.Domain.Entities.CarCategory", "CarCategory")
-                        .WithMany()
-                        .HasForeignKey("CarCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("KSTrips.Domain.Entities.Tax", b =>

@@ -18,13 +18,18 @@ namespace KSTrips.Application.Services
 
         public async Task<List<CarCategory>> GetCarCategories()
         {
-            return await _unitOfWork.CarCategoryRepository.GetCarCategories();
+            return await _unitOfWork.CarRepository.GetCarCategories();
         }
 
 
         public async Task<List<ExpenseCategory>> GetExpenseCategories()
         {
             return await _unitOfWork.ExpenseRepository.GetExpenseCategories();
+        }
+
+        public async Task<List<CarType>> GetCarTypes()
+        {
+            return await _unitOfWork.CarRepository.GetCarTypes();
         }
 
         public async Task<List<Toll>> GetTollsByRoute(string origin, string destination)
