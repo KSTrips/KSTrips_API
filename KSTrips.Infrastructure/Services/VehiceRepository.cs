@@ -31,7 +31,10 @@ namespace KSTrips.Infrastructure.Services
                     {
                         vh.DateCreated = DateTime.Now;
                         Context.Vehicles.Add(vh);
-
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
 

@@ -6,6 +6,6 @@ namespace KSTrips.Infrastructure.Interfaces
 {
    public interface ITollRespository
     {
-        Task<List<Toll>> GetTollByRoute(string origin, string destiny);
+        Task<List<Toll>> GetTolls();
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KSTrips_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/Users")]
     [ApiController]
     public class UserController : ControllerBase
     {

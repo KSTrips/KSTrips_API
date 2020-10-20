@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace KSTrips_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/Trips")]
     [ApiController]
     public class TripController: ControllerBase
     {

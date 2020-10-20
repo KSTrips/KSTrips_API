@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,52 +12,6 @@
     <Compile Remove="Migrations\20200526161321_AddCarTypes.cs" />
     <Compile Remove="Migrations\20200526162055_AddCarTypes.cs" />
     <Compile Remove="Migrations\20200526164526_AddCarTypesEntity.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Database\Functions\Split.sql" />
-    <None Remove="Database\Scripts\Deployment.sql" />
-    <None Remove="Database\StoredProcedures\GetDashBoardReport.sql" />
-    <None Remove="Database\StoredProcedures\GetDetailReport.sql" />
-    <None Remove="Database\StoredProcedures\GetExpenseReport.sql" />
-    <None Remove="Database\StoredProcedures\GetFinancialReport.sql" />
-    <None Remove="Database\StoredProcedures\GetMaintenanceVehicles.sql" />
-    <None Remove="Database\StoredProcedures\GetMonthlyDashboard.sql" />
-    <None Remove="Database\StoredProcedures\GetQtyReport.sql" />
-    <None Remove="Database\StoredProcedures\SaveTolls.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Database\Functions\Split.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database\Scripts\Deployment.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database\StoredProcedures\GetDashBoardReport.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database\StoredProcedures\GetDetailReport.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database\StoredProcedures\GetExpenseReport.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database\StoredProcedures\GetFinancialReport.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database\StoredProcedures\GetMaintenanceVehicles.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database\StoredProcedures\GetMonthlyDashboard.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database\StoredProcedures\GetQtyReport.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database\StoredProcedures\SaveTolls.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -79,11 +33,6 @@
     <None Update="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Database\Views\" />
-    <Folder Include="Database\Seeding\" />
   </ItemGroup>
 
 </Project>

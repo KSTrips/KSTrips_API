@@ -28,8 +28,8 @@ namespace KSTrips_API_Tests
                     Id = 0,
                     AuthZeroId = string.Empty,
                     Name = string.Empty,
-                    GivenName =  string.Empty,
-                    FamilyName = string.Empty,
+                    UserName =  string.Empty,
+                    Password = string.Empty,
                     IsActive = true
                 }
             };
@@ -64,8 +64,8 @@ namespace KSTrips_API_Tests
                 Id = 0,
                 Name = "Test User",
                 AuthZeroId = new Guid().ToString(),
-                FamilyName = "",
-                GivenName = "",
+                UserName = "",
+                Password = "",
                 DateCreated = DateTime.Now,
                 Email = "",
                 IsActive = true
@@ -94,8 +94,8 @@ namespace KSTrips_API_Tests
                     Id = 0,
                     Name = "Test User",
                     AuthZeroId = new Guid().ToString(),
-                    FamilyName = "",
-                    GivenName = "",
+                    UserName = "",
+                    Password = "",
                     DateCreated = DateTime.Now,
                     Email = "",
                     IsActive = true

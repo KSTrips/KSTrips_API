@@ -4,6 +4,7 @@ D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\bin\Debug\netcoreapp2.2\Database\S
 D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetDetailReport.sql
 D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetExpenseReport.sql
 D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetFinancialReport.sql
+D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetMaintenanceVehicles.sql
 D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetMonthlyDashboard.sql
 D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetQtyReport.sql
 D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\bin\Debug\netcoreapp2.2\Database\StoredProcedures\SaveTolls.sql
@@ -23,4 +24,3 @@ D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\obj\Debug\netcoreapp2.2\KSTrips.In
 D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\obj\Debug\netcoreapp2.2\KSTrips.Infrastructure.csproj.CopyComplete
 D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\obj\Debug\netcoreapp2.2\KSTrips.Infrastructure.dll
 D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\obj\Debug\netcoreapp2.2\KSTrips.Infrastructure.pdb
-D:\KSTrips\KSTrips_API\KSTrips.Infrastructure\bin\Debug\netcoreapp2.2\Database\StoredProcedures\GetMaintenanceVehicles.sql

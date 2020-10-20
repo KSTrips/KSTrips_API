@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.705
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSTrips_API", "KSTrips_API\KSTrips_API.csproj", "{2DBA63A3-5A6D-4577-AF5C-3C78EAAD7167}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.6-AzureFunction", "1.6-AzureFunction", "{57A4D936-05CB-4F9C-AA4D-103700710EE1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeajesFunction", "PeajesFunction\PeajesFunction.csproj", "{C0C208AD-C87B-45DA-BBC0-5F3E1A2972A8}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KSTrip", "KSTrips.Infrastructure\KSTrip\KSTrip.sqlproj", "{6686228B-BEDC-478B-BA73-2C6422B3C921}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,12 @@ Global
 		{C0C208AD-C87B-45DA-BBC0-5F3E1A2972A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0C208AD-C87B-45DA-BBC0-5F3E1A2972A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0C208AD-C87B-45DA-BBC0-5F3E1A2972A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6686228B-BEDC-478B-BA73-2C6422B3C921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6686228B-BEDC-478B-BA73-2C6422B3C921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6686228B-BEDC-478B-BA73-2C6422B3C921}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6686228B-BEDC-478B-BA73-2C6422B3C921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6686228B-BEDC-478B-BA73-2C6422B3C921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6686228B-BEDC-478B-BA73-2C6422B3C921}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +76,7 @@ Global
 		{779378C6-D651-4594-9AE1-0491AA882334} = {84D1233A-B4BB-46AA-B6E8-327F9AA99E04}
 		{8D0931CD-0B99-46E6-83C5-FC830A7ADA36} = {2C60DCE7-65E6-4168-BD85-AF1C8EB58CA7}
 		{C0C208AD-C87B-45DA-BBC0-5F3E1A2972A8} = {57A4D936-05CB-4F9C-AA4D-103700710EE1}
+		{6686228B-BEDC-478B-BA73-2C6422B3C921} = {2C60DCE7-65E6-4168-BD85-AF1C8EB58CA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA2B5694-B88D-4DAB-988A-51EA76FBD740}

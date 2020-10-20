@@ -192,7 +192,8 @@ namespace KSTrips.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("CostTax");
+                    b.Property<decimal>("CostTax")
+                        .HasColumnType("decimal(18, 3)");
 
                     b.Property<string>("CreatedBy");
 

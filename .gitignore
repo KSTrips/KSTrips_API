@@ -5,3 +5,24 @@
 /.vs/config/applicationhost.config
 /.vs/KSTrips_API/DesignTimeBuild/.dtbcache
 /.vs/KSTrips_API/v15/Server/sqlite3/db.lock
+
+#Junk Files
+*.DS_Store
+[Tt]humbs.db
+
+#Visual Studio Files
+[Oo]bj
+[Bb]in
+[Dd]ebug
+[Bb]uild/
+*.cache
+*.dll
+*.exe
+*.pdb
+*.suo
+*.user
+*.csproj.user
+*.vspscc
+*.vssscc
+*.dbmdl
+*.jfm

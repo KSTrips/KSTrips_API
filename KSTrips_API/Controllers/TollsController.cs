@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KSTrips_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/Tolls")]
     [ApiController]
     public class TollsController : ControllerBase
     {
@@ -47,20 +47,5 @@ namespace KSTrips_API.Controllers
             
         }
 
-
-        [HttpGet("{origin}/{destination}")]
-        public async Task<IActionResult> GetTollsByRoute(string origin,string destination)
-        {
-            try
-            {
-                var result = await _tollsServices.GetTollsByRoute(origin.Trim(),destination.Trim());
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-           
-        }
     }
 }

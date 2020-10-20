@@ -1,5 +1,4 @@
 ﻿using KSTrips.Domain.Entities;
-using KSTrips.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -31,7 +30,6 @@ namespace KSTrips.Infrastructure
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Tax> Taxes { get; set; }
         public DbSet<Toll> Tolls { get; set; }
-        public DbSet<TollDetail> TollDetails { get; set; }
         public DbSet<Trip> Trips { get; set; }
         public DbSet<TripDetail> TripDetails { get; set; }
         public DbSet<CarCategory> CarCategories { get; set; }
@@ -48,9 +46,6 @@ namespace KSTrips.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<TripDetail>()
-                .HasMany(cbs => cbs.Taxes);
 
             modelBuilder.Entity<Trip>()
                 .HasMany(cbs => cbs.TripDetails);

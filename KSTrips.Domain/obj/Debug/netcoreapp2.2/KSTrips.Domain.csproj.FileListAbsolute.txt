@@ -6,3 +6,4 @@ D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Debug\netcoreapp2.2\KSTrips.Domain.Ass
 D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Debug\netcoreapp2.2\KSTrips.Domain.AssemblyInfo.cs
 D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Debug\netcoreapp2.2\KSTrips.Domain.dll
 D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Debug\netcoreapp2.2\KSTrips.Domain.pdb
+D:\KSTrips\KSTrips_API\KSTrips.Domain\obj\Debug\netcoreapp2.2\KSTrips.Domain.csprojAssemblyReference.cache

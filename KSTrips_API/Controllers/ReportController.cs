@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KSTrips_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/Reports")]
     [ApiController]
     public class ReportController : ControllerBase
     {
@@ -16,6 +16,7 @@ namespace KSTrips_API.Controllers
         }
 
         [HttpGet("{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        [ProducesDefaultResponseType]
         public IActionResult GetReportByDates(DateTime dateFrom, DateTime dateTo,string authZeroId, int vehicleId)
         {
             try
@@ -31,6 +32,7 @@ namespace KSTrips_API.Controllers
         }
 
         [HttpGet("expenseReport/{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        [ProducesDefaultResponseType]
         public IActionResult GetReportExpenseByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
         {
             try
@@ -45,6 +47,7 @@ namespace KSTrips_API.Controllers
 
         }
         [HttpGet("detailReport/{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        [ProducesDefaultResponseType]
         public IActionResult GetReportDetailByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
         {
             try
@@ -60,6 +63,7 @@ namespace KSTrips_API.Controllers
         }
 
         [HttpGet("financialReport/{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        [ProducesDefaultResponseType]
         public IActionResult GetReportFinancialByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
         {
             try
@@ -75,6 +79,7 @@ namespace KSTrips_API.Controllers
         }
 
         [HttpGet("dashboardReport/{dateFrom}/{dateTo}/{authZeroId}")]
+        [ProducesDefaultResponseType]
         public IActionResult GetDashboardReport(DateTime dateFrom, DateTime dateTo, string authZeroId)
         {
             try
@@ -90,6 +95,7 @@ namespace KSTrips_API.Controllers
         }
 
         [HttpGet("getMaintenanceVehicles/{dateFrom}/{dateTo}/{authZeroId}")]
+        [ProducesDefaultResponseType]
         public IActionResult GetMaintenanceVehicles(DateTime dateFrom, DateTime dateTo, string authZeroId)
         {
             try

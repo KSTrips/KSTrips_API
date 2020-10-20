@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KSTrips_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/Home")]
     [ApiController]
     public class HomeController : ControllerBase
     {

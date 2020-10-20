@@ -15,10 +15,9 @@ namespace KSTrips.Infrastructure.Services
         {
             Context = context;
         }
-        public async Task<List<Toll>> GetTollByRoute(string origin, string destiny)
+        public async Task<List<Toll>> GetTolls()
         {
-            return await Context.Tolls.Where(ls => ls.Name == origin.Trim() + " - " + destiny.Trim())
-                .Include(ls => ls.TollDetails).ToListAsync();
+            return await Context.Tolls.ToListAsync();
         }
     }
 }

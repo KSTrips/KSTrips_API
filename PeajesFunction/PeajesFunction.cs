@@ -1,13 +1,9 @@
 using System;
-using System.Runtime.InteropServices;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
-using Microsoft.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
-using System.Configuration;
 using System.IO;
 using System.Text;
 

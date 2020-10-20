@@ -147,14 +147,17 @@ DROP TABLE #SubscriptionTypes
 ----//Impuestos(Taxes)-------------------------------------------**************
 -----------------------------------------------------------------**************
 
-CREATE TABLE #Taxes ([Description] nvarchar(max), costTax decimal(18,2) , DateCreated DATETIME, [CreatedBy] nvarchar(max), IsActive bit, );
+CREATE TABLE #Taxes ([Description] nvarchar(max), costTax decimal(18,3) , DateCreated DATETIME, [CreatedBy] nvarchar(max), IsActive bit, );
 
 
 -- INSERT THE GIVEN PERMISSIONS ACCORDING TO THE ROLE
-insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('ReteFuente',1,GETDATE(),'Administrator',1)
-insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('ICA',0.08,GETDATE(),'Administrator',1)
-insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('Adelantos',65,GETDATE(),'Administrator',1)
-insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('Papeleria',0.04,GETDATE(),'Administrator',1)
+insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('Retefuente',1,GETDATE(),'Administrator',1)
+insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('Ica',8,GETDATE(),'Administrator',1)
+insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('Abono al 60%',65,GETDATE(),'Administrator',1)
+insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('Abono al 70%',70,GETDATE(),'Administrator',1)
+insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('Abono al 80%',80,GETDATE(),'Administrator',1)
+insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('Papeleria',4,GETDATE(),'Administrator',1)
+insert into #Taxes ([Description] ,costTax, DateCreated , [CreatedBy] , IsActive )values('Otros (Seguros)',3,GETDATE(),'Administrator',1)
 
 
 --MERGE INTO FOR ROLE PERMISSIONS

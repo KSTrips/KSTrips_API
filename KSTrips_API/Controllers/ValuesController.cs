@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KSTrips_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/Values")]
     [ApiController]
     public class ValuesController : ControllerBase
     {

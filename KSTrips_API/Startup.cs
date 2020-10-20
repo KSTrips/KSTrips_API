@@ -1,7 +1,7 @@
 ﻿using KSTrips.Application.Interfaces;
 using KSTrips.Application.Services;
 using KSTrips.Infrastructure;
-using KSTrips.Infrastructure.Database;
+
 using KSTrips.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Microsoft.OpenApi.Models;
 
 namespace KSTrips_API
 {
@@ -21,6 +22,20 @@ namespace KSTrips_API
         }
 
         public IConfiguration Configuration { get; }
+
+        /// <summary>
+        ///     Startup
+        /// </summary>
+        /// <param name="env"></param>
+        public Startup(IWebHostEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                          .SetBasePath(env.ContentRootPath)
+                          .AddJsonFile("appsettings.json", true, true)
+                          .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -36,10 +51,12 @@ namespace KSTrips_API
 
             //services.AddDbContext<TripContext>(options => options.UseSqlServer(Configuration["TripContext"]));
             services.AddDbContext<TripContext>(options => options.UseSqlServer(Configuration["TripContextDev"]));
-            services.AddMvc().AddJsonOptions(options => {
-                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddMvc()
+               .AddNewtonsoftJson(options =>
+               {
+                   options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+               });
+            services.AddMvc(opt => opt.EnableEndpointRouting = false);
 
             //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
@@ -52,7 +69,11 @@ namespace KSTrips_API
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IEmailService, EmailService>();
 
-
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "KSTrips API", Version = "v1" });
+            });
 
         }
 
@@ -73,9 +94,22 @@ namespace KSTrips_API
                 app.UseHsts();
             }
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.DocumentTitle = "KSTrips_API Swagger UI";
+                c.RoutePrefix = string.Empty;
+                c.SwaggerEndpoint(Configuration.GetValue<string>("SwaggerEndpoint"), "KSTrips API V1");
+            });
+
             //app.UseHttpsRedirection();
             app.UseMvc();
-            DatabaseInitializer.Seed(context);
+           
+
         }
 
     }
