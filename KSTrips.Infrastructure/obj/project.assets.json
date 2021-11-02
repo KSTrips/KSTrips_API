@@ -3407,11 +3407,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\KSTrips\\KSTrips_API\\KSTrips.Infrastructure\\KSTrips.Infrastructure.csproj",
+      "projectUniqueName": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Infrastructure\\KSTrips.Infrastructure.csproj",
       "projectName": "KSTrips.Infrastructure",
-      "projectPath": "D:\\KSTrips\\KSTrips_API\\KSTrips.Infrastructure\\KSTrips.Infrastructure.csproj",
+      "projectPath": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Infrastructure\\KSTrips.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\kvelasco\\.nuget\\packages\\",
-      "outputPath": "D:\\KSTrips\\KSTrips_API\\KSTrips.Infrastructure\\obj\\",
+      "outputPath": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3425,13 +3425,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://genexservices.pkgs.visualstudio.com/_packaging/Packages/nuget/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj": {
-              "projectPath": "D:\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj"
+            "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj": {
+              "projectPath": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj"
             }
           }
         }
@@ -3444,6 +3446,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Dapper": {
             "target": "Package",
@@ -3483,7 +3486,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

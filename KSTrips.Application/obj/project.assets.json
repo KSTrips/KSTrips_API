@@ -3550,11 +3550,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\KSTrips\\KSTrips_API\\KSTrips.Application\\KSTrips.Application.csproj",
+      "projectUniqueName": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Application\\KSTrips.Application.csproj",
       "projectName": "KSTrips.Application",
-      "projectPath": "D:\\KSTrips\\KSTrips_API\\KSTrips.Application\\KSTrips.Application.csproj",
+      "projectPath": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Application\\KSTrips.Application.csproj",
       "packagesPath": "C:\\Users\\kvelasco\\.nuget\\packages\\",
-      "outputPath": "D:\\KSTrips\\KSTrips_API\\KSTrips.Application\\obj\\",
+      "outputPath": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3568,16 +3568,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://genexservices.pkgs.visualstudio.com/_packaging/Packages/nuget/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj": {
-              "projectPath": "D:\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj"
+            "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj": {
+              "projectPath": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj"
             },
-            "D:\\KSTrips\\KSTrips_API\\KSTrips.Infrastructure\\KSTrips.Infrastructure.csproj": {
-              "projectPath": "D:\\KSTrips\\KSTrips_API\\KSTrips.Infrastructure\\KSTrips.Infrastructure.csproj"
+            "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Infrastructure\\KSTrips.Infrastructure.csproj": {
+              "projectPath": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Infrastructure\\KSTrips.Infrastructure.csproj"
             }
           }
         }
@@ -3590,6 +3592,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.Azure.Storage.Blob": {
             "target": "Package",
@@ -3615,7 +3618,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
