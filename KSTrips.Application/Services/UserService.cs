@@ -21,15 +21,18 @@ namespace KSTrips.Application.Services
             return await _unitOfWork.UserRepository.GetUsers();
         }
 
-        public async Task<List<User>> GetUserByAuthZeroId(string authZeroId)
+        public async Task<List<User>> GetUserByEmail(string email)
         {
-            return await _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
+            return await _unitOfWork.UserRepository.GetUserByEmail(email);
         }
 
-        public bool SaveUsers(User dataUsers)
+        public bool SaveUser(User dataUser)
         {
-            var user = CalculateNotificationDates(dataUsers);
-            return _unitOfWork.UserRepository.SaveUsers(dataUsers);
+            if (!dataUser.NotificationDays.HasValue)
+                dataUser.NotificationDays = 0;
+
+            var user = CalculateNotificationDates(dataUser);
+            return _unitOfWork.UserRepository.SaveUsers(dataUser);
         }
 
         public bool UpdateUsers(IEnumerable<User> dataUsers)
@@ -78,7 +81,7 @@ namespace KSTrips.Application.Services
         {
             // Calculamos la fecha de notificacion
             Dates objDates = new Dates();
-            DateTime dateNotification = objDates.WorkingDays(dataUsers.NotificationDays, DateTime.Now);
+            DateTime dateNotification = objDates.WorkingDays(dataUsers.NotificationDays.Value, DateTime.Now);
 
             dataUsers.DateforPay = dateNotification;
 

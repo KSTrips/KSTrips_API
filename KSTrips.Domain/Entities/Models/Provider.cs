@@ -8,7 +8,6 @@ namespace KSTrips.Domain.Entities
     public class Provider : BaseEntity
     {
         public string Description { get; set; }
- 
 
     }
 }

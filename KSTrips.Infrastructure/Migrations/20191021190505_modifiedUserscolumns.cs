@@ -19,7 +19,7 @@ namespace KSTrips.Infrastructure.Migrations
             migrationBuilder.RenameColumn(
                 name: "AuthZero_Id",
                 table: "Users",
-                newName: "AuthZeroId");
+                newName: "userId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -35,7 +35,7 @@ namespace KSTrips.Infrastructure.Migrations
                 newName: "Family_Name");
 
             migrationBuilder.RenameColumn(
-                name: "AuthZeroId",
+                name: "userId",
                 table: "Users",
                 newName: "AuthZero_Id");
         }

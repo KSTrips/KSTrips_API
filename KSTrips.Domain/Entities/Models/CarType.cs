@@ -7,10 +7,9 @@ namespace KSTrips.Domain.Entities
 {
     public class CarType : BaseEntity
     {
-        public string Description { get; set; }
-
+        public virtual CarCategory CarCategory { get; set; }
         [ForeignKey("CarCategory")]
         public int CarCategoryId { get; set; }
-        public virtual CarCategory CarCategory { get; set; }
+        public string Description { get; set; }
     }
 }

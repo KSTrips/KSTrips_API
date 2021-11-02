@@ -8,7 +8,7 @@ namespace KSTrips.Application.Interfaces
 {
     public interface ITripService
     {
-        Task<List<Trip>> GetTripsByUserId(string authZeroId);
+        Task<List<Trip>> GetTripsByUserId(string userId);
         Task<SimulatorResponse> SaveTrip(SimulatorEntity dataTrip);
         Task<SimulatorResponse> UpdateTrip(SimulatorEntity dataTrip);
         Task<List<Trip>> GetTripById(int tripId);
