@@ -22,7 +22,6 @@ namespace KSTrips.Application.Services
             return await _unitOfWork.CarRepository.GetCarCategories();
         }
 
-
         public async Task<List<ExpenseCategory>> GetExpenseCategories()
         {
             return await _unitOfWork.ExpenseRepository.GetExpenseCategories();
@@ -32,7 +31,6 @@ namespace KSTrips.Application.Services
         {
             return await _unitOfWork.CarRepository.GetCarTypes();
         }
-
 
         public async Task<SimulatorResponse> SimulateTripAsync(SimulatorEntity dataSimulator)
         {

@@ -68,7 +68,6 @@ namespace KSTrips.Infrastructure.Services
                 Context.Attach(trip).Property(p => p.TotalProfit).IsModified = true;
                 Context.Attach(trip).Property(p => p.ApplyIca).IsModified = true;
                 Context.Attach(trip).Property(p => p.ApplyReteFuente).IsModified = true;
-                Context.Attach(trip).Property(p => p.ApplyTolls).IsModified = true;
 
                 Context.Attach(trip).Property(p => p.IsActive).IsModified = true;
 

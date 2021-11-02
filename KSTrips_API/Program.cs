@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
+using Microsoft.Extensions.Hosting;
 
 namespace KSTrips_API
 {
@@ -24,6 +25,7 @@ namespace KSTrips_API
                         , new DefaultKeyVaultSecretManager());
 
                 })
+
                 .UseStartup<Startup>();
 
     }

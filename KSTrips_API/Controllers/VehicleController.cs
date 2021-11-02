@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using KSTrips.Application.Interfaces;
 using KSTrips.Domain.Entities;
 using KSTrips.Domain.Transversal;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +14,7 @@ namespace KSTrips_API.Controllers
 {
     [Route("v1/Vehicles")]
     [ApiController]
+    [Authorize]
     public class VehicleController : ControllerBase
     {
         private readonly ISimulationService _simulatorServices;
@@ -31,11 +34,11 @@ namespace KSTrips_API.Controllers
         }
 
 
-        [HttpGet("{authZeroId}")]
-        public async Task<IActionResult> GetUserByAuthZeroId(string authZeroId)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUserByuserId(string userId)
         {
 
-            List<Vehicle> result = await _vehicleServices.GetVehiclesByUser(authZeroId);
+            List<Vehicle> result = await _vehicleServices.GetVehiclesByUser(userId);
             return Ok(result);
         }
 

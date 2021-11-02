@@ -18,7 +18,7 @@ namespace KSTrips.Application.Services
         private List<Tax> taxes;
         private List<CarCategory> carCategories;
         private const double EarthRadius = 6371;
-        private double KM;
+        private double km;
 
         public Transversal(IUnitOfWork unitOfWork)
         {
@@ -160,7 +160,6 @@ namespace KSTrips.Application.Services
             return sumTolls;
         }
 
-
         /// <summary>
         /// Metodo que calcula la ganancia del viaje
         /// </summary>
@@ -181,21 +180,18 @@ namespace KSTrips.Application.Services
             return profit;
         }
 
-
         public double GetDistance(GeoCoordinates point1, GeoCoordinates point2)
         {
             double distance = 0;
             try
             {
-
                 double Lat = (point2.Latitude - point1.Latitude) * (Math.PI / 180);
                 double Lon = (point2.Longitude - point1.Longitude) * (Math.PI / 180);
                 double a = Math.Sin(Lat / 2) * Math.Sin(Lat / 2) + Math.Cos(point1.Latitude * (Math.PI / 180)) * Math.Cos(point2.Latitude * (Math.PI / 180)) * Math.Sin(Lon / 2) * Math.Sin(Lon / 2);
                 double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
                 distance = EarthRadius * c;
 
-                KM = distance / 1000;
-
+                km = distance / 1000;
             }
             catch (Exception ex)
             {
@@ -209,13 +205,8 @@ namespace KSTrips.Application.Services
             GeoCoordinates Punto1;
             GeoCoordinates Punto2;
             double RadioLat = 0;
-            double RadioLng = 0;
-            double RadioMasLat = 0;
-            double RadioMenosLat = 0;
-            double RadioMasLng = 0;
-            double RadioMenosLng = 0;
-            List<Toll> Peajes = _unitOfWork.TollRespository.GetTolls().Result.ToList();
-            List<GeoCoordinates> ListPeajes = new List<GeoCoordinates>();
+            var Peajes = _unitOfWork.TollRespository.GetTolls().Result.ToList();
+            var ListPeajes = new List<GeoCoordinates>();
             int countPeaje = 0;
             try
             {
@@ -225,6 +216,7 @@ namespace KSTrips.Application.Services
                 Punto1 = Ruta[0];
                 Punto2 = Ruta[1];
                 var mAbs = Math.Abs((Punto2.Longitude - Punto1.Longitude) / (Punto2.Latitude - Punto1.Latitude));
+                double RadioLng = 0;
                 if (mAbs > 1)
                 {
                     RadioLat = 0.002;
@@ -235,10 +227,10 @@ namespace KSTrips.Application.Services
                     RadioLat = 0;
                     RadioLng = 0.002;
                 }
-                RadioMasLat = Math.Max(Punto1.Latitude, Punto2.Latitude) + RadioLat;
-                RadioMenosLat = Math.Min(Punto1.Latitude, Punto2.Latitude) - RadioLat;
-                RadioMasLng = Math.Max(Punto1.Longitude, Punto2.Longitude) + RadioLng;
-                RadioMenosLng = Math.Min(Punto1.Longitude, Punto2.Longitude) - RadioLng;
+                double RadioMasLat = (Math.Max(Punto1.Latitude, Punto2.Latitude)) + RadioLat;
+                double RadioMenosLat = (Math.Min(Punto1.Latitude, Punto2.Latitude)) - RadioLat;
+                double RadioMasLng = (Math.Max(Punto1.Longitude, Punto2.Longitude)) + RadioLng;
+                double RadioMenosLng = (Math.Min(Punto1.Longitude, Punto2.Longitude)) - RadioLng;
 
 
 
@@ -254,26 +246,26 @@ namespace KSTrips.Application.Services
                                 if (Peajes[p].Name == ListPeajes[countPeaje - 1].Name) { flag = true; }
                             }
 
-                            if (Peajes[p].Road_Sense == "Ambos")
+                            //if (Peajes[p].Road_Sense == "Ambos")
+                            //{
+                            if (flag == false)
                             {
-                                if (flag == false)
-                                {
-                                    ListPeajes.Add(new GeoCoordinates { IsOrigin = false, Latitude = Peajes[p].Latitude, Longitude = Peajes[p].Longitude, Name = Peajes[p].Name });
-                                    countPeaje += 1;
-                                }
+                                ListPeajes.Add(new GeoCoordinates { IsOrigin = false, Latitude = Peajes[p].Latitude, Longitude = Peajes[p].Longitude, Name = Peajes[p].Name });
+                                countPeaje += 1;
                             }
-                            else
-                            {
-                                var Sentido = CalcularSentido(Punto1, Punto2);
-                                if (Sentido == Peajes[p].Road_Sense)
-                                {
-                                    if (flag == false)
-                                    {
-                                        ListPeajes.Add(new GeoCoordinates { IsOrigin = false, Latitude = Peajes[p].Latitude, Longitude = Peajes[p].Longitude, Name = Peajes[p].Name });
-                                        countPeaje += 1;
-                                    }
-                                }
-                            }
+                            //}
+                            //else
+                            //{
+                            //    var Sentido = CalcularSentido(Punto1, Punto2);
+                            //    if (Sentido == Peajes[p].Road_Sense)
+                            //    {
+                            //        if (flag == false)
+                            //        {
+                            //            ListPeajes.Add(new GeoCoordinates { IsOrigin = false, Latitude = Peajes[p].Latitude, Longitude = Peajes[p].Longitude, Name = Peajes[p].Name });
+                            //            countPeaje += 1;
+                            //        }
+                            //    }
+                            //}
                             // break;
                         }
                     }
@@ -285,7 +277,7 @@ namespace KSTrips.Application.Services
 
             }
 
-            return ListPeajes;
+            return ListPeajes.OrderByDescending(ls => ls.Latitude).ToList();
         }
 
         private string CalcularSentido(GeoCoordinates Punto1, GeoCoordinates Punto2)
