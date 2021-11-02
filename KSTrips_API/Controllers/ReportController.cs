@@ -1,11 +1,14 @@
 ﻿using System;
 using KSTrips.Application.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KSTrips_API.Controllers
 {
     [Route("v1/Reports")]
     [ApiController]
+    [Authorize]
     public class ReportController : ControllerBase
     {
         private readonly IReportService _reportService;
@@ -15,13 +18,13 @@ namespace KSTrips_API.Controllers
             _reportService = reportService;
         }
 
-        [HttpGet("{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        [HttpGet("{dateFrom}/{dateTo}/{userId}/{vehicleId}")]
         [ProducesDefaultResponseType]
-        public IActionResult GetReportByDates(DateTime dateFrom, DateTime dateTo,string authZeroId, int vehicleId)
+        public IActionResult GetReportByDates(DateTime dateFrom, DateTime dateTo,string userId, int vehicleId)
         {
             try
             {
-                var result =  _reportService.GetReportQtyByDates(dateFrom,dateTo,authZeroId,vehicleId);
+                var result =  _reportService.GetReportQtyByDates(dateFrom,dateTo,userId,vehicleId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -31,13 +34,13 @@ namespace KSTrips_API.Controllers
             
         }
 
-        [HttpGet("expenseReport/{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        [HttpGet("expenseReport/{dateFrom}/{dateTo}/{userId}/{vehicleId}")]
         [ProducesDefaultResponseType]
-        public IActionResult GetReportExpenseByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
+        public IActionResult GetReportExpenseByDates(DateTime dateFrom, DateTime dateTo, string userId, int vehicleId)
         {
             try
             {
-                var result = _reportService.GetReportExpenseByDates(dateFrom, dateTo, authZeroId,vehicleId);
+                var result = _reportService.GetReportExpenseByDates(dateFrom, dateTo, userId,vehicleId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -46,29 +49,13 @@ namespace KSTrips_API.Controllers
             }
 
         }
-        [HttpGet("detailReport/{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
+        [HttpGet("detailReport/{dateFrom}/{dateTo}/{userId}/{vehicleId}")]
         [ProducesDefaultResponseType]
-        public IActionResult GetReportDetailByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
+        public IActionResult GetReportDetailByDates(DateTime dateFrom, DateTime dateTo, string userId, int vehicleId)
         {
             try
             {
-                var result = _reportService.GetReportDetailByDates(dateFrom, dateTo, authZeroId,vehicleId);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-            
-        }
-
-        [HttpGet("financialReport/{dateFrom}/{dateTo}/{authZeroId}/{vehicleId}")]
-        [ProducesDefaultResponseType]
-        public IActionResult GetReportFinancialByDates(DateTime dateFrom, DateTime dateTo, string authZeroId, int vehicleId)
-        {
-            try
-            {
-                var result = _reportService.GetReportFinancialByDates(dateFrom, dateTo, authZeroId,vehicleId);
+                var result = _reportService.GetReportDetailByDates(dateFrom, dateTo, userId,vehicleId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -78,13 +65,29 @@ namespace KSTrips_API.Controllers
             
         }
 
-        [HttpGet("dashboardReport/{dateFrom}/{dateTo}/{authZeroId}")]
+        [HttpGet("financialReport/{dateFrom}/{dateTo}/{userId}/{vehicleId}")]
         [ProducesDefaultResponseType]
-        public IActionResult GetDashboardReport(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        public IActionResult GetReportFinancialByDates(DateTime dateFrom, DateTime dateTo, string userId, int vehicleId)
         {
             try
             {
-                var result = _reportService.GetDashboardReport(dateFrom, dateTo, authZeroId);
+                var result = _reportService.GetReportFinancialByDates(dateFrom, dateTo, userId,vehicleId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
+        }
+
+        [HttpGet("dashboardReport/{dateFrom}/{dateTo}/{userId}")]
+        [ProducesDefaultResponseType]
+        public IActionResult GetDashboardReport(DateTime dateFrom, DateTime dateTo, string userId)
+        {
+            try
+            {
+                var result = _reportService.GetDashboardReport(dateFrom, dateTo, userId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -94,13 +97,13 @@ namespace KSTrips_API.Controllers
 
         }
 
-        [HttpGet("getMaintenanceVehicles/{dateFrom}/{dateTo}/{authZeroId}")]
+        [HttpGet("getMaintenanceVehicles/{dateFrom}/{dateTo}/{userId}")]
         [ProducesDefaultResponseType]
-        public IActionResult GetMaintenanceVehicles(DateTime dateFrom, DateTime dateTo, string authZeroId)
+        public IActionResult GetMaintenanceVehicles(DateTime dateFrom, DateTime dateTo, string userId)
         {
             try
             {
-                var result = _reportService.GetMaintenanceVehicles(dateFrom, dateTo, authZeroId);
+                var result = _reportService.GetMaintenanceVehicles(dateFrom, dateTo, userId);
                 return Ok(result);
             }
             catch (Exception ex)

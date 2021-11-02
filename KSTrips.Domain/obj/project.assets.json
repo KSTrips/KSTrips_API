@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
+    "net5.0": {
       "Newtonsoft.Json/12.0.2": {
         "type": "package",
         "compile": {
@@ -46,7 +46,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
+    "net5.0": [
       "Newtonsoft.Json >= 12.0.2"
     ]
   },
@@ -57,11 +57,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj",
+      "projectUniqueName": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj",
       "projectName": "KSTrips.Domain",
-      "projectPath": "D:\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj",
+      "projectPath": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Domain\\KSTrips.Domain.csproj",
       "packagesPath": "C:\\Users\\kvelasco\\.nuget\\packages\\",
-      "outputPath": "D:\\KSTrips\\KSTrips_API\\KSTrips.Domain\\obj\\",
+      "outputPath": "E:\\D-BackUp\\KSTrips\\KSTrips_API\\KSTrips.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -71,14 +71,16 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "net5.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://genexservices.pkgs.visualstudio.com/_packaging/Packages/nuget/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
+        "net5.0": {
+          "targetAlias": "net5.0",
           "projectReferences": {}
         }
       },
@@ -89,7 +91,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
+      "net5.0": {
+        "targetAlias": "net5.0",
         "dependencies": {
           "Newtonsoft.Json": {
             "target": "Package",
@@ -111,7 +114,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

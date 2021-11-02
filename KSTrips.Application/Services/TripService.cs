@@ -19,9 +19,9 @@ namespace KSTrips.Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Trip>> GetTripsByUserId(string authZeroId)
+        public async Task<List<Trip>> GetTripsByUserId(string email)
         {
-            Task<List<User>> user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
+            Task<List<User>> user = _unitOfWork.UserRepository.GetUserByEmail(email);
             int userId = user.Result[0].Id;
             List<Trip> result = await _unitOfWork.TripRepository.GetTripsByUserId(userId);
             return result;
@@ -43,7 +43,7 @@ namespace KSTrips.Application.Services
             // Guardamos el proveedor
             Provider prov = new Provider { Description = dataTrip.Provider.ToUpper().Trim() };
             bool blnProvider = _unitOfWork.ProviderRepository.SaveProvider(prov);
-            List<User> user = await _unitOfWork.UserRepository.GetUserByAuthZeroId(dataTrip.UserAuthZeroId);
+            List<User> user = await _unitOfWork.UserRepository.GetUserByEmail(dataTrip.userEmail);
 
             if (!blnProvider) return null;
 
@@ -59,7 +59,7 @@ namespace KSTrips.Application.Services
         public async Task<SimulatorResponse> UpdateTrip(SimulatorEntity dataTrip)
         {
             SimulatorResponse simulatorResponse = new SimulatorResponse();
-            List<User> user = await _unitOfWork.UserRepository.GetUserByAuthZeroId(dataTrip.UserAuthZeroId);
+            List<User> user = await _unitOfWork.UserRepository.GetUserByEmail(dataTrip.userEmail);
 
             simulatorResponse = await GenerateResult(dataTrip);
 
@@ -155,7 +155,7 @@ namespace KSTrips.Application.Services
             }
 
 
-            Trip trip = new Trip
+            Trip trip = new()
             {
                 Id = dataTrip.Id != -1 ? dataTrip.Id : 0,
                 Origin = dataTrip.RouteCoordinates.Where(ls => ls.IsOrigin).Select(ls => ls.Name).FirstOrDefault(),
@@ -170,7 +170,7 @@ namespace KSTrips.Application.Services
                 TripDetails = new List<TripDetail>(),
                 UserId = user.Id,
                 ProviderId = provider.Result[0].Id,
-                CreatedBy = user.Name,
+                CreatedBy = user.UserName,
                 DateCreated = DateTime.Now,
                 VehicleId = dataTrip.VehicleId
             };
@@ -187,7 +187,7 @@ namespace KSTrips.Application.Services
                         ExpenseCategoryId = exp.ExpenseCategoryId,
 
                         DateCreated = DateTime.Now,
-                        CreatedBy = user.Name,
+                        CreatedBy = user.UserName,
                         Comments = exp.Comments, 
                         TripId = trip.Id
                     };
@@ -206,7 +206,7 @@ namespace KSTrips.Application.Services
                     TotalExpense = objTransversal.CalculateTolls(vehicle.CarCategoryId, simulatorResponse.Tolls),
 
                     DateCreated = DateTime.Now,
-                    CreatedBy = user.Name,
+                    CreatedBy = user.UserName,
                     TripId = trip.Id
                 };
 

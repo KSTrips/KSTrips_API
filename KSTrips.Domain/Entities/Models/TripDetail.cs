@@ -11,17 +11,19 @@ namespace KSTrips.Domain.Entities
     public class TripDetail : BaseEntity
     {
 
+        public string Comments { get; set; }
+
         [ForeignKey("ExpenseCategory")]
         public int ExpenseCategoryId { get; set; }
-        public decimal? TotalExpense { get; set; }
+        public bool IsToll { get; set; }
+        public virtual IEnumerable<Tax> Taxes { get; }
         [ForeignKey("Toll")]
         public int TollId { get; set; }
-        public bool IsToll { get; set; }
-        public string Comments { get; set; }
+
+        public decimal? TotalExpense { get; set; }
+        public virtual Trip Trip { get; set; }
+
         [ForeignKey("Trip")]
         public int TripId { get; set; }
-        public virtual Trip Trip { get; set; }
-        public virtual IEnumerable<Tax> Taxes { get;  }
-
     }
 }

@@ -14,6 +14,6 @@ namespace KSTrips.Domain.Transversal
         public bool IsUrban { get; set; }
         public List<Expense> Expenses { get; set; }
         public int VehicleId { get; set; }
-        public string UserAuthZeroId { get; set; }
+        public string userEmail { get; set; }
     }
 }

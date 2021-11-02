@@ -19,7 +19,6 @@ namespace KSTrips.Application.Services
         /// <returns></returns>
         public DateTime WorkingDays(int add, DateTime initialDate)
         {
-
            var notificationDate = GetNextDayEnabled(initialDate, add);
 
            return notificationDate;

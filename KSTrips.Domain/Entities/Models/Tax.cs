@@ -9,8 +9,8 @@ namespace KSTrips.Domain.Entities
     /// </summary>
     public class Tax : BaseEntity
     {
-        public string Description { get; set; }
         [Column(TypeName = "decimal(18, 3)")]
         public decimal CostTax { get; set; }
+        public string Description { get; set; }
     }
 }

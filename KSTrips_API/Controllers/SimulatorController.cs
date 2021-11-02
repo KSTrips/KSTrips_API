@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using KSTrips.Application.Interfaces;
 using KSTrips.Domain.Transversal;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -8,6 +9,7 @@ namespace KSTrips_API.Controllers
 {
     [Route("v1/Simulations")]
     [ApiController]
+    
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class SimulatorController : ControllerBase
     {

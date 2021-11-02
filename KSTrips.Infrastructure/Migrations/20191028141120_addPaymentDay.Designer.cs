@@ -268,7 +268,7 @@ namespace KSTrips.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AuthZeroId");
+                    b.Property<string>("userId");
 
                     b.Property<string>("CreatedBy");
 

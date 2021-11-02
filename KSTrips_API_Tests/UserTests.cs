@@ -26,8 +26,7 @@ namespace KSTrips_API_Tests
                 new User()
                 {
                     Id = 0,
-                    AuthZeroId = string.Empty,
-                    Name = string.Empty,
+                    Email = string.Empty,
                     UserName =  string.Empty,
                     Password = string.Empty,
                     IsActive = true
@@ -62,8 +61,6 @@ namespace KSTrips_API_Tests
             User user = new User()
             {
                 Id = 0,
-                Name = "Test User",
-                AuthZeroId = new Guid().ToString(),
                 UserName = "",
                 Password = "",
                 DateCreated = DateTime.Now,
@@ -72,7 +69,7 @@ namespace KSTrips_API_Tests
             };
 
             // Act
-            bool result = _userService.SaveUsers(user);
+            bool result = _userService.SaveUser(user);
 
             // Assert
             _unitOfWork.Verify(uow => uow.UserRepository.SaveUsers(It.IsAny<User>()));
@@ -92,8 +89,6 @@ namespace KSTrips_API_Tests
                 new User
                 {
                     Id = 0,
-                    Name = "Test User",
-                    AuthZeroId = new Guid().ToString(),
                     UserName = "",
                     Password = "",
                     DateCreated = DateTime.Now,

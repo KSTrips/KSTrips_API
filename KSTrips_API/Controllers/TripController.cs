@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using KSTrips.Application.Interfaces;
 using KSTrips.Domain.Transversal;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -9,6 +11,7 @@ namespace KSTrips_API.Controllers
 {
     [Route("v1/Trips")]
     [ApiController]
+    [Authorize]
     public class TripController: ControllerBase
     {
 
@@ -51,12 +54,12 @@ namespace KSTrips_API.Controllers
             
         }
 
-        [HttpGet("{authZeroId}")]
-        public async Task<IActionResult> GetTripByUserId(string authZeroId)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetTripByUserId(string userId)
         {
             try
             {
-                var result = await _tripServices.GetTripsByUserId(authZeroId);
+                var result = await _tripServices.GetTripsByUserId(userId);
                 return Ok(result);
             }
             catch (Exception ex)
