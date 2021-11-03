@@ -1,7 +1,7 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
+/web.config
 /.vs/config/applicationhost.config
 /.vs/KSTrips_API/DesignTimeBuild/.dtbcache
 /.vs/KSTrips_API/v15/Server/sqlite3/db.lock
@@ -26,3 +26,5 @@
 *.vssscc
 *.dbmdl
 *.jfm
+*.config
+*.txt

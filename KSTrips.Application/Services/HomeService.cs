@@ -1,7 +1,5 @@
 ﻿using KSTrips.Application.Interfaces;
 using KSTrips.Domain.Transversal;
-using Microsoft.Azure.Storage;
-using Microsoft.Azure.Storage.Blob;
 using Microsoft.Extensions.Configuration;
 using System;
 
@@ -34,22 +32,22 @@ namespace KSTrips.Application.Services
             try
             {
                 var response = new Video();
-                string containername = Iconfiguration.GetSection("blobContainer").Value;
-                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Iconfiguration.GetSection("StorageConnectionString").Value);
-                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-                CloudBlobContainer container = blobClient.GetContainerReference(containername);
+                //string containername = Iconfiguration.GetSection("blobContainer").Value;
+                //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Iconfiguration.GetSection("StorageConnectionString").Value);
+                //CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+                //CloudBlobContainer container = blobClient.GetContainerReference(containername);
 
-                CloudBlockBlob blob = container.GetBlockBlobReference(namevideo);
-                //string sas = blob.GetSharedAccessSignature(new SharedAccessBlobPolicy()
-                //{
-                //    Permissions = SharedAccessBlobPermissions.Read,
-                //    SharedAccessExpiryTime = DateTime.UtcNow.AddHours(1),//Set this date/time according to your requirements
-                //});
-                // string urlToBePlayed = string.Format("{0}{1}", blob.Uri, sas);//This is the URI which should be embedded in your video player.
-                string urlToBePlayed = string.Format("{0}", blob.Uri);
+                //CloudBlockBlob blob = container.GetBlockBlobReference(namevideo);
+                ////string sas = blob.GetSharedAccessSignature(new SharedAccessBlobPolicy()
+                ////{
+                ////    Permissions = SharedAccessBlobPermissions.Read,
+                ////    SharedAccessExpiryTime = DateTime.UtcNow.AddHours(1),//Set this date/time according to your requirements
+                ////});
+                //// string urlToBePlayed = string.Format("{0}{1}", blob.Uri, sas);//This is the URI which should be embedded in your video player.
+                //string urlToBePlayed = string.Format("{0}", blob.Uri);
 
-                response.Url = urlToBePlayed;
-                response.Name = namevideo;
+                //response.Url = urlToBePlayed;
+                //response.Name = namevideo;
 
                 return response;
 

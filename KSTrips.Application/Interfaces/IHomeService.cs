@@ -9,7 +9,6 @@ namespace KSTrips.Application.Interfaces
     public interface IHomeService
     {
         Video GetPromotionalVideo();
-
         Video GetHowUseAppVideo();
     }
 }
