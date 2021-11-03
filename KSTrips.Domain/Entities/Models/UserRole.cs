@@ -9,9 +9,10 @@ namespace KSTrips.Domain.Entities
     public class UserRole : BaseEntity
     {
 
-        [ForeignKey("User")]
-        public int UserId { get; set; }
         [ForeignKey("Role")]
         public int RoleId { get; set; }
+
+        [ForeignKey("User")]
+        public int UserId { get; set; }
     }
 }

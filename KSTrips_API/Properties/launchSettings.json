@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "http://localhost/KSTrips_API",
+      "applicationUrl": "https://localhost/KSTrips_API",
       "sslPort": 0
     },
     "iisExpress": {
@@ -22,9 +22,9 @@
       }
     },
     "KSTrips_API": {
-      "commandName": "IISExpress",
+      "commandName": "IIS",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

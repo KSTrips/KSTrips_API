@@ -1,9 +1,13 @@
 ﻿using KSTrips.Domain.Entities;
 using KSTrips.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace KSTrips.Infrastructure.Services
@@ -22,14 +26,14 @@ namespace KSTrips.Infrastructure.Services
             return await Context.Users.ToListAsync();
         }
 
-        public async Task<List<User>> GetUserByAuthZeroId(string authZeroId)
+        public async Task<List<User>> GetUserByEmail(string email)
         {
-            return await Context.Users.Where(ls => ls.AuthZeroId == authZeroId).ToListAsync();
+            return await Context.Users.Where(ls => ls.Email == email).ToListAsync();
         }
 
-        public bool UserExist(string authZeroId)
+        public bool UserExist(string email)
         {
-            var user = Context.Users.Where(ls => ls.AuthZeroId == authZeroId).FirstOrDefault();
+            var user = Context.Users.Where(ls => ls.Email == email).FirstOrDefault();
 
             return user != null ? true : false;
         }
@@ -38,7 +42,7 @@ namespace KSTrips.Infrastructure.Services
         {
             try
             {
-                Task<List<User>> existUser = Context.Users.Where(ls => ls.Name == user.Name).ToListAsync();
+                Task<List<User>> existUser = Context.Users.Where(ls => ls.UserName == user.UserName).ToListAsync();
 
                 if (existUser.Result.Count == 0)
                 {
@@ -109,5 +113,6 @@ namespace KSTrips.Infrastructure.Services
                 throw new Exception(ex.Message.ToString());
             }
         }
+
     }
 }

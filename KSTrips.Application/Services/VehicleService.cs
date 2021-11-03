@@ -18,9 +18,9 @@ namespace KSTrips.Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Vehicle>> GetVehiclesByUser(string authZeroId)
+        public async Task<List<Vehicle>> GetVehiclesByUser(string email)
         {
-            var user = _unitOfWork.UserRepository.GetUserByAuthZeroId(authZeroId);
+            var user = _unitOfWork.UserRepository.GetUserByEmail(email);
             var userId = user.Result[0].Id;
             return await _unitOfWork.VehicleRepository.GetVehiclesByUser(userId);
         }
@@ -50,7 +50,7 @@ namespace KSTrips.Application.Services
         private IEnumerable<Vehicle> TransformVehicle(IEnumerable<InComingVehicles> inComingVehicles )
         {
             return (from us in inComingVehicles
-                let user = _unitOfWork.UserRepository.GetUserByAuthZeroId(us.userAuthZeroId)
+                let user = _unitOfWork.UserRepository.GetUserByEmail(us.Email)
                 let userId = user.Result[0].Id
                 select new Vehicle
                 {
@@ -59,7 +59,7 @@ namespace KSTrips.Application.Services
                     Description = us.Description,
                     NotificationKilometers = us.NotificationKilometers,
                     UserId = userId,
-                    CreatedBy = user.Result[0].Name,
+                    CreatedBy = user.Result[0].UserName,
                     DateCreated = DateTime.Now,
                     IsActive = us.IsActive,
                     CarCategoryId = us.CarCategoryId

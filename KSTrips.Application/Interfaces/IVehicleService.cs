@@ -11,7 +11,7 @@ namespace KSTrips.Application.Interfaces
    public interface IVehicleService
    {
 
-       Task<List<Vehicle>> GetVehiclesByUser(string authZeroId);
+       Task<List<Vehicle>> GetVehiclesByUser(string userId);
         bool SaveVehicles(IEnumerable<InComingVehicles> vehicles);
         bool UpdateVehicles(IEnumerable<InComingVehicles> vehicles);
         bool UpdateVehicle(Vehicle vehicle);

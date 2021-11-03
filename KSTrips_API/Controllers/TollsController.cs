@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
 using KSTrips.Application.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KSTrips_API.Controllers
 {
     [Route("v1/Tolls")]
     [ApiController]
+    [Authorize]
+
     public class TollsController : ControllerBase
     {
         private readonly ISimulationService _tollsServices;

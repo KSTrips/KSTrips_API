@@ -7,11 +7,11 @@ namespace KSTrips.Infrastructure.Interfaces
     public interface IUserRepository
     {
         Task<List<User>> GetUsers();
-        Task<List<User>> GetUserByAuthZeroId(string authZeroId);
+        Task<List<User>> GetUserByEmail(string email);
         bool SaveUsers(User users);
         bool UpdateUsers(IEnumerable<User> users);
         bool UpdateSpecificUser(User user);
 
-        bool UserExist(string authZeroId);
+        bool UserExist(string email);
     }
 }
