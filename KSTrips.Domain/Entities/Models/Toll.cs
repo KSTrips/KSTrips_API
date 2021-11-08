@@ -6,9 +6,8 @@ namespace KSTrips.Domain.Entities
     /// <summary>
     /// Entidad que representa Los Peajes
     /// </summary>
-    public class Toll : BaseEntity
+    public class Toll : BaseEntityTrackable
     {
-
         public decimal? CostCategory1 { get; set; }
         public decimal? CostCategory2 { get; set; }
         public decimal? CostCategory3 { get; set; }

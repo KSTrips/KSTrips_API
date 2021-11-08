@@ -5,11 +5,6 @@
     [Name]                 NVARCHAR (MAX) NULL,
     [Email]                NVARCHAR (MAX) NULL,
     [Password]             NVARCHAR (MAX) NULL,
-    [DateCreated]          DATETIME2 (7)  NOT NULL,
-    [DateModified]         DATETIME2 (7)  NULL,
-    [CreatedBy]            NVARCHAR (MAX) NULL,
-    [ModifiedBy]           NVARCHAR (MAX)  NULL,
-    [IsActive]             BIT            NOT NULL,
     [DateInitial]          DATETIME2 (7)  NULL,
     [DateUse]              DATETIME2 (7)  NULL,
     [Provider]             NVARCHAR (MAX) NULL,
@@ -18,6 +13,12 @@
     [DateInitSubscription] DATETIME2 (7)  NULL,
     [SubscriptionTypeId]   INT            NULL,
     [DateforPay]           DATETIME2 (7)  NULL,
+    [DateCreated]          DATETIME2 (7)  NOT NULL,
+    [DateModified]         DATETIME2 (7)  NULL,
+    [CreatedBy]            NVARCHAR (MAX) NULL,
+    [ModifiedBy]           NVARCHAR (MAX)  NULL,
+    [IsActive]             BIT            NOT NULL,
+    
     CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Users_SubscriptionTypes_SubscriptionTypeId] FOREIGN KEY ([SubscriptionTypeId]) REFERENCES [dbo].[SubscriptionTypes] ([Id])
 );

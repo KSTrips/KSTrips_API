@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KSTrips.Domain.Entities
 {
-    public class SMTP : BaseEntity
+    public class SMTP : BaseEntityTrackable
     {
         public string Email { get; set; }
         public string Host { get; set; }

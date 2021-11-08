@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KSTrips.Domain.Entities
 {
-    public class UserRole : BaseEntity
+    public class UserRole : BaseEntityNonTrackable
     {
 
         [ForeignKey("Role")]

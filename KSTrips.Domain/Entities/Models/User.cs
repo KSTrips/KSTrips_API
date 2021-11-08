@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KSTrips.Domain.Entities
 {
-    public class User : BaseEntity
+    public class User : BaseEntityTrackable
     {
 
         public DateTime? DateEndSubscription { get; set; }

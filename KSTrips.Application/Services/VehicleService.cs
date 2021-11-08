@@ -24,17 +24,15 @@ namespace KSTrips.Application.Services
             var userId = user.Result[0].Id;
             return await _unitOfWork.VehicleRepository.GetVehiclesByUser(userId);
         }
+        public async Task<Vehicle> GetVehicleByLicensePlate(string licensePlate)
+        {
+            return await _unitOfWork.VehicleRepository.GetVehicleByLicensePlate(licensePlate);
+        }
 
         public bool SaveVehicles(IEnumerable<InComingVehicles> vehicles)
         {
             var NewVehicles = TransformVehicle(vehicles);
             return _unitOfWork.VehicleRepository.SaveVehicles(NewVehicles);
-        }
-
-        public bool UpdateVehicles(IEnumerable<InComingVehicles> vehicles)
-        {
-            var NewVehicles = TransformVehicle(vehicles);
-            return _unitOfWork.VehicleRepository.UpdateVehicles(NewVehicles);
         }
 
         public bool UpdateVehicle(Vehicle vehicle)

@@ -73,9 +73,6 @@ namespace KSTrips.Infrastructure.Services
 
                 foreach (var tripDet in trip.TripDetails)
                 {
-                    tripDet.DateModified = DateTime.Now;
-                    Context.Entry(tripDet).Property(p => p.DateModified).IsModified = true;
-                    Context.Entry(tripDet).Property(p => p.TotalExpense).IsModified = true;
                     Context.Entry(tripDet).Property(p => p.Comments).IsModified = true;
                 }
 
