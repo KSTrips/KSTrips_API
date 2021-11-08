@@ -15,11 +15,9 @@ namespace KSTrips.Domain.Entities
         public string Email { get; set; }
         public int? NotificationDays { get; set; }
         public int? ParentId { get; set; }
-        public string Password { get; set; }
         public virtual SubscriptionType SubscriptionType { get; set; }
         [ForeignKey("SubscriptionType")]
         public int? SubscriptionTypeId { get; set; }
-
         public virtual Trip Trip { get; set; }
         public string UserName { get; set; }
     }

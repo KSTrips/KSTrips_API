@@ -12,6 +12,7 @@ namespace KSTrips.Domain.Entities
         [ForeignKey("CarCategory")]
         public int CarCategoryId { get; set; }
         public string Description { get; set; }
+        public int Model { get; set; }
         public string Driver { get; set; }
         public string LicensePlate { get; set; }
         public int NotificationKilometers { get; set; }

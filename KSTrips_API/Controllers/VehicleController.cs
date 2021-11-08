@@ -41,7 +41,7 @@ namespace KSTrips_API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet("{licensePlate}")]
         public async Task<IActionResult> GetUserByLicensePlate(string licensePlate)
         {
             Vehicle result = await _vehicleServices.GetVehicleByLicensePlate(licensePlate);

@@ -219,5 +219,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\PostDeployment\Deployment.sql" />
+    <None Include="KSTrip.publish.xml" />
   </ItemGroup>
 </Project>

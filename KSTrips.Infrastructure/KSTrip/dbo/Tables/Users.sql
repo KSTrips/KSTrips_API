@@ -1,10 +1,8 @@
 ﻿CREATE TABLE [dbo].[Users] (
     [Id]                   INT            IDENTITY (1, 1) NOT NULL,
-    [AuthZeroId]           NVARCHAR (MAX) NULL,
     [UserName]             NVARCHAR (MAX) NULL,
     [Name]                 NVARCHAR (MAX) NULL,
     [Email]                NVARCHAR (MAX) NULL,
-    [Password]             NVARCHAR (MAX) NULL,
     [DateInitial]          DATETIME2 (7)  NULL,
     [DateUse]              DATETIME2 (7)  NULL,
     [Provider]             NVARCHAR (MAX) NULL,

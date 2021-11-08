@@ -8,7 +8,7 @@ namespace KSTrips_API.Controllers
 {
     [Route("v1/Reports")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ReportController : ControllerBase
     {
         private readonly IReportService _reportService;
