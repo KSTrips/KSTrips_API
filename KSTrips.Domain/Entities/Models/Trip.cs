@@ -9,7 +9,7 @@ namespace KSTrips.Domain.Entities
     /// <summary>
     /// Entidad que Representa el Viaje
     /// </summary>
-    public class Trip : BaseEntity
+    public class Trip : BaseEntityTrackable
     {
 
         public bool ApplyIca { get; set; }

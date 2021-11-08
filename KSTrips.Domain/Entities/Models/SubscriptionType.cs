@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KSTrips.Domain.Entities
 {
-    public class SubscriptionType : BaseEntity
+    public class SubscriptionType : BaseEntityTrackable
     {
         public string Description { get; set; }
         public  int QtyAllowedUsers { get; set; }

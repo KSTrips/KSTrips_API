@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KSTrips.Domain.Entities
 {
-   public class Document : BaseEntity
+   public class Document : BaseEntityTrackable
     {
         public string Description { get; set; }
         [ForeignKey("Trip")]

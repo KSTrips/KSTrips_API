@@ -185,9 +185,6 @@ namespace KSTrips.Application.Services
                         Id = exp.TripDetailId,
                         TotalExpense = exp.CostExpense,
                         ExpenseCategoryId = exp.ExpenseCategoryId,
-
-                        DateCreated = DateTime.Now,
-                        CreatedBy = user.UserName,
                         Comments = exp.Comments, 
                         TripId = trip.Id
                     };
@@ -204,9 +201,6 @@ namespace KSTrips.Application.Services
                     Id = tripDetailIdToll,
                     TollId = simulatorResponse.Tolls.Id,
                     TotalExpense = objTransversal.CalculateTolls(vehicle.CarCategoryId, simulatorResponse.Tolls),
-
-                    DateCreated = DateTime.Now,
-                    CreatedBy = user.UserName,
                     TripId = trip.Id
                 };
 

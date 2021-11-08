@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KSTrips.Domain.Entities
 {
-    public class ErrorLog : BaseEntity
+    public class ErrorLog : BaseEntityTrackable
     {
         public string Exception { get; set; }
         public string Message { get; set; }

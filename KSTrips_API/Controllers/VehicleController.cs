@@ -37,8 +37,14 @@ namespace KSTrips_API.Controllers
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetUserByuserId(string userId)
         {
-
             List<Vehicle> result = await _vehicleServices.GetVehiclesByUser(userId);
+            return Ok(result);
+        }
+
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUserByLicensePlate(string licensePlate)
+        {
+            Vehicle result = await _vehicleServices.GetVehicleByLicensePlate(licensePlate);
             return Ok(result);
         }
 
@@ -55,19 +61,7 @@ namespace KSTrips_API.Controllers
 
         }
 
-        // POST api/updateUsers
-        [HttpPut("UpdateVehicles")]
-        public IActionResult UpdateVehicles([FromBody] List<InComingVehicles> dataVehicle)
-        {
-            var result = _vehicleServices.UpdateVehicles(dataVehicle);
-
-            if (result)
-                return Ok();
-
-            return BadRequest("Error: al actualizar los vehiculos");
-
-        }
-        // POST api/updateUsers
+        // PUT api/updateUsers
         [HttpPut("UpdateVehicle")]
         public IActionResult UpdateVehicle([FromBody] Vehicle dataVehicle)
         {
@@ -79,8 +73,8 @@ namespace KSTrips_API.Controllers
             return BadRequest("Error: al actualizar el vehiculo");
 
         }
-        // POST api/updateUsers
-        [HttpPost("DeleteVehicle")]
+        // DELETE api/updateUsers
+        [HttpDelete("DeleteVehicle")]
         public IActionResult DeleteVehicle([FromBody] Vehicle dataVehicle)
         {
             var result = _vehicleServices.DeleteVehicle(dataVehicle);

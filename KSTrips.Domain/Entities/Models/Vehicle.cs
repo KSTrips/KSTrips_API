@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KSTrips.Domain.Entities
 {
-    public class Vehicle : BaseEntity
+    public class Vehicle : BaseEntityTrackable
     {
         public virtual CarCategory CarCategory { get; set; }
         [ForeignKey("CarCategory")]

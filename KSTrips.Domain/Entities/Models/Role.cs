@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KSTrips.Domain.Entities
 {
-   public class Role : BaseEntity
+   public class Role : BaseEntityTrackable
     {
         public string Name { get; set; }
     }
