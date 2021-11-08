@@ -7,7 +7,7 @@ namespace KSTrips.Domain.Entities
     /// <summary>
     /// Entidad que Representa Los impuestos
     /// </summary>
-    public class Tax : BaseEntity
+    public class Tax : BaseEntityTrackable
     {
         [Column(TypeName = "decimal(18, 3)")]
         public decimal CostTax { get; set; }

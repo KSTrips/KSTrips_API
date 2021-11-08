@@ -2,7 +2,7 @@
 
 namespace KSTrips.Domain.Entities
 {
-    public class CarCategory : BaseEntity
+    public class CarCategory : BaseEntityTrackable
     {
         public string CarTypes { get; set; }
         public decimal? CostAproxByDistance { get; set; }

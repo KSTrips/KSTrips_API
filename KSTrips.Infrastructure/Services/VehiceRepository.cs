@@ -11,15 +11,44 @@ namespace KSTrips.Infrastructure.Services
     public class VehiceRepository : IVehicleRepository
     {
 
-        private TripContext Context { get; }
-
         public VehiceRepository(TripContext context)
         {
             Context = context;
         }
+
+        private TripContext Context { get; }
+        public bool DeleteVehicle(Vehicle vehicle)
+        {
+            try
+            {
+                Context.Attach(vehicle).State = EntityState.Deleted;
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        public Task<Vehicle> GetVehicleById(int vehicleId)
+        {
+            return Context.Vehicles.Where(ls => ls.Id == vehicleId).FirstOrDefaultAsync();
+        }
+        public Task<Vehicle> GetVehicleByLicensePlate(string licensePlate)
+        {
+            return Context.Vehicles.Where(ls => ls.LicensePlate == licensePlate).FirstOrDefaultAsync();
+        }
+
+        public Task<List<Vehicle>> GetVehiclesByUser(int userId)
+        {
+            return Context.Vehicles.Where(ls => ls.UserId == userId)
+                .ToListAsync();
+        }
+
         public bool SaveVehicles(IEnumerable<Vehicle> vehicle)
         {
-
             try
             {
                 foreach (Vehicle vh in vehicle)
@@ -48,31 +77,31 @@ namespace KSTrips.Infrastructure.Services
             }
         }
 
-        public bool UpdateVehicles(IEnumerable<Vehicle> vehicle)
-        {
-            try
-            {
-                foreach (Vehicle us in vehicle)
-                {
-                    Context.Attach(us).State = EntityState.Modified;
-                    us.DateModified = DateTime.Now;
+        //public bool UpdateVehicles(IEnumerable<Vehicle> vehicle)
+        //{
+        //    try
+        //    {
+        //        foreach (Vehicle us in vehicle)
+        //        {
+        //            Context.Attach(us).State = EntityState.Modified;
+        //            us.DateModified = DateTime.Now;
 
-                    Context.Attach(us).Property(p => p.DateModified).IsModified = true;
-                    Context.Attach(us).Property(p => p.IsActive).IsModified = true;
-                    Context.Attach(us).Property(p => p.Driver).IsModified = true;
-                    Context.Attach(us).Property(p => p.NotificationKilometers).IsModified = true;
+        //            Context.Attach(us).Property(p => p.DateModified).IsModified = true;
+        //            Context.Attach(us).Property(p => p.IsActive).IsModified = true;
+        //            Context.Attach(us).Property(p => p.Driver).IsModified = true;
+        //            Context.Attach(us).Property(p => p.NotificationKilometers).IsModified = true;
 
-                }
+        //        }
 
-                Context.SaveChanges();
+        //        Context.SaveChanges();
 
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message.ToString());
-            }
-        }
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message.ToString());
+        //    }
+        //}
         public bool UpdateVehicle(Vehicle vehicle)
         {
             try
@@ -88,32 +117,6 @@ namespace KSTrips.Infrastructure.Services
             {
                 throw new Exception(ex.Message.ToString());
             }
-        }
-
-        public bool DeleteVehicle(Vehicle vehicle)
-        {
-            try
-            {
-                Context.Attach(vehicle).State = EntityState.Deleted;
-                Context.SaveChanges();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message.ToString());
-            }
-        }
-
-        public Task<List<Vehicle>> GetVehiclesByUser(int userId)
-        {
-            return Context.Vehicles.Where(ls => ls.UserId == userId)
-                .ToListAsync();
-        }
-
-        public Task<Vehicle> GetVehicleById(int vehicleId)
-        {
-            return Context.Vehicles.Where(ls => ls.Id == vehicleId).FirstOrDefaultAsync();
         }
     }
 }
